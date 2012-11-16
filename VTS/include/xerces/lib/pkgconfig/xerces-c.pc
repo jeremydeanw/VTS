@@ -1,0 +1,10 @@
+prefix=/Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repo/VTS/include/xerces
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: Xerces-C++
+Description: Validating XML parser library for C++
+Version: 3.1.1
+Libs: -L${libdir} -lxerces-c
+Cflags: -I${includedir}

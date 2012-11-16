@@ -1,0 +1,548 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww12600\viewh14980\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs24 \cf0 dyn-160-39-0-42:~ Papoj$ brew doctor\
+/usr/bin/gcc\
+Unbrewed static libraries were found in /usr/local/lib.\
+\
+If you didn't put them there on purpose they could cause problems when\
+building Homebrew formulae, and may need to be deleted.\
+\
+Unexpected static libraries:\
+    /usr/local/lib/libfltk.a\
+    /usr/local/lib/libfltk_forms.a\
+    /usr/local/lib/libfltk_gl.a\
+    /usr/local/lib/libfltk_images.a\
+    /usr/local/lib/libfltk_jpeg.a\
+    /usr/local/lib/libfltk_png.a\
+\
+Your gcc 4.2.x version is older than the recommended version. It may be advisable\
+to upgrade to the latest release of Xcode.\
+\
+You have Macports or Fink installed. This can cause trouble.\
+You don't have to uninstall them, but you may like to try temporarily\
+moving them away, eg.\
+\
+  sudo mv /opt/local ~/macports\
+\
+"/usr/X11" was found, but it is a symlink to:\
+  /opt/X11\
+\
+Homebrew's X11 support has only be tested with Apple's X11.\
+In particular, "XQuartz" and "XDarwin" are not known to be compatible.\
+\
+Some folders in /usr/local/share/man aren't writable.\
+This can happen if you "sudo make install" software that isn't managed\
+by Homebrew. If a brew tries to add locale information to one of these\
+folders, then the install will fail during the link step.\
+You should probably `chown` them:\
+\
+    /usr/local/share/man/cat1\
+    /usr/local/share/man/cat3\
+    /usr/local/share/man/de\
+    /usr/local/share/man/de/man1\
+    /usr/local/share/man/man3\
+\
+You have a non-brew 'pkg-config' in your PATH:\
+  /opt/local/bin/pkg-config\
+\
+`./configure` may have problems finding brew-installed packages using\
+this other pkg-config.\
+\
+Your pkg-config is not checking "/usr/X11/lib/pkgconfig" for packages.\
+Earlier versions of the pkg-config formula did not add this path\
+to the search path, which means that other formula may not be able\
+to find certain dependencies.\
+\
+To resolve this issue, re-brew pkg-config with:\
+  brew rm pkg-config && brew install pkg-config\
+\
+Some "config" scripts were found in your path, but not in system or Homebrew folders.\
+\
+`./configure` scripts often look for *-config scripts to determine if software packages\
+are installed, and what additional flags to use when compiling and linking.\
+\
+Having additional scripts in your path can confuse software installed via Homebrew if\
+the config script overrides a system or Homebrew provided script of the same name.\
+\
+/opt/local/bin\
+    curl-config ncurses5-config ncursesw5-config pcre-config pkg-config python2.7-config\
+/opt/X11/bin\
+    freetype-config libpng-config libpng15-config\
+\
+An "autoconf" in your path blocking the Xcode-provided version at:\
+  /opt/local/bin/autoconf\
+\
+This custom autoconf may cause some Homebrew formulae to fail to compile.\
+\
+dyn-160-39-0-42:~ Papoj$ sudo mv /opt/local ~/macports\
+Password:\
+dyn-160-39-0-42:~ Papoj$ brew rm pkg-config && brew install pkg-config\
+Uninstalling /usr/local/Cellar/pkg-config/0.25...\
+\
+==> Downloading http://pkg-config.freedesktop.org/releases/pkg-config-0.25.tar.g\
+######################################################################## 100.0%\
+==> ./configure --disable-debug --prefix=/usr/local/Cellar/pkg-config/0.25 --wit\
+==> make install\
+Making install in glib-1.2.10\
+CONFIG_FILES= CONFIG_HEADERS= CONFIG_OTHER=glibconfig.h ./config.status\
+config.status: executing depfiles commands\
+config.status: executing libtool commands\
+config.status: executing default-1 commands\
+creating glibconfig.h\
+glibconfig.h is unchanged\
+config.status: executing default commands\
+echo timestamp > stamp-gc-h\
+make  install-recursive\
+Making install in .\
+/bin/sh ./libtool --tag=CC   --mode=compile /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS    -O3 -march=core2 -w -pipe -Wall  -D_REENTRANT -MT garray.lo -MD -MP -MF .deps/garray.Tpo -c -o garray.lo garray.c\
+/bin/sh ./libtool --tag=CC   --mode=compile /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS    -O3 -march=core2 -w -pipe -Wall  -D_REENTRANT -MT gcache.lo -MD -MP -MF .deps/gcache.Tpo -c -o gcache.lo gcache.c\
+/bin/sh ./libtool --tag=CC   --mode=compile /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS    -O3 -march=core2 -w -pipe -Wall  -D_REENTRANT -MT gcompletion.lo -MD -MP -MF .deps/gcompletion.Tpo -c -o gcompletion.lo gcompletion.c\
+/bin/sh ./libtool --tag=CC   --mode=compile /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS    -O3 -march=core2 -w -pipe -Wall  -D_REENTRANT -MT gdataset.lo -MD -MP -MF .deps/gdataset.Tpo -c -o gdataset.lo gdataset.c\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT garray.lo -MD -MP -MF .deps/garray.Tpo -c garray.c  -fno-common -DPIC -o .libs/garray.o\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gcompletion.lo -MD -MP -MF .deps/gcompletion.Tpo -c gcompletion.c  -fno-common -DPIC -o .libs/gcompletion.o\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gdataset.lo -MD -MP -MF .deps/gdataset.Tpo -c gdataset.c  -fno-common -DPIC -o .libs/gdataset.o\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gcache.lo -MD -MP -MF .deps/gcache.Tpo -c gcache.c  -fno-common -DPIC -o .libs/gcache.o\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gcache.lo -MD -MP -MF .deps/gcache.Tpo -c gcache.c -o gcache.o >/dev/null 2>&1\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gcompletion.lo -MD -MP -MF .deps/gcompletion.Tpo -c gcompletion.c -o gcompletion.o >/dev/null 2>&1\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT garray.lo -MD -MP -MF .deps/garray.Tpo -c garray.c -o garray.o >/dev/null 2>&1\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gdataset.lo -MD -MP -MF .deps/gdataset.Tpo -c gdataset.c -o gdataset.o >/dev/null 2>&1\
+mv -f .deps/gcache.Tpo .deps/gcache.Plo\
+/bin/sh ./libtool --tag=CC   --mode=compile /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS    -O3 -march=core2 -w -pipe -Wall  -D_REENTRANT -MT gdate.lo -MD -MP -MF .deps/gdate.Tpo -c -o gdate.lo gdate.c\
+mv -f .deps/gcompletion.Tpo .deps/gcompletion.Plo\
+/bin/sh ./libtool --tag=CC   --mode=compile /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS    -O3 -march=core2 -w -pipe -Wall  -D_REENTRANT -MT gerror.lo -MD -MP -MF .deps/gerror.Tpo -c -o gerror.lo gerror.c\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gdate.lo -MD -MP -MF .deps/gdate.Tpo -c gdate.c  -fno-common -DPIC -o .libs/gdate.o\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gerror.lo -MD -MP -MF .deps/gerror.Tpo -c gerror.c  -fno-common -DPIC -o .libs/gerror.o\
+mv -f .deps/garray.Tpo .deps/garray.Plo\
+/bin/sh ./libtool --tag=CC   --mode=compile /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS    -O3 -march=core2 -w -pipe -Wall  -D_REENTRANT -MT ghash.lo -MD -MP -MF .deps/ghash.Tpo -c -o ghash.lo ghash.c\
+mv -f .deps/gdataset.Tpo .deps/gdataset.Plo\
+/bin/sh ./libtool --tag=CC   --mode=compile /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS    -O3 -march=core2 -w -pipe -Wall  -D_REENTRANT -MT ghook.lo -MD -MP -MF .deps/ghook.Tpo -c -o ghook.lo ghook.c\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT ghash.lo -MD -MP -MF .deps/ghash.Tpo -c ghash.c  -fno-common -DPIC -o .libs/ghash.o\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gerror.lo -MD -MP -MF .deps/gerror.Tpo -c gerror.c -o gerror.o >/dev/null 2>&1\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT ghook.lo -MD -MP -MF .deps/ghook.Tpo -c ghook.c  -fno-common -DPIC -o .libs/ghook.o\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT ghash.lo -MD -MP -MF .deps/ghash.Tpo -c ghash.c -o ghash.o >/dev/null 2>&1\
+mv -f .deps/gerror.Tpo .deps/gerror.Plo\
+/bin/sh ./libtool --tag=CC   --mode=compile /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS    -O3 -march=core2 -w -pipe -Wall  -D_REENTRANT -MT giochannel.lo -MD -MP -MF .deps/giochannel.Tpo -c -o giochannel.lo giochannel.c\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT ghook.lo -MD -MP -MF .deps/ghook.Tpo -c ghook.c -o ghook.o >/dev/null 2>&1\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT giochannel.lo -MD -MP -MF .deps/giochannel.Tpo -c giochannel.c  -fno-common -DPIC -o .libs/giochannel.o\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gdate.lo -MD -MP -MF .deps/gdate.Tpo -c gdate.c -o gdate.o >/dev/null 2>&1\
+mv -f .deps/ghash.Tpo .deps/ghash.Plo\
+/bin/sh ./libtool --tag=CC   --mode=compile /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS    -O3 -march=core2 -w -pipe -Wall  -D_REENTRANT -MT giounix.lo -MD -MP -MF .deps/giounix.Tpo -c -o giounix.lo giounix.c\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT giochannel.lo -MD -MP -MF .deps/giochannel.Tpo -c giochannel.c -o giochannel.o >/dev/null 2>&1\
+mv -f .deps/ghook.Tpo .deps/ghook.Plo\
+/bin/sh ./libtool --tag=CC   --mode=compile /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS    -O3 -march=core2 -w -pipe -Wall  -D_REENTRANT -MT glist.lo -MD -MP -MF .deps/glist.Tpo -c -o glist.lo glist.c\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT giounix.lo -MD -MP -MF .deps/giounix.Tpo -c giounix.c  -fno-common -DPIC -o .libs/giounix.o\
+mv -f .deps/giochannel.Tpo .deps/giochannel.Plo\
+/bin/sh ./libtool --tag=CC   --mode=compile /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS    -O3 -march=core2 -w -pipe -Wall  -D_REENTRANT -MT gmain.lo -MD -MP -MF .deps/gmain.Tpo -c -o gmain.lo gmain.c\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT glist.lo -MD -MP -MF .deps/glist.Tpo -c glist.c  -fno-common -DPIC -o .libs/glist.o\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT giounix.lo -MD -MP -MF .deps/giounix.Tpo -c giounix.c -o giounix.o >/dev/null 2>&1\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gmain.lo -MD -MP -MF .deps/gmain.Tpo -c gmain.c  -fno-common -DPIC -o .libs/gmain.o\
+mv -f .deps/giounix.Tpo .deps/giounix.Plo\
+/bin/sh ./libtool --tag=CC   --mode=compile /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS    -O3 -march=core2 -w -pipe -Wall  -D_REENTRANT -MT gmem.lo -MD -MP -MF .deps/gmem.Tpo -c -o gmem.lo gmem.c\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT glist.lo -MD -MP -MF .deps/glist.Tpo -c glist.c -o glist.o >/dev/null 2>&1\
+mv -f .deps/gdate.Tpo .deps/gdate.Plo\
+/bin/sh ./libtool --tag=CC   --mode=compile /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS    -O3 -march=core2 -w -pipe -Wall  -D_REENTRANT -MT gmessages.lo -MD -MP -MF .deps/gmessages.Tpo -c -o gmessages.lo gmessages.c\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gmem.lo -MD -MP -MF .deps/gmem.Tpo -c gmem.c  -fno-common -DPIC -o .libs/gmem.o\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gmain.lo -MD -MP -MF .deps/gmain.Tpo -c gmain.c -o gmain.o >/dev/null 2>&1\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gmessages.lo -MD -MP -MF .deps/gmessages.Tpo -c gmessages.c  -fno-common -DPIC -o .libs/gmessages.o\
+mv -f .deps/glist.Tpo .deps/glist.Plo\
+/bin/sh ./libtool --tag=CC   --mode=compile /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS    -O3 -march=core2 -w -pipe -Wall  -D_REENTRANT -MT gmutex.lo -MD -MP -MF .deps/gmutex.Tpo -c -o gmutex.lo gmutex.c\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gmem.lo -MD -MP -MF .deps/gmem.Tpo -c gmem.c -o gmem.o >/dev/null 2>&1\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gmutex.lo -MD -MP -MF .deps/gmutex.Tpo -c gmutex.c  -fno-common -DPIC -o .libs/gmutex.o\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gmessages.lo -MD -MP -MF .deps/gmessages.Tpo -c gmessages.c -o gmessages.o >/dev/null 2>&1\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gmutex.lo -MD -MP -MF .deps/gmutex.Tpo -c gmutex.c -o gmutex.o >/dev/null 2>&1\
+mv -f .deps/gmain.Tpo .deps/gmain.Plo\
+/bin/sh ./libtool --tag=CC   --mode=compile /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS    -O3 -march=core2 -w -pipe -Wall  -D_REENTRANT -MT gnode.lo -MD -MP -MF .deps/gnode.Tpo -c -o gnode.lo gnode.c\
+mv -f .deps/gmem.Tpo .deps/gmem.Plo\
+/bin/sh ./libtool --tag=CC   --mode=compile /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS    -O3 -march=core2 -w -pipe -Wall  -D_REENTRANT -MT gprimes.lo -MD -MP -MF .deps/gprimes.Tpo -c -o gprimes.lo gprimes.c\
+mv -f .deps/gmutex.Tpo .deps/gmutex.Plo\
+/bin/sh ./libtool --tag=CC   --mode=compile /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS    -O3 -march=core2 -w -pipe -Wall  -D_REENTRANT -MT grel.lo -MD -MP -MF .deps/grel.Tpo -c -o grel.lo grel.c\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gnode.lo -MD -MP -MF .deps/gnode.Tpo -c gnode.c  -fno-common -DPIC -o .libs/gnode.o\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gprimes.lo -MD -MP -MF .deps/gprimes.Tpo -c gprimes.c  -fno-common -DPIC -o .libs/gprimes.o\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT grel.lo -MD -MP -MF .deps/grel.Tpo -c grel.c  -fno-common -DPIC -o .libs/grel.o\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gprimes.lo -MD -MP -MF .deps/gprimes.Tpo -c gprimes.c -o gprimes.o >/dev/null 2>&1\
+mv -f .deps/gmessages.Tpo .deps/gmessages.Plo\
+/bin/sh ./libtool --tag=CC   --mode=compile /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS    -O3 -march=core2 -w -pipe -Wall  -D_REENTRANT -MT gscanner.lo -MD -MP -MF .deps/gscanner.Tpo -c -o gscanner.lo gscanner.c\
+mv -f .deps/gprimes.Tpo .deps/gprimes.Plo\
+/bin/sh ./libtool --tag=CC   --mode=compile /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS    -O3 -march=core2 -w -pipe -Wall  -D_REENTRANT -MT gslist.lo -MD -MP -MF .deps/gslist.Tpo -c -o gslist.lo gslist.c\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gnode.lo -MD -MP -MF .deps/gnode.Tpo -c gnode.c -o gnode.o >/dev/null 2>&1\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT grel.lo -MD -MP -MF .deps/grel.Tpo -c grel.c -o grel.o >/dev/null 2>&1\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gscanner.lo -MD -MP -MF .deps/gscanner.Tpo -c gscanner.c  -fno-common -DPIC -o .libs/gscanner.o\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gslist.lo -MD -MP -MF .deps/gslist.Tpo -c gslist.c  -fno-common -DPIC -o .libs/gslist.o\
+mv -f .deps/grel.Tpo .deps/grel.Plo\
+/bin/sh ./libtool --tag=CC   --mode=compile /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS    -O3 -march=core2 -w -pipe -Wall  -D_REENTRANT -MT gstrfuncs.lo -MD -MP -MF .deps/gstrfuncs.Tpo -c -o gstrfuncs.lo gstrfuncs.c\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gslist.lo -MD -MP -MF .deps/gslist.Tpo -c gslist.c -o gslist.o >/dev/null 2>&1\
+mv -f .deps/gnode.Tpo .deps/gnode.Plo\
+/bin/sh ./libtool --tag=CC   --mode=compile /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS    -O3 -march=core2 -w -pipe -Wall  -D_REENTRANT -MT gstring.lo -MD -MP -MF .deps/gstring.Tpo -c -o gstring.lo gstring.c\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gstrfuncs.lo -MD -MP -MF .deps/gstrfuncs.Tpo -c gstrfuncs.c  -fno-common -DPIC -o .libs/gstrfuncs.o\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gstring.lo -MD -MP -MF .deps/gstring.Tpo -c gstring.c  -fno-common -DPIC -o .libs/gstring.o\
+mv -f .deps/gslist.Tpo .deps/gslist.Plo\
+/bin/sh ./libtool --tag=CC   --mode=compile /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS    -O3 -march=core2 -w -pipe -Wall  -D_REENTRANT -MT gtimer.lo -MD -MP -MF .deps/gtimer.Tpo -c -o gtimer.lo gtimer.c\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gscanner.lo -MD -MP -MF .deps/gscanner.Tpo -c gscanner.c -o gscanner.o >/dev/null 2>&1\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gtimer.lo -MD -MP -MF .deps/gtimer.Tpo -c gtimer.c  -fno-common -DPIC -o .libs/gtimer.o\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gstring.lo -MD -MP -MF .deps/gstring.Tpo -c gstring.c -o gstring.o >/dev/null 2>&1\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gstrfuncs.lo -MD -MP -MF .deps/gstrfuncs.Tpo -c gstrfuncs.c -o gstrfuncs.o >/dev/null 2>&1\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gtimer.lo -MD -MP -MF .deps/gtimer.Tpo -c gtimer.c -o gtimer.o >/dev/null 2>&1\
+mv -f .deps/gstring.Tpo .deps/gstring.Plo\
+mv -f .deps/gtimer.Tpo .deps/gtimer.Plo\
+/bin/sh ./libtool --tag=CC   --mode=compile /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS    -O3 -march=core2 -w -pipe -Wall  -D_REENTRANT -MT gtree.lo -MD -MP -MF .deps/gtree.Tpo -c -o gtree.lo gtree.c\
+/bin/sh ./libtool --tag=CC   --mode=compile /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS    -O3 -march=core2 -w -pipe -Wall  -D_REENTRANT -MT gutils.lo -MD -MP -MF .deps/gutils.Tpo -c -o gutils.lo gutils.c\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gtree.lo -MD -MP -MF .deps/gtree.Tpo -c gtree.c  -fno-common -DPIC -o .libs/gtree.o\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gutils.lo -MD -MP -MF .deps/gutils.Tpo -c gutils.c  -fno-common -DPIC -o .libs/gutils.o\
+mv -f .deps/gstrfuncs.Tpo .deps/gstrfuncs.Plo\
+/usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS    -O3 -march=core2 -w -pipe -Wall  -D_REENTRANT -MT testglib.o -MD -MP -MF .deps/testglib.Tpo -c -o testglib.o testglib.c\
+mv -f .deps/gscanner.Tpo .deps/gscanner.Plo\
+/usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS    -O3 -march=core2 -w -pipe -Wall  -D_REENTRANT -MT testgdate.o -MD -MP -MF .deps/testgdate.Tpo -c -o testgdate.o testgdate.c\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gtree.lo -MD -MP -MF .deps/gtree.Tpo -c gtree.c -o gtree.o >/dev/null 2>&1\
+libtool: compile:  /usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -MT gutils.lo -MD -MP -MF .deps/gutils.Tpo -c gutils.c -o gutils.o >/dev/null 2>&1\
+mv -f .deps/testglib.Tpo .deps/testglib.Po\
+/usr/bin/clang -DHAVE_CONFIG_H -I. -DG_LOG_DOMAIN=g_log_domain_glib -DG_DISABLE_ASSERT -DG_DISABLE_CHECKS    -O3 -march=core2 -w -pipe -Wall  -D_REENTRANT -MT testgdateparser.o -MD -MP -MF .deps/testgdateparser.Tpo -c -o testgdateparser.o testgdateparser.c\
+mv -f .deps/gutils.Tpo .deps/gutils.Plo\
+mv -f .deps/gtree.Tpo .deps/gtree.Plo\
+/bin/sh ./libtool --tag=CC   --mode=link /usr/bin/clang  -O3 -march=core2 -w -pipe -Wall  -D_REENTRANT -version-info 0:10:0 -release 1.2 -export-dynamic  -o libglib.la  garray.lo gcache.lo gcompletion.lo gdataset.lo gdate.lo gerror.lo ghash.lo ghook.lo giochannel.lo giounix.lo glist.lo gmain.lo gmem.lo gmessages.lo gmutex.lo gnode.lo gprimes.lo grel.lo gscanner.lo gslist.lo gstrfuncs.lo gstring.lo gtimer.lo gtree.lo gutils.lo  \
+mv -f .deps/testgdateparser.Tpo .deps/testgdateparser.Po\
+mv -f .deps/testgdate.Tpo .deps/testgdate.Po\
+libtool: link: warning: `-version-info/-version-number' is ignored for convenience libraries\
+libtool: link: warning: `-release' is ignored for convenience libraries\
+libtool: link: ar cru .libs/libglib.a .libs/garray.o .libs/gcache.o .libs/gcompletion.o .libs/gdataset.o .libs/gdate.o .libs/gerror.o .libs/ghash.o .libs/ghook.o .libs/giochannel.o .libs/giounix.o .libs/glist.o .libs/gmain.o .libs/gmem.o .libs/gmessages.o .libs/gmutex.o .libs/gnode.o .libs/gprimes.o .libs/grel.o .libs/gscanner.o .libs/gslist.o .libs/gstrfuncs.o .libs/gstring.o .libs/gtimer.o .libs/gtree.o .libs/gutils.o \
+libtool: link: ranlib .libs/libglib.a\
+libtool: link: ( cd ".libs" && rm -f "libglib.la" && ln -s "../libglib.la" "libglib.la" )\
+/bin/sh ./libtool --tag=CC   --mode=link /usr/bin/clang  -O3 -march=core2 -w -pipe -Wall  -D_REENTRANT   -o testglib testglib.o libglib.la \
+/bin/sh ./libtool --tag=CC   --mode=link /usr/bin/clang  -O3 -march=core2 -w -pipe -Wall  -D_REENTRANT   -o testgdate testgdate.o libglib.la \
+/bin/sh ./libtool --tag=CC   --mode=link /usr/bin/clang  -O3 -march=core2 -w -pipe -Wall  -D_REENTRANT   -o testgdateparser testgdateparser.o libglib.la \
+libtool: link: /usr/bin/clang -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -o testgdate testgdate.o  ./.libs/libglib.a\
+libtool: link: /usr/bin/clang -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -o testgdateparser testgdateparser.o  ./.libs/libglib.a\
+libtool: link: /usr/bin/clang -O3 -march=core2 -w -pipe -Wall -D_REENTRANT -o testglib testglib.o  ./.libs/libglib.a\
+duplicate symbol _g_bit_nth_lsf in:\
+    testgdate.o\
+    ./.libs/libglib.a(garray.o)\
+duplicate symbol _g_bit_nth_msf in:\
+    testgdate.o\
+    ./.libs/libglib.a(garray.o)\
+duplicate symbol _g_bit_storage in:\
+    testgdate.o\
+    ./.libs/libglib.a(garray.o)\
+duplicate symbol _g_bit_nth_lsf in:\
+    testgdate.o\
+    ./.libs/libglib.a(gdate.o)\
+duplicate symbol _g_bit_nth_msf in:\
+    testgdate.o\
+    ./.libs/libglib.a(gdate.o)\
+duplicate symbol _g_bit_storage in:\
+    testgdate.o\
+    ./.libs/libglib.a(gdate.o)\
+duplicate symbol _g_bit_nth_lsf in:\
+    testgdate.o\
+    ./.libs/libglib.a(gmem.o)\
+duplicate symbol _g_bit_nth_msf in:\
+    testgdate.o\
+    ./.libs/libglib.a(gmem.o)\
+duplicate symbol _g_bit_storage in:\
+    testgdate.o\
+    ./.libs/libglib.a(gmem.o)\
+duplicate symbol _g_bit_nth_lsf in:\
+    testgdate.o\
+    ./.libs/libglib.a(gmessages.o)\
+duplicate symbol _g_bit_nth_msf in:\
+    testgdate.o\
+    ./.libs/libglib.a(gmessages.o)\
+duplicate symbol _g_bit_storage in:\
+    testgdate.o\
+    ./.libs/libglib.a(gmessages.o)\
+duplicate symbol _g_bit_nth_lsf in:\
+    testgdate.o\
+    ./.libs/libglib.a(gmutex.o)\
+duplicate symbol _g_bit_nth_msf in:\
+    testgdate.o\
+    ./.libs/libglib.a(gmutex.o)\
+duplicate symbol _g_bit_storage in:\
+    testgdate.o\
+    ./.libs/libglib.a(gmutex.o)\
+duplicate symbol _g_bit_nth_lsf in:\
+    testgdate.o\
+    ./.libs/libglib.a(gslist.o)\
+duplicate symbol _g_bit_nth_msf in:\
+    testgdate.o\
+    ./.libs/libglib.a(gslist.o)\
+duplicate symbol _g_bit_storage in:\
+    testgdate.o\
+duplicate symbol _g_bit_nth_lsf in:\
+    testgdateparser.o\
+    ./.libs/libglib.a(garray.o)\
+duplicate symbol _g_bit_nth_msf in:\
+    ./.libs/libglib.a(gslist.o)\
+    testgdateparser.o\
+duplicate symbol _g_bit_nth_lsf in:\
+    ./.libs/libglib.a(garray.o)\
+    testgdate.o\
+duplicate symbol _g_bit_storage in:\
+    ./.libs/libglib.a(gstrfuncs.o)\
+    testgdateparser.o\
+duplicate symbol _g_bit_nth_msf in:\
+    ./.libs/libglib.a(garray.o)\
+    testgdate.o\
+duplicate symbol _g_bit_nth_lsf in:\
+    ./.libs/libglib.a(gstrfuncs.o)\
+    testgdateparser.o\
+duplicate symbol _g_bit_storage in:\
+    ./.libs/libglib.a(gdate.o)\
+    testgdate.o\
+duplicate symbol _g_bit_nth_msf in:\
+    ./.libs/libglib.a(gstrfuncs.o)\
+    testgdateparser.o\
+duplicate symbol _g_bit_nth_lsf in:\
+    ./.libs/libglib.a(gdate.o)\
+    testgdate.o\
+duplicate symbol _g_bit_storage in:\
+    ./.libs/libglib.a(gtree.o)\
+duplicate symbol _g_bit_nth_msf in:\
+    testgdate.o\
+    testgdateparser.o\
+    ./.libs/libglib.a(gtree.o)\
+    ./.libs/libglib.a(gdate.o)\
+duplicate symbol _g_bit_storage in:\
+duplicate symbol _g_bit_nth_lsf in:\
+    testgdate.o\
+    testgdateparser.o\
+    ./.libs/libglib.a(gtree.o)\
+    ./.libs/libglib.a(gmem.o)\
+duplicate symbol _g_bit_nth_msf in:\
+    testgdateparser.o\
+    ./.libs/libglib.a(gmem.o)\
+duplicate symbol _g_bit_storage in:\
+    testgdateparser.o\
+    ./.libs/libglib.a(gmem.o)\
+duplicate symbol _g_bit_nth_lsf in:\
+    testgdateparser.o\
+    ./.libs/libglib.a(gmessages.o)\
+duplicate symbol _g_bit_nth_msf in:\
+    testgdateparser.o\
+    ./.libs/libglib.a(gmessages.o)\
+duplicate symbol _g_bit_storage in:\
+    testgdateparser.o\
+    ./.libs/libglib.a(gmessages.o)\
+duplicate symbol _g_bit_nth_lsf in:\
+    testgdateparser.o\
+    ./.libs/libglib.a(gmutex.o)\
+duplicate symbol _g_bit_nth_msf in:\
+    testgdateparser.o\
+    ./.libs/libglib.a(gmutex.o)\
+duplicate symbol _g_bit_storage in:\
+    testgdateparser.o\
+    ./.libs/libglib.a(gmutex.o)\
+duplicate symbol _g_bit_nth_lsf in:\
+    testgdateparser.o\
+    ./.libs/libglib.a(gslist.o)\
+duplicate symbol _g_bit_nth_msf in:\
+    testgdateparser.o\
+    ./.libs/libglib.a(gslist.o)\
+duplicate symbol _g_bit_storage in:\
+    testgdateparser.o\
+    ./.libs/libglib.a(gslist.o)\
+duplicate symbol _g_bit_nth_lsf in:\
+    testgdateparser.o\
+    ./.libs/libglib.a(gstrfuncs.o)\
+duplicate symbol _g_bit_nth_msf in:\
+    testgdateparser.o\
+    ./.libs/libglib.a(gstrfuncs.o)\
+duplicate symbol _g_bit_storage in:\
+    testgdateparser.o\
+    ./.libs/libglib.a(gstrfuncs.o)\
+duplicate symbol _g_bit_nth_lsf in:\
+    testgdateparser.o\
+    ./.libs/libglib.a(gtree.o)\
+duplicate symbol _g_bit_nth_msf in:\
+    testgdateparser.o\
+    ./.libs/libglib.a(gtree.o)\
+duplicate symbol _g_bit_storage in:\
+    testgdateparser.o\
+    ./.libs/libglib.a(gtree.o)\
+ld: 24 duplicate symbols for architecture x86_64\
+ld: 24 duplicate symbols for architecture x86_64\
+clang: error: linker command failed with exit code 1 (use -v to see invocation)\
+clang: error: linker command failed with exit code 1 (use -v to see invocation)\
+make[3]: *** [testgdateparser] Error 1\
+make[3]: *** Waiting for unfinished jobs....\
+make[3]: *** [testgdate] Error 1\
+duplicate symbol _g_bit_nth_lsf in:\
+    testglib.o\
+    ./.libs/libglib.a(garray.o)\
+duplicate symbol _g_bit_nth_msf in:\
+    testglib.o\
+    ./.libs/libglib.a(garray.o)\
+duplicate symbol _g_bit_storage in:\
+    testglib.o\
+    ./.libs/libglib.a(garray.o)\
+duplicate symbol _g_bit_nth_lsf in:\
+    testglib.o\
+    ./.libs/libglib.a(ghash.o)\
+duplicate symbol _g_bit_nth_msf in:\
+    testglib.o\
+    ./.libs/libglib.a(ghash.o)\
+duplicate symbol _g_bit_storage in:\
+    testglib.o\
+    ./.libs/libglib.a(ghash.o)\
+duplicate symbol _g_bit_nth_lsf in:\
+    testglib.o\
+    ./.libs/libglib.a(glist.o)\
+duplicate symbol _g_bit_nth_msf in:\
+    testglib.o\
+    ./.libs/libglib.a(glist.o)\
+duplicate symbol _g_bit_storage in:\
+    testglib.o\
+    ./.libs/libglib.a(glist.o)\
+duplicate symbol _g_bit_nth_lsf in:\
+    testglib.o\
+    ./.libs/libglib.a(gmem.o)\
+duplicate symbol _g_bit_nth_msf in:\
+    testglib.o\
+    ./.libs/libglib.a(gmem.o)\
+duplicate symbol _g_bit_storage in:\
+    testglib.o\
+    ./.libs/libglib.a(gmem.o)\
+duplicate symbol _g_bit_nth_lsf in:\
+    testglib.o\
+    ./.libs/libglib.a(gmessages.o)\
+duplicate symbol _g_bit_nth_msf in:\
+    testglib.o\
+    ./.libs/libglib.a(gmessages.o)\
+duplicate symbol _g_bit_storage in:\
+    testglib.o\
+    ./.libs/libglib.a(gmessages.o)\
+duplicate symbol _g_bit_nth_lsf in:\
+    testglib.o\
+    ./.libs/libglib.a(gmutex.o)\
+duplicate symbol _g_bit_nth_msf in:\
+    testglib.o\
+    ./.libs/libglib.a(gmutex.o)\
+duplicate symbol _g_bit_storage in:\
+    testglib.o\
+    ./.libs/libglib.a(gmutex.o)\
+duplicate symbol _g_bit_nth_lsf in:\
+    testglib.o\
+    ./.libs/libglib.a(gnode.o)\
+duplicate symbol _g_bit_nth_msf in:\
+    testglib.o\
+    ./.libs/libglib.a(gnode.o)\
+duplicate symbol _g_bit_storage in:\
+    testglib.o\
+    ./.libs/libglib.a(gnode.o)\
+duplicate symbol _g_bit_nth_lsf in:\
+    testglib.o\
+    ./.libs/libglib.a(gprimes.o)\
+duplicate symbol _g_bit_nth_msf in:\
+    testglib.o\
+    ./.libs/libglib.a(gprimes.o)\
+duplicate symbol _g_bit_storage in:\
+    testglib.o\
+    ./.libs/libglib.a(gprimes.o)\
+duplicate symbol _g_bit_nth_lsf in:\
+    testglib.o\
+    ./.libs/libglib.a(grel.o)\
+duplicate symbol _g_bit_nth_msf in:\
+    testglib.o\
+    ./.libs/libglib.a(grel.o)\
+duplicate symbol _g_bit_storage in:\
+    testglib.o\
+    ./.libs/libglib.a(grel.o)\
+duplicate symbol _g_bit_nth_lsf in:\
+    testglib.o\
+    ./.libs/libglib.a(gslist.o)\
+duplicate symbol _g_bit_nth_msf in:\
+    testglib.o\
+    ./.libs/libglib.a(gslist.o)\
+duplicate symbol _g_bit_storage in:\
+    testglib.o\
+    ./.libs/libglib.a(gslist.o)\
+duplicate symbol _g_bit_nth_lsf in:\
+    testglib.o\
+    ./.libs/libglib.a(gstrfuncs.o)\
+duplicate symbol _g_bit_nth_msf in:\
+    testglib.o\
+    ./.libs/libglib.a(gstrfuncs.o)\
+duplicate symbol _g_bit_storage in:\
+    testglib.o\
+    ./.libs/libglib.a(gstrfuncs.o)\
+duplicate symbol _g_bit_nth_lsf in:\
+    testglib.o\
+    ./.libs/libglib.a(gstring.o)\
+duplicate symbol _g_bit_nth_msf in:\
+    testglib.o\
+    ./.libs/libglib.a(gstring.o)\
+duplicate symbol _g_bit_storage in:\
+    testglib.o\
+    ./.libs/libglib.a(gstring.o)\
+duplicate symbol _g_bit_nth_lsf in:\
+    testglib.o\
+    ./.libs/libglib.a(gtimer.o)\
+duplicate symbol _g_bit_nth_msf in:\
+    testglib.o\
+    ./.libs/libglib.a(gtimer.o)\
+duplicate symbol _g_bit_storage in:\
+    testglib.o\
+    ./.libs/libglib.a(gtimer.o)\
+duplicate symbol _g_bit_nth_lsf in:\
+    testglib.o\
+    ./.libs/libglib.a(gtree.o)\
+duplicate symbol _g_bit_nth_msf in:\
+    testglib.o\
+    ./.libs/libglib.a(gtree.o)\
+duplicate symbol _g_bit_storage in:\
+    testglib.o\
+    ./.libs/libglib.a(gtree.o)\
+duplicate symbol _g_bit_nth_lsf in:\
+    testglib.o\
+    ./.libs/libglib.a(gutils.o)\
+duplicate symbol _g_bit_nth_msf in:\
+    testglib.o\
+    ./.libs/libglib.a(gutils.o)\
+duplicate symbol _g_bit_storage in:\
+    testglib.o\
+    ./.libs/libglib.a(gutils.o)\
+ld: 45 duplicate symbols for architecture x86_64\
+clang: error: linker command failed with exit code 1 (use -v to see invocation)\
+make[3]: *** [testglib] Error 1\
+make[2]: *** [install-recursive] Error 1\
+make[1]: *** [install] Error 2\
+make: *** [install-recursive] Error 1\
+==> Exit Status: 2\
+http://github.com/mxcl/homebrew/blob/master/Library/Formula/pkg-config.rb#L22\
+==> Environment\
+/usr/bin/gcc\
+HOMEBREW_VERSION: 0.8\
+HEAD: (none)\
+HOMEBREW_PREFIX: /usr/local\
+HOMEBREW_CELLAR: /usr/local/Cellar\
+HOMEBREW_REPOSITORY: /usr/local\
+HOMEBREW_LIBRARY_PATH: /usr/local/Library/Homebrew\
+Hardware: quad-core 64-bit arrandale\
+OS X: 10.8.2\
+Kernel Architecture: x86_64\
+Ruby: 1.8.7-358\
+/usr/bin/ruby => /System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/bin/ruby\
+Xcode: 4.2\
+GCC-4.0: N/A \
+GCC-4.2: build 401 (5664 or newer recommended)\
+LLVM: build 2336 \
+MacPorts or Fink? false\
+X11 installed? true\
+==> Build Flags\
+CC: /usr/bin/clang\
+CXX: /usr/bin/clang++ => /usr/bin/clang\
+LD: /usr/bin/clang\
+CFLAGS: -O3 -march=core2 -w -pipe\
+CXXFLAGS: -O3 -march=core2 -w -pipe\
+MAKEFLAGS: -j4\
+\
+Error: Failed executing: make install \
+If `brew doctor' does not help diagnose the issue, please report the bug:\
+    https://github.com/mxcl/homebrew/wiki/checklist-before-filing-a-new-issue\
+dyn-160-39-0-42:~ Papoj$ ^brew^ sudo brew\
+ sudo brew rm pkg-config && brew install pkg-config\
+Error: No such keg: /usr/local/Cellar/pkg-config\
+dyn-160-39-0-42:~ Papoj$ sudo brew rm pkg-config && brew install pkg-config\
+Error: No such keg: /usr/local/Cellar/pkg-config\
+dyn-160-39-0-42:~ Papoj$ sudo brew install pkg-config}

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?><!-- Spells 'Hi' with paticles and edges. --><scene>
+  <duration time="10.0"/>
+  <integrator dt="0.1" type="explicit-euler"/>
+  <maxsimfreq max="500.0"/>
+
+  <particle fixed="0" m="1.0" px="0.0" py="0.0" radius="0.04" vx="0.0" vy="0.0"/>
+  <particle fixed="0" m="1.0" px="0.0" py="1.0" radius="0.04" vx="0.0" vy="0.0"/>
+  <particle fixed="0" m="1.0" px="0.0" py="2.0" radius="0.04" vx="0.0" vy="0.0"/>
+  <particle fixed="0" m="1.0" px="1.0" py="0.0" radius="0.04" vx="0.0" vy="0.0"/>
+  <particle fixed="0" m="1.0" px="1.0" py="1.0" radius="0.04" vx="0.0" vy="0.0"/>
+  <particle fixed="0" m="1.0" px="1.0" py="2.0" radius="0.04" vx="0.0" vy="0.0"/>
+
+  <particle fixed="0" m="1.0" px="1.75" py="0.0" radius="0.04" vx="0.0" vy="0.0"/>
+  <particle fixed="0" m="1.0" px="1.75" py="1.0" radius="0.04" vx="0.0" vy="0.0"/>
+  <particle fixed="0" m="1.0" px="1.75" py="1.5" radius="0.04" vx="0.0" vy="0.0"/>
+
+  <edge i="0" j="1" radius="0.01"/>
+  <edge i="1" j="2" radius="0.01"/>
+  <edge i="1" j="4" radius="0.01"/>
+  <edge i="3" j="4" radius="0.01"/>
+  <edge i="4" j="5" radius="0.01"/>
+  <edge i="6" j="7" radius="0.01"/>
+
+  <particlecolor b="0.2" g="1.0" i="0" r="1.0"/>
+  <particlecolor b="0.4" g="0.8" i="1" r="0.0"/>
+  <particlecolor b="0.2" g="0.0" i="2" r="1.0"/>
+  <particlecolor b="0.4" g="0.2" i="3" r="0.5"/>
+  <particlecolor b="0.9" g="1.0" i="4" r="0.1"/>
+  <particlecolor b="1.0" g="0.8" i="5" r="0.6"/>
+  <particlecolor b="0.4" g="0.2" i="6" r="1.0"/>
+  <particlecolor b="0.9" g="0.0" i="7" r="0.8"/>
+  <particlecolor b="1.0" g="0.8" i="8" r="0.2"/>
+
+  <edgecolor b="0.3" g="0.0" i="0" r="0.9"/>
+  <edgecolor b="0.7" g="1.0" i="1" r="0.6"/>
+  <edgecolor b="0.9" g="0.8" i="2" r="0.3"/>
+  <edgecolor b="1.0" g="0.2" i="3" r="0.6"/>
+  <edgecolor b="0.2" g="0.7" i="4" r="0.2"/>
+  <edgecolor b="0.8" g="0.1" i="5" r="0.1"/>
+
+</scene>

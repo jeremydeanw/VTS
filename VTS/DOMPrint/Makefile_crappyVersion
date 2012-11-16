@@ -1,0 +1,13 @@
+
+CC = g++ -arch x86_64
+CFLAGS = -g
+LFLAGS = -I./../include/xerces/include -L./../include/xerces/lib -lxerces-c
+
+all: testParser
+
+testParser:
+	$(CC) $(CFLAGS) -o $@ *.hpp *.cpp $(LFLAGS)
+	
+
+clean: 
+	rm *.o testParser

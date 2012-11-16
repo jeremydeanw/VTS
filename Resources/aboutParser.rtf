@@ -1,0 +1,45 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf340
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww12600\viewh7800\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs24 \cf0 \
+
+\b\fs30 About\
+XML Parser\
+
+\b0 10/10/2012
+\fs24 \
+\
+\
+1. SVG graphics file format is essentially XML file. We will need an XML parser to read, modify, and write the XML file for our project.\
+\
+2. What is 
+\b DOM
+\b0  (Document Object Model)?\
+	The Document Object Model (DOM) is an application programming interface (API) for valid HTML and well-formed XML documents. It defines the logical structure of documents and the way a document is accessed and manipulated. With the Document Object Model, programmers can build documents, navigate their structure, and add, modify, or delete elements and content. Anything found in an HTML or XML document can be accessed, changed, deleted, or added using the Document Object Model, with a few exceptions - in particular, the DOM interfaces for the XML internal and external subsets have not yet been specified.\
+\
+	http://www.w3.org/TR/DOM-Level-2-Core/introduction.html provides a useful example of how DOM tree looks like.\
+\
+3. What is 
+\b SAX
+\b0  (Sample API for XML)?\
+	SAX (Simple API for XML) is an event-based sequential access parser API. SAX provides a mechanism for reading data from an XML document that is an alternative to that provided by the Document Object Model (DOM). Where the DOM operates on the document as a whole, SAX parsers operate on each piece of the XML document sequentially.\
+	SAX parsers have some benefits over DOM-style parsers. A SAX parser only needs to report each parsing event as it happens, and normally discards almost all of that information once reported (it does, however, keep some things, for example a list of all elements that have not been closed yet, in order to catch later errors such as end-tags in the wrong order). Thus, the minimum memory required for a SAX parser is proportional to the maximum depth of the XML file (i.e., of the XML tree) and the maximum data involved in a single XML event (such as the name and attributes of a single start-tag, or the content of a processing instruction, etc.). 
+\b Basically, SAX uses much less memory than DOM.
+\b0 \
+	This much memory is usually considered negligible. A DOM parser, in contrast, typically builds a tree representation of the entire document in memory to begin with, thus using memory that increases with the entire document length. This takes considerable time and space for large documents (memory allocation and data-structure construction take time). 
+\b The compensating advantage, of course, is that once the XML is parsed by DOM any part of the document can be accessed in any order.
+\b0 \
+\
+4. What XML Parser should I use? What criteria should I consider?\
+	If the XML file is simple, 
+\b RapidXML
+\b0  is simple and efficient. It's also easy to use, since it's all contained in one header file; no build or configuration required.\
+	On the other hand, if the XML file I'm working with is REALLY REALLY HUGE, then building the entire DOM tree before I can start manipulating the information might be too time and resource consuming. In such case, using "stream parser" like SAX parser by 
+\b Xerces
+\b0  might be better.\
+	Note that Xerces also supports DOM-style parser.\
+\
+}

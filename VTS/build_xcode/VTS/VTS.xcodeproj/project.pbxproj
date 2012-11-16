@@ -1,0 +1,262 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A41C38B5162BA8CD00D3850A /* ParserUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A41C38B3162BA8CC00D3850A /* ParserUtils.cpp */; };
+		A423A738164D92AD0097B04C /* PolyBezierCurve.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A423A736164D92AD0097B04C /* PolyBezierCurve.cpp */; };
+		A432336016269F8000AE4DD2 /* VTS.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = A432335F16269F8000AE4DD2 /* VTS.1 */; };
+		A432337216269FFE00AE4DD2 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A432336D16269FFE00AE4DD2 /* main.cpp */; };
+		A43233751626A35800AE4DD2 /* SVGSceneParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A43233731626A35800AE4DD2 /* SVGSceneParser.cpp */; };
+		A43233781626A3A900AE4DD2 /* SVGSceneSerializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A43233761626A3A900AE4DD2 /* SVGSceneSerializer.cpp */; };
+		A4D6036D1627B2300021295D /* BezierCurve.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4D6036B1627B2300021295D /* BezierCurve.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A432335716269F8000AE4DD2 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				A432336016269F8000AE4DD2 /* VTS.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		A41C3895162B9FEC00D3850A /* MathDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MathDef.h; path = ../../../src/MathDef.h; sourceTree = "<group>"; };
+		A41C38B3162BA8CC00D3850A /* ParserUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = ParserUtils.cpp; path = ../../../src/ParserUtils.cpp; sourceTree = "<group>"; };
+		A41C38B4162BA8CC00D3850A /* ParserUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ParserUtils.h; path = ../../../src/ParserUtils.h; sourceTree = "<group>"; };
+		A423A736164D92AD0097B04C /* PolyBezierCurve.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = PolyBezierCurve.cpp; path = ../../../src/PolyBezierCurve.cpp; sourceTree = "<group>"; };
+		A423A737164D92AD0097B04C /* PolyBezierCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PolyBezierCurve.h; path = ../../../src/PolyBezierCurve.h; sourceTree = "<group>"; };
+		A432335916269F8000AE4DD2 /* VTS */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = VTS; sourceTree = BUILT_PRODUCTS_DIR; };
+		A432335F16269F8000AE4DD2 /* VTS.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = VTS.1; sourceTree = "<group>"; };
+		A432336D16269FFE00AE4DD2 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../../../src/main.cpp; sourceTree = "<group>"; };
+		A43233731626A35800AE4DD2 /* SVGSceneParser.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SVGSceneParser.cpp; path = ../../../src/SVGSceneParser.cpp; sourceTree = "<group>"; };
+		A43233741626A35800AE4DD2 /* SVGSceneParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVGSceneParser.h; path = ../../../src/SVGSceneParser.h; sourceTree = "<group>"; };
+		A43233761626A3A900AE4DD2 /* SVGSceneSerializer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = SVGSceneSerializer.cpp; path = ../../../src/SVGSceneSerializer.cpp; sourceTree = "<group>"; };
+		A43233771626A3A900AE4DD2 /* SVGSceneSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SVGSceneSerializer.h; path = ../../../src/SVGSceneSerializer.h; sourceTree = "<group>"; };
+		A4D6036B1627B2300021295D /* BezierCurve.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = BezierCurve.cpp; path = ../../../src/BezierCurve.cpp; sourceTree = "<group>"; };
+		A4D6036C1627B2300021295D /* BezierCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BezierCurve.h; path = ../../../src/BezierCurve.h; sourceTree = "<group>"; };
+		A4D6038A1627B2DC0021295D /* Point.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Point.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A432335616269F8000AE4DD2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A432334E16269F8000AE4DD2 = {
+			isa = PBXGroup;
+			children = (
+				A432335C16269F8000AE4DD2 /* VTS */,
+				A432335A16269F8000AE4DD2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A432335A16269F8000AE4DD2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A432335916269F8000AE4DD2 /* VTS */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A432335C16269F8000AE4DD2 /* VTS */ = {
+			isa = PBXGroup;
+			children = (
+				A43233731626A35800AE4DD2 /* SVGSceneParser.cpp */,
+				A43233741626A35800AE4DD2 /* SVGSceneParser.h */,
+				A43233761626A3A900AE4DD2 /* SVGSceneSerializer.cpp */,
+				A43233771626A3A900AE4DD2 /* SVGSceneSerializer.h */,
+				A4D6036B1627B2300021295D /* BezierCurve.cpp */,
+				A4D6036C1627B2300021295D /* BezierCurve.h */,
+				A423A736164D92AD0097B04C /* PolyBezierCurve.cpp */,
+				A423A737164D92AD0097B04C /* PolyBezierCurve.h */,
+				A432336D16269FFE00AE4DD2 /* main.cpp */,
+				A432335F16269F8000AE4DD2 /* VTS.1 */,
+				A4D6038A1627B2DC0021295D /* Point.h */,
+				A41C3895162B9FEC00D3850A /* MathDef.h */,
+				A41C38B3162BA8CC00D3850A /* ParserUtils.cpp */,
+				A41C38B4162BA8CC00D3850A /* ParserUtils.h */,
+			);
+			path = VTS;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A432335816269F8000AE4DD2 /* VTS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A432336316269F8000AE4DD2 /* Build configuration list for PBXNativeTarget "VTS" */;
+			buildPhases = (
+				A432335516269F8000AE4DD2 /* Sources */,
+				A432335616269F8000AE4DD2 /* Frameworks */,
+				A432335716269F8000AE4DD2 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VTS;
+			productName = VTS;
+			productReference = A432335916269F8000AE4DD2 /* VTS */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A432335016269F8000AE4DD2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Papoj Thamjaroenporn";
+			};
+			buildConfigurationList = A432335316269F8000AE4DD2 /* Build configuration list for PBXProject "VTS" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A432334E16269F8000AE4DD2;
+			productRefGroup = A432335A16269F8000AE4DD2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A432335816269F8000AE4DD2 /* VTS */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A432335516269F8000AE4DD2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A432337216269FFE00AE4DD2 /* main.cpp in Sources */,
+				A43233751626A35800AE4DD2 /* SVGSceneParser.cpp in Sources */,
+				A43233781626A3A900AE4DD2 /* SVGSceneSerializer.cpp in Sources */,
+				A4D6036D1627B2300021295D /* BezierCurve.cpp in Sources */,
+				A41C38B5162BA8CD00D3850A /* ParserUtils.cpp in Sources */,
+				A423A738164D92AD0097B04C /* PolyBezierCurve.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		A432336116269F8000AE4DD2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		A432336216269F8000AE4DD2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		A432336416269F8000AE4DD2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"/Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repo/VTS/include/eigen",
+					"/Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repo/VTS/include/rapidxml",
+				);
+				LIBRARY_SEARCH_PATHS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A432336516269F8000AE4DD2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				HEADER_SEARCH_PATHS = (
+					"/Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repo/VTS/include/eigen",
+					"/Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repo/VTS/include/rapidxml",
+				);
+				LIBRARY_SEARCH_PATHS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A432335316269F8000AE4DD2 /* Build configuration list for PBXProject "VTS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A432336116269F8000AE4DD2 /* Debug */,
+				A432336216269F8000AE4DD2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A432336316269F8000AE4DD2 /* Build configuration list for PBXNativeTarget "VTS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A432336416269F8000AE4DD2 /* Debug */,
+				A432336516269F8000AE4DD2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A432335016269F8000AE4DD2 /* Project object */;
+}
