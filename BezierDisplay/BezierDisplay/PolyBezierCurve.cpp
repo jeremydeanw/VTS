@@ -124,15 +124,7 @@ VectorX2sIterator& PolyBezierCurve::resetToFirstSegment()
 {
 	m_iter = pointsBegin();
 	m_currentSegment = 0;
-}
-
-VectorX2sIterator& PolyBezierCurve::getIter()
-{
-	return m_iter;
-}
-
-const VectorX2sIterator& PolyBezierCurve::getIter() const
-{
+	
 	return m_iter;
 }
 
@@ -166,4 +158,45 @@ VectorX2sIterator& PolyBezierCurve::gotoSegment(const int & segment)
 	}
 	
 	return m_iter;
+}
+
+VectorX2sIterator& PolyBezierCurve::getIter()
+{
+	return m_iter;
+}
+
+const VectorX2sIterator& PolyBezierCurve::getIter() const
+{
+	return m_iter;
+}
+
+
+VectorX1s& PolyBezierCurve::getDegs()
+{
+	return m_degs;
+}
+
+const VectorX1s& PolyBezierCurve::getDegs() const
+{
+	return m_degs;
+}
+
+VectorX2s& PolyBezierCurve::getControlPoints()
+{
+	return m_controlPoints;
+}
+
+const VectorX2s& PolyBezierCurve::getControlPoints() const
+{
+	return m_controlPoints;
+}
+
+VectorX2s& PolyBezierCurve::getSamplePoints()
+{
+	return m_samplePoints;
+}
+
+const VectorX2s& PolyBezierCurve::getSamplePoints() const
+{
+	return m_samplePoints;
 }

@@ -30,6 +30,7 @@ public:
 	
 public:
 
+	// Return iterator pointing the beginning segment, or the end segment, of the curve
 	VectorX2sIterator pointsBegin();
 	VectorX2sIterator pointsEnd();
 	
@@ -49,12 +50,21 @@ public:
 	VectorX1s getSegmentIndices();
 	VectorX1s getSegmentIndices( const int & segment );
 	
+	VectorX1s& getDegs();
+	const VectorX1s& getDegs() const;
+	VectorX2s& getControlPoints();
+	const VectorX2s& getControlPoints() const;
+	VectorX2s& getSamplePoints();
+	const VectorX2s& getSamplePoints() const;
+	
 private:
 
 	// Number of segments
 	int m_segments;
 
-	// Array of degrees for each Bezier segment
+	// Series of degrees for each Bezier segment
+	// For example, a poly curve that comes with linear, linear, quad, linear segments
+	// respectively will have m_degs = transpose of [1,1,2,1]
 	VectorX1s m_degs;
 	
 	// Array of control points

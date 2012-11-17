@@ -31,7 +31,10 @@ public:
 
 	BezierEvaluator( int deg );
 	
+	// Generate Bernstein map for optimizing the curve display evaluation
 	void generateBernsteinMap( const int & rate );
+	
+	// Clear Bernstein map
 	void clearBernsteinMap();
 	
 	// Evaluate a sample point without using pre-computed Bernstein bases. Used for arbitrary t

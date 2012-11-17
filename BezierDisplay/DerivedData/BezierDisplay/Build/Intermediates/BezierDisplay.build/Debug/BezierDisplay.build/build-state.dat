@@ -2,17 +2,17 @@ TBezierDisplay
 v5
 r1
 cCheck dependencies
-cCompileC DerivedData/BezierDisplay/Build/Intermediates/BezierDisplay.build/Debug/BezierDisplay.build/Objects-normal/x86_64/main.o /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/BezierDisplay/main.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
 cCompileC DerivedData/BezierDisplay/Build/Intermediates/BezierDisplay.build/Debug/BezierDisplay.build/Objects-normal/x86_64/BezierUtils.o /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/BezierDisplay/BezierUtils.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
 cCompileC DerivedData/BezierDisplay/Build/Intermediates/BezierDisplay.build/Debug/BezierDisplay.build/Objects-normal/x86_64/OpenGLScene.o /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/BezierDisplay/OpenGLScene.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC DerivedData/BezierDisplay/Build/Intermediates/BezierDisplay.build/Debug/BezierDisplay.build/Objects-normal/x86_64/main.o /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/BezierDisplay/main.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
 cCompileC DerivedData/BezierDisplay/Build/Intermediates/BezierDisplay.build/Debug/BezierDisplay.build/Objects-normal/x86_64/OpenGLDisplayController.o /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/BezierDisplay/OpenGLDisplayController.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
 cCompileC DerivedData/BezierDisplay/Build/Intermediates/BezierDisplay.build/Debug/BezierDisplay.build/Objects-normal/x86_64/RenderingUtilities.o /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/BezierDisplay/RenderingUtilities.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
 cCompileC DerivedData/BezierDisplay/Build/Intermediates/BezierDisplay.build/Debug/BezierDisplay.build/Objects-normal/x86_64/StringUtilities.o /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/BezierDisplay/StringUtilities.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
 cCompileC DerivedData/BezierDisplay/Build/Intermediates/BezierDisplay.build/Debug/BezierDisplay.build/Objects-normal/x86_64/BezierEvaluator.o /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/BezierDisplay/BezierEvaluator.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
 cCompileC DerivedData/BezierDisplay/Build/Intermediates/BezierDisplay.build/Debug/BezierDisplay.build/Objects-normal/x86_64/MathDef.o /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/BezierDisplay/MathDef.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
-cCompileC DerivedData/BezierDisplay/Build/Intermediates/BezierDisplay.build/Debug/BezierDisplay.build/Objects-normal/x86_64/PolyBezierCurve.o /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/BezierDisplay/PolyBezierCurve.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
 cCompileC DerivedData/BezierDisplay/Build/Intermediates/BezierDisplay.build/Debug/BezierDisplay.build/Objects-normal/x86_64/PolyBezierSceneRenderer.o /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/BezierDisplay/PolyBezierSceneRenderer.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
 cCompileC DerivedData/BezierDisplay/Build/Intermediates/BezierDisplay.build/Debug/BezierDisplay.build/Objects-normal/x86_64/PolyBezierScene.o /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/BezierDisplay/PolyBezierScene.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
+cCompileC DerivedData/BezierDisplay/Build/Intermediates/BezierDisplay.build/Debug/BezierDisplay.build/Objects-normal/x86_64/PolyBezierCurve.o /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/BezierDisplay/PolyBezierCurve.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
 cLd /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/DerivedData/BezierDisplay/Build/Products/Debug/BezierDisplay normal x86_64
 cGenerateDSYMFile /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/DerivedData/BezierDisplay/Build/Products/Debug/BezierDisplay.dSYM /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/DerivedData/BezierDisplay/Build/Products/Debug/BezierDisplay
 
@@ -144,55 +144,55 @@ t1353060442
 s2522
 
 N/Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/DerivedData/BezierDisplay/Build/Intermediates/BezierDisplay.build/Debug/BezierDisplay.build/Objects-normal/x86_64/BezierEvaluator.o
-t1353060447
+t1353060519
 s621060
 
 N/Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/DerivedData/BezierDisplay/Build/Intermediates/BezierDisplay.build/Debug/BezierDisplay.build/Objects-normal/x86_64/BezierUtils.o
-t1353060444
+t1353060515
 s4972
 
 N/Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/DerivedData/BezierDisplay/Build/Intermediates/BezierDisplay.build/Debug/BezierDisplay.build/Objects-normal/x86_64/MathDef.o
-t1353060446
+t1353060518
 s145128
 
 N/Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/DerivedData/BezierDisplay/Build/Intermediates/BezierDisplay.build/Debug/BezierDisplay.build/Objects-normal/x86_64/OpenGLDisplayController.o
-t1353060443
+t1353060514
 s18152
 
 N/Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/DerivedData/BezierDisplay/Build/Intermediates/BezierDisplay.build/Debug/BezierDisplay.build/Objects-normal/x86_64/OpenGLScene.o
-t1353060443
+t1353060514
 s18152
 
 N/Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/DerivedData/BezierDisplay/Build/Intermediates/BezierDisplay.build/Debug/BezierDisplay.build/Objects-normal/x86_64/PolyBezierCurve.o
-t1353060447
+t1353060519
 s359756
 
 N/Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/DerivedData/BezierDisplay/Build/Intermediates/BezierDisplay.build/Debug/BezierDisplay.build/Objects-normal/x86_64/PolyBezierScene.o
-t1353060448
+t1353060520
 s265404
 
 N/Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/DerivedData/BezierDisplay/Build/Intermediates/BezierDisplay.build/Debug/BezierDisplay.build/Objects-normal/x86_64/PolyBezierSceneRenderer.o
-t1353060446
+t1353060518
 s3200
 
 N/Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/DerivedData/BezierDisplay/Build/Intermediates/BezierDisplay.build/Debug/BezierDisplay.build/Objects-normal/x86_64/RenderingUtilities.o
-t1353060444
+t1353060516
 s69508
 
 N/Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/DerivedData/BezierDisplay/Build/Intermediates/BezierDisplay.build/Debug/BezierDisplay.build/Objects-normal/x86_64/StringUtilities.o
-t1353060444
+t1353060516
 s68860
 
 N/Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/DerivedData/BezierDisplay/Build/Intermediates/BezierDisplay.build/Debug/BezierDisplay.build/Objects-normal/x86_64/main.o
-t1353060445
+t1353060517
 s499968
 
 N/Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/DerivedData/BezierDisplay/Build/Products/Debug/BezierDisplay
-t1353060448
+t1353060520
 s264740
 
 N/Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/DerivedData/BezierDisplay/Build/Products/Debug/BezierDisplay.dSYM
-t1353060448
+t1353060520
 s102
 
 N/Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/Core
@@ -1397,7 +1397,7 @@ r0
 
 CCheck dependencies
 r0
-lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies46b386214856b641^621587214856b641^---0#1#0#--18"Check dependencies36"7745559C-6D26-40B9-AF42-6025146FCEEB-
+lSLF05#21%IDEActivityLogSection1@2#32"com.apple.dt.IDE.BuildLogSection18"Check dependencies137eb9ddfe56b641^d4800ddefe56b641^---0#1#0#--18"Check dependencies36"2679BB6F-B7B1-4067-9C45-0B4249C42CC8-
 
 CCompileC DerivedData/BezierDisplay/Build/Intermediates/BezierDisplay.build/Debug/BezierDisplay.build/Objects-normal/x86_64/BezierEvaluator.o /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/BezierDisplay/BezierEvaluator.cpp normal x86_64 c++ com.apple.compilers.llvm.clang.1_0.compiler
 s374753315.813295
