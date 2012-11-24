@@ -24,7 +24,7 @@ PolyBezierCurve::PolyBezierCurve()
 //	mathdef::resize(m_controlPoints, segments);
 //}
 
-PolyBezierCurve::PolyBezierCurve( const VectorX1s & degs, const VectorX2s & points )
+PolyBezierCurve::PolyBezierCurve( const VectorX1i & degs, const VectorX2s & points )
 : m_degs(degs)
 , m_controlPoints(points)
 , m_segments(degs.rows())
@@ -39,20 +39,81 @@ void PolyBezierCurve::printTest()
 	std::cout << "m_segments: " << m_segments << std::endl;
 }
 
-// Evaluate a sample point on the poly curve, given segment index and parameter t
+// TODO: Allow evaluate a sample point on the poly curve, given segment index and parameter t
 Vector12s PolyBezierCurve::eval( const int & segment, scalar t )
 {
 	
 }
 
+// TODO: Delete this
 void PolyBezierCurve::setSampleRate( const int & rate )
 {
+	// Hmm I need to keep the rate here...
 
+	mathdef::resize( m_samplePoints, rate + 1 );
+	mathdef::setZero( m_samplePoints );
 }
 
-void PolyBezierCurve::generateSamplePoints()
+void PolyBezierCurve::generateSamplePoints( const curvedef::MapEvaluators & evalMap,
+											const int & rate )
 {
+	assert( !evalMap.empty() );
+
+	mathdef::resize( m_samplePoints, rate * getNumSegments() + 1 );
+	mathdef::setZero( m_samplePoints );
 	
+	// Evaluate the first point on the first curve, then
+	// Loop through all segment to sample 1st sample to last sample.
+	int segment = 0;	// Segment index
+	int samp_i = 0;		// Sample temp index
+	int ctrl_i = 0;		// Control point temp index
+	int j;
+	curvedef::Degree deg; int numPts;
+	VectorX2s segCtrlPts;
+	while (segment < getNumSegments())
+	{
+		deg = getSegmentDegree( segment );
+		const BezierEvaluator & evaluator = evalMap.find( deg )->second;
+		
+		assert( evaluator.isBasesComputed() );
+		assert( deg > 0);
+		
+		std::cout << "CONTROL POINTS:\n" << m_controlPoints << std::endl;
+		std::cout << "deg, ctrl_i, samp_i: " << deg << " " << ctrl_i << " " << samp_i << std::endl;
+		std::cout << m_controlPoints.block( ctrl_i, 0, deg + 1, 2) << std::endl;
+		
+		segCtrlPts = m_controlPoints.block( ctrl_i, 0, deg + 1, 2);
+		
+		// Compute first end point if we are at first segment
+		if (segment == 0)
+		{
+			j = 0;
+			std::cout << "eval first t = " << computeParameterT(j, rate) << ": " << std::endl;
+			setSamplePoint(samp_i, evaluator.eval(segCtrlPts, j));
+			std::cout << m_samplePoints.block(samp_i, 0, 1, 2) << std::endl;
+			++samp_i;
+		}
+		
+		j = 1;
+		while (j <= rate)
+		{
+			// Sample segment point from index 1 to rate
+			std::cout << "eval t = " << computeParameterT(j, rate) << ": " << std::endl;
+			setSamplePoint(samp_i, evaluator.eval(segCtrlPts, j));
+			std::cout << m_samplePoints.block(samp_i, 0, 1, 2) << std::endl;
+			++samp_i;
+			++j;
+		}
+		
+		ctrl_i += deg;
+		++segment;
+	}
+	
+}
+
+void PolyBezierCurve::setSamplePoint( const int & row, const Vector12s & v)
+{
+	m_samplePoints.block(row, 0, 1, 2) = v;
 }
 
 VectorX2sIterator PolyBezierCurve::pointsBegin()
@@ -170,13 +231,34 @@ const VectorX2sIterator& PolyBezierCurve::getIter() const
 	return m_iter;
 }
 
+int& PolyBezierCurve::getNumSegments()
+{
+	return m_segments;
+}
 
-VectorX1s& PolyBezierCurve::getDegs()
+const int& PolyBezierCurve::getNumSegments() const
+{
+	return m_segments;
+}
+
+curvedef::Degree& PolyBezierCurve::getSegmentDegree( int index )
+{
+	assert( index >= 0 && index < m_degs.rows() );
+	return m_degs[index];
+}
+
+const curvedef::Degree& PolyBezierCurve::getSegmentDegree( int index ) const
+{
+	assert( index >= 0 && index < m_degs.rows() );
+	return m_degs[index];
+}
+
+VectorX1i& PolyBezierCurve::getDegs()
 {
 	return m_degs;
 }
 
-const VectorX1s& PolyBezierCurve::getDegs() const
+const VectorX1i& PolyBezierCurve::getDegs() const
 {
 	return m_degs;
 }

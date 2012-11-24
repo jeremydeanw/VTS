@@ -8,13 +8,13 @@
 
 #include "MathDef.h"
 
-VectorX2sIterator::VectorX2sIterator(VectorX2s & v, VectorX1s & degs )
+VectorX2sIterator::VectorX2sIterator(VectorX2s & v, VectorX1i & degs )
 : m_row( 0 )
 , m_degs( &degs )
 , m_p( &v )
 {}
 
-VectorX2sIterator::VectorX2sIterator(VectorX2s & v, VectorX1s & degs, int row )
+VectorX2sIterator::VectorX2sIterator(VectorX2s & v, VectorX1i & degs, int row )
 : m_row( row )
 , m_degs( &degs )
 , m_p( &v )
@@ -78,5 +78,25 @@ void mathdef::resize( VectorX2s & v, int size )
 void mathdef::resize( VectorX1s & v, int size )
 {
 	v.resize( size, 1 );
+}
+
+void mathdef::resize( VectorX1i & v, int size )
+{
+	v.resize( size, 1 );
+}
+
+void mathdef::setZero( VectorX2s & v )
+{
+	v = VectorX2s::Zero(v.rows(), 2);
+}
+
+void mathdef::setZero( VectorX1s & v )
+{
+	v = VectorX1s::Zero(v.rows(), 1);
+}
+
+void mathdef::setZero( VectorX1i & v )
+{
+	v = VectorX1i::Zero(v.rows(), 1);
 }
 

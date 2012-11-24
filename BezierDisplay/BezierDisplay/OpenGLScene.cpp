@@ -21,6 +21,8 @@ renderingutils::Color g_bgColor( 1.0, 1.0, 1.0 );
 
 SceneData g_scene_data;
 
+const PolyBezierSceneRenderer * g_bezier_renderer;
+
 
 
 ////Light enabling variables.
@@ -172,8 +174,8 @@ void display()
 	
 	glMatrixMode( GL_MODELVIEW );
 	
-	//g_bezier_renderer->renderScene();
 	drawGrid(*(g_scene_data.gridSizeX), *(g_scene_data.gridSizeY), 0.5);
+	g_bezier_renderer->renderScene();
 	
 	//drawHUD();
 	
@@ -277,6 +279,11 @@ void initializeOpenGLandGLUT ( int argc, char** argv ) {
 //	glLightfv(GL_LIGHT2, GL_SPECULAR, specularLight3);
 //	glLightfv(GL_LIGHT2, GL_POSITION, pos3);
 	
+}
+
+void setPolyBezierSceneRenderer( const PolyBezierSceneRenderer * sceneRenderer )
+{
+	g_bezier_renderer = sceneRenderer;
 }
 
 void runOpenGL ()
@@ -413,7 +420,7 @@ void drawGrid(int maxX, int maxY, double gridSize) {
 	
 	glEnd();
 	
-	glLineWidth( 2.0 );
+	glLineWidth( 1.0 );
 	glBegin(GL_LINES);
 	
 	// Axes

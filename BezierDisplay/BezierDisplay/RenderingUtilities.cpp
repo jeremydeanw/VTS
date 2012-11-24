@@ -27,15 +27,16 @@ bool checkGLErrors()
 }
   
 Color::Color()
-: r(0.0), g(0.0), b(0.0)
+: r(0.0), g(0.0), b(0.0), a(1.0)
 {}
 
-Color::Color( double r, double g, double b )
-: r(r), g(g), b(b)
+Color::Color( double r, double g, double b, double a )
+: r(r), g(g), b(b), a(a)
 {
-  assert( r >= 0.0 ); assert( r <= 1.0 );
-  assert( g >= 0.0 ); assert( g <= 1.0 );
-  assert( b >= 0.0 ); assert( b <= 1.0 );
+	assert( r >= 0.0 ); assert( r <= 1.0 );
+	assert( g >= 0.0 ); assert( g <= 1.0 );
+	assert( b >= 0.0 ); assert( b <= 1.0 );
+	assert( a >= 0.0 ); assert( a <= 1.0 );
 }
 
 }

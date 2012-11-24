@@ -60,6 +60,7 @@
 		A4AB2383164DF99F00D8DF24 /* RenderingUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RenderingUtilities.h; sourceTree = "<group>"; };
 		A4AB2385164DFB5400D8DF24 /* StringUtilities.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = StringUtilities.cpp; sourceTree = "<group>"; };
 		A4AB2386164DFB5400D8DF24 /* StringUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StringUtilities.h; sourceTree = "<group>"; };
+		A4CDA852165CA60E00561EBD /* CurveDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CurveDef.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +112,7 @@
 				A44B11FF1654A79E00E56AEC /* PolyBezierCurve.h */,
 				A44B12071655DEED00E56AEC /* PolyBezierScene.cpp */,
 				A44B12081655DEED00E56AEC /* PolyBezierScene.h */,
+				A4CDA852165CA60E00561EBD /* CurveDef.h */,
 			);
 			path = BezierDisplay;
 			sourceTree = "<group>";
