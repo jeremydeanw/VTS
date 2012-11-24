@@ -11,7 +11,6 @@
 
 //#include "Imported.h"
 #include "RenderingUtilities.h"
-#include "PolyBezierSceneRenderer.h"
 
 // SceneData
 typedef struct SceneData
@@ -36,7 +35,6 @@ void idle();
 
 // initializeOpenGLandGLUT
 void initializeOpenGLandGLUT( int argc, char** argv );
-void setPolyBezierSceneRenderer( const PolyBezierSceneRenderer * sceneRenderer );
 void runOpenGL();
 
 //Draw the grid wireframe centered at origin

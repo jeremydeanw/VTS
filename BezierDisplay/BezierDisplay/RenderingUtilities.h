@@ -27,37 +27,31 @@
 namespace renderingutils
 {
 
-	bool checkGLErrors();
-	  
-	class Color
-	{
-		friend std::ostream & operator<<( std::ostream &os, const Color & c)
-		{
-			return os << "(" << c.r << "," << c.g << "," << c.b << "," << c.a << ")";
-		}
-	
-	public:
+bool checkGLErrors();
+  
+class Color
+{
+public:
 
-		Color();
+	Color();
 
-		Color( double r, double g, double b, double a = 1.0);
+	Color( double r, double g, double b );
 
-		double r;
-		double g;
-		double b;
-		double a;
-	};
+	double r;
+	double g;
+	double b;
+};
 
-	//struct Viewport
-	//{
-	//public:
-	//	Viewport() : cx(0.0), cy(0.0), size(0.) {}
-	//	double cx;
-	//	double cy;
-	//	double rx;
-	//	double ry;
-	//	double size;
-	//};
+//struct Viewport
+//{
+//public:
+//	Viewport() : cx(0.0), cy(0.0), size(0.) {}
+//	double cx;
+//	double cy;
+//	double rx;
+//	double ry;
+//	double size;
+//};
 
 }
 

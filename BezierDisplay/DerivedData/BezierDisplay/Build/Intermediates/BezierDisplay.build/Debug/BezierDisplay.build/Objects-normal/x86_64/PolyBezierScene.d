@@ -1,7 +1,6 @@
 dependencies: \
   /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/BezierDisplay/PolyBezierScene.cpp \
   /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/BezierDisplay/PolyBezierScene.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/BezierDisplay/CurveDef.h \
   /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/BezierDisplay/PolyBezierCurve.h \
   /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/BezierDisplay/MathDef.h \
   /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/Core \
@@ -98,58 +97,6 @@ dependencies: \
   /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Core/ArrayWrapper.h \
   /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Core/GlobalFunctions.h \
   /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Core/util/ReenableStupidWarnings.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/Dense \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/LU \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/misc/Solve.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/misc/Kernel.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/misc/Image.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/LU/FullPivLU.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/LU/PartialPivLU.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/LU/Determinant.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/LU/Inverse.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/LU/arch/Inverse_SSE.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/Cholesky \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Cholesky/LLT.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Cholesky/LDLT.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/QR \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/Jacobi \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Jacobi/Jacobi.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/Householder \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Householder/Householder.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Householder/HouseholderSequence.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Householder/BlockHouseholder.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/QR/HouseholderQR.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/QR/FullPivHouseholderQR.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/QR/ColPivHouseholderQR.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/SVD \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/SVD/JacobiSVD.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/SVD/UpperBidiagonalization.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/Geometry \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Geometry/OrthoMethods.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Geometry/EulerAngles.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Geometry/Homogeneous.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Geometry/RotationBase.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Geometry/Rotation2D.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Geometry/Quaternion.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Geometry/AngleAxis.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Geometry/Transform.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Geometry/Translation.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Geometry/Scaling.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Geometry/Hyperplane.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Geometry/ParametrizedLine.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Geometry/AlignedBox.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Geometry/Umeyama.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Geometry/arch/Geometry_SSE.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/Eigenvalues \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Eigenvalues/Tridiagonalization.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Eigenvalues/RealSchur.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Eigenvalues/./HessenbergDecomposition.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Eigenvalues/EigenSolver.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Eigenvalues/SelfAdjointEigenSolver.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Eigenvalues/GeneralizedSelfAdjointEigenSolver.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Eigenvalues/ComplexSchur.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Eigenvalues/ComplexEigenSolver.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Eigenvalues/MatrixBaseEigenvalues.h \
   /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/StdVector \
   /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/StlSupport/StdVector.h \
   /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/StlSupport/details.h \

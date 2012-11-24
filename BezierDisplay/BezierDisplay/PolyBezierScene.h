@@ -6,59 +6,32 @@
 //  Copyright (c) 2012 Papoj Thamjaroenporn. All rights reserved.
 //
 
-/*
-	PolyBezierScene acts as a manager of an entire scene of poly Bezier curves.
-	
-	Main functions:
-	* Encapsulates all curves in the scene in a vector of poly curves
-	* Encapsulates curves history; i.e., the state of the curves right before they are joined
-	* Encapsulates all Bezier evaluators. Each evaluator has an associated curve degree. Knowing
-	that the same set of parameters (t) will be used globally for all curve evaluations, and having
-	the evaluators coefficients for each degree pre-computed, this will give computational
-	efficiency if the scene has large number of segments with the same curve degree (most likely
-	to be 3)
-	
-	*
-*/
-
 #ifndef __BezierDisplay__PolyBezierScene__
 #define __BezierDisplay__PolyBezierScene__
 
 #include <iostream>
-#include <set>
-#include <map>
 #include <vector>
-#include "CurveDef.h"
+#include <set>
 #include "PolyBezierCurve.h"
 #include "BezierEvaluator.h"
 
 class PolyBezierScene
 {
-//public:
-//	typedef std::vector<PolyBezierCurve> VectorPolyBezierCurve;
-//	typedef std::set<curvedef::Degree> SetDegree;
-
 public:
 	PolyBezierScene();
 	PolyBezierScene( const int & n );
 	PolyBezierScene( const int & n, const int & rate );
 	
 	// Given the series of degrees of a poly curve, merge all appearing degrees to m_degreeSet
-	void mergeDegreeSet( const VectorX1i & degs );
+	void mergeDegreeSet( const VectorX1s & degs );
 
 	// Add new poly curve to the scene
-	void addPolyCurve( const VectorX1i & degs, const VectorX2s & points );
+	void addPolyCurve( const VectorX1s & degs, const VectorX2s & points );
 	void addPolyCurve( const PolyBezierCurve & newCurve );
 	
 	// Set poly curve of a given index
-	void setPolyCurve( const int & i, const VectorX1i & degs, const VectorX2s & points );
+	void setPolyCurve( const int & i, const VectorX1s & degs, const VectorX2s & points );
 	void setPolyCurve( const int & i, const PolyBezierCurve & newCurve );
-	
-	// Get curves and curve iterators
-	curvedef::VectorPolyCurve & getCurves();
-	const curvedef::VectorPolyCurve & getCurves() const;
-	//const curvedef::VectorPolyCurve::iterator & getCurveIterator() const;
-	//curvedef::VectorPolyCurve::iterator & getCurveIterator();
 	
 	// Initialize Bezier evaluators
 	// DO THIS AFTER ALL POLY CURVES ARE SET / ADDED
@@ -74,37 +47,31 @@ public:
 	void evalPolyCurveHistorySamples();
 	
 	// Level of Details of the curve display
-	void setLoD( const int & rate );			// DO THIS AFTER initializeEvaluators
-	const int & getLoD() const;
+	void setLoD( const int & rate );
 	
 	int getNumCurves() const;
-
-// Debugging methods
-public:
-	void printDegreeSet() const;
-
 
 private:
 
 	// Present curves in the scene
-	curvedef::VectorPolyCurve m_curves;
-	curvedef::VectorPolyCurve::iterator m_curvesIt;
+	std::vector<PolyBezierCurve> m_curves;
+	std::vector<PolyBezierCurve>::iterator m_curvesIt;
 	
 	// Curves in the history, primarily meaning the curves before connection
 	// TODO: Do this!
-	curvedef::VectorPolyCurve m_curvesHistory;
-	curvedef::VectorPolyCurve::iterator m_curvesHistoryIt;
+	std::vector<PolyBezierCurve> m_curvesHistory;
+	std::vector<PolyBezierCurve>::iterator m_curvesHistoryIt;
 	
 	// Bezier evaluators for each distinct segment degree
-	curvedef::MapEvaluators m_evaluators;
-	curvedef::MapEvaluators::iterator m_evaluatorsIt;
+	std::vector<BezierEvaluator> m_evaluators;
+	std::vector<BezierEvaluator>::iterator m_evaluatorsIt;
 	bool m_evaluatorInitialized;
 	
 	// Set of all curve degrees that appear in the poly curve segments
 	// For example, if the entire scene of poly curves has only cubic and quadratic segments,
 	// the set should be: {2,3}
-	curvedef::SetDegree m_degreeSet;
-	curvedef::SetDegree::iterator m_degreeSetIt;
+	std::set<int> m_degreeSet;
+	std::set<int>::iterator m_degreeSetIt;
 	
 	// Level of Details dictates how fine the curve will be sampled and displayed
 	int m_LoD;

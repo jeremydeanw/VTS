@@ -10,28 +10,26 @@
 #define __BezierDisplay__BezierEvaluator__
 
 #include "MathDef.h"
-#include "CurveDef.h"
 #include "BezierUtils.h"
 
 #include <iostream>
 #include <map>
 #include <cmath>
 
+// An array of Bernstein bases B(deg, i, t). Size of array should be n + 1.
+typedef VectorX1s Bases;
+
+// Split range [0,1] using rate variable. ParamIndex corresponds to each subdivided parameter.
+typedef int ParamIndex;
+
 // TODO: Make a map of value (t) to a m_bases to reduce redundant computation
 // (Make a global "LoD" variable that control the set of t's being computed.)
 
 class BezierEvaluator {
-public:
-	// An array of Bernstein bases B(deg, i, t). Size of array should be n + 1.
-	typedef VectorX1s Bases;
-
-	// Split range [0,1] using rate variable. ParamIndex corresponds to each subdivided parameter.
-	typedef int ParamIndex;
 
 public:
-	BezierEvaluator();
-	BezierEvaluator( curvedef::Degree deg );
-	BezierEvaluator( const BezierEvaluator & b );
+
+	BezierEvaluator( int deg );
 	
 	// Generate Bernstein map for optimizing the curve display evaluation
 	void generateBernsteinMap( const int & rate );
@@ -40,14 +38,11 @@ public:
 	void clearBernsteinMap();
 	
 	// Evaluate a sample point without using pre-computed Bernstein bases. Used for arbitrary t
-	Vector12s eval( const VectorX2s & controlPoints, const scalar & t ) const;
+	Vector12s eval( const VectorX2s & controlPoints, const scalar & t );
 	
 	// Evaluate a sample point using pre-computed Bernstein bases. Used when t values are
 	// based on sample rate, meaning t values will likely be reused for several curves display.
-	Vector12s eval( const VectorX2s & controlPoints, const int & index ) const;
-	
-	// Tell us if the evaluator is ready to be used
-	bool isBasesComputed() const;
+	Vector12s eval( const VectorX2s & controlPoints, const int & index );
 	
 private:
 	
@@ -55,25 +50,23 @@ private:
 	void initializeCombinations();
 	
 	// Compute Bernstein Bases
-	VectorX1s computeBernsteinBases( scalar t ) const;
+	VectorX1s computeBernsteinBases( scalar t );
 	
 private:
 	
 	// Maps from a parameter index to a set of Bernstein bases B(deg, i, t)
-	std::map<ParamIndex, Bases> m_bernsteinMap;
+	std::map<ParamIndex, Bases> bernsteinMap;
 	int m_rate;
 	
 	// Todo: Take this out.
 	// Bernstein Bases for each control point
 	// VectorX1s m_bases;
 	
-	bool m_basesComputed;
-	
 	// Combination part in Bernstein Bases
 	VectorX1s m_combinations;
 	
 	// Degree of curve to be evaluated
-	curvedef::Degree m_deg;
+	int m_deg;
 	
 	
 
