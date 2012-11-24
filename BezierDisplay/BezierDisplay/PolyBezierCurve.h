@@ -10,21 +10,33 @@
 #define __BezierDisplay__PolyBezierCurve__
 
 #include <iostream>
+#include <map>
 #include "MathDef.h"
 #include "BezierEvaluator.h"
 
+//typedef std::map<BezierEvaluator::Degree, BezierEvaluator> MapEvaluators;
+
 class PolyBezierCurve
 {
+//public:
+//	typedef std::map<BezierEvaluator::Degree, BezierEvaluator> MapEvaluators;
+
 public:
 	PolyBezierCurve();
 //	PolyBezierCurve( const int & segments );
-	PolyBezierCurve( const VectorX1s & degs, const VectorX2s & points );
+	PolyBezierCurve( const VectorX1i & degs, const VectorX2s & points );
 	
 	// Evaluate a sample point on the poly curve, given segment index and parameter t
 	Vector12s eval( const int & segment, scalar t );
 	
+	// Set sample rate
 	void setSampleRate( const int & rate );
-	void generateSamplePoints();
+	
+	// Generate sample points
+	void generateSamplePoints( const curvedef::MapEvaluators & evalMap, const int & rate );
+	
+	// Set samplePoint
+	void setSamplePoint( const int & row, const Vector12s & v);
 	
 	void printTest();
 	
@@ -50,8 +62,12 @@ public:
 	VectorX1s getSegmentIndices();
 	VectorX1s getSegmentIndices( const int & segment );
 	
-	VectorX1s& getDegs();
-	const VectorX1s& getDegs() const;
+	int& getNumSegments();
+	const int& getNumSegments() const;
+	curvedef::Degree& getSegmentDegree( int index );
+	const curvedef::Degree& getSegmentDegree( int index ) const;
+	VectorX1i& getDegs();
+	const VectorX1i& getDegs() const;
 	VectorX2s& getControlPoints();
 	const VectorX2s& getControlPoints() const;
 	VectorX2s& getSamplePoints();
@@ -65,7 +81,7 @@ private:
 	// Series of degrees for each Bezier segment
 	// For example, a poly curve that comes with linear, linear, quad, linear segments
 	// respectively will have m_degs = transpose of [1,1,2,1]
-	VectorX1s m_degs;
+	VectorX1i m_degs;
 	
 	// Array of control points
 	VectorX2s m_controlPoints;

@@ -8,22 +8,41 @@
 
 #include "BezierEvaluator.h"
 
+BezierEvaluator::BezierEvaluator( )
+: m_deg( 0 )
+, m_rate( 0 )
+, m_basesComputed(false)
+{
+	// TODO: Call initialize later??
+}
 
-BezierEvaluator::BezierEvaluator( int deg )
+BezierEvaluator::BezierEvaluator( curvedef::Degree deg )
 : m_deg( deg )
 , m_rate(0)
+, m_basesComputed(false)
 {
-	//mathdef::resize( m_bases, m_deg + 1 );
-	mathdef::resize( m_combinations, m_deg + 1 );
+//	//mathdef::resize( m_bases, m_deg + 1 );
+//	mathdef::resize( m_combinations, m_deg + 1 );
+//
+////	std::cout << "m_bases: " << m_bases << std::endl;
+////	std::cout << "m_comb: " << m_combinations << std::endl;
+//	
+	initializeCombinations();
+}
 
-//	std::cout << "m_bases: " << m_bases << std::endl;
-//	std::cout << "m_comb: " << m_combinations << std::endl;
-	
+BezierEvaluator::BezierEvaluator( const BezierEvaluator & b )
+: m_deg( b.m_deg )
+, m_rate( b.m_rate )
+, m_basesComputed( b.m_basesComputed )
+{
+//	mathdef::resize( m_combinations, m_deg + 1 );
 	initializeCombinations();
 }
 
 void BezierEvaluator::initializeCombinations()
 {
+	mathdef::resize( m_combinations, m_deg + 1 );
+
 	for (int i = 0; i <= m_deg; i++)
 	{
 		m_combinations[i] = computeNchooseR( m_deg, i );
@@ -32,7 +51,7 @@ void BezierEvaluator::initializeCombinations()
 //	std::cout << "m_comb: " << m_combinations << std::endl;
 }
 
-VectorX1s BezierEvaluator::computeBernsteinBases( scalar t )
+VectorX1s BezierEvaluator::computeBernsteinBases( scalar t ) const
 {
 	VectorX1s bases;
 	mathdef::resize(bases, m_deg + 1);
@@ -56,20 +75,29 @@ void BezierEvaluator::generateBernsteinMap( const int & rate )
 	clearBernsteinMap();
 	
 	for (int i = 0; i <= m_rate; i++) {
-		bernsteinMap[i] = computeBernsteinBases( computeParameterT( i, m_rate) );
+		m_bernsteinMap[i] = computeBernsteinBases( computeParameterT( i, m_rate) );
 		
-		std::cout << "bernsteinMap[" << i << "]:\n" << bernsteinMap[i] << std::endl;
+		std::cout << "m_bernsteinMap[" << i << "]:\n" << m_bernsteinMap[i] << std::endl;
 		
 	}
 	
+	m_basesComputed = true;
+	
+}
+
+// Tell us if the evaluator is ready to be used
+bool BezierEvaluator::isBasesComputed() const
+{
+	return m_basesComputed;
 }
 
 void BezierEvaluator::clearBernsteinMap()
 {
-	bernsteinMap.clear();
+	m_bernsteinMap.clear();
+	m_basesComputed = false;
 }
 
-Vector12s BezierEvaluator::eval( const VectorX2s & controlPoints, const scalar & t )
+Vector12s BezierEvaluator::eval( const VectorX2s & controlPoints, const scalar & t ) const
 {
 	assert( t >= 0.0 && t <= 1.0);
 	assert( controlPoints.rows() == m_deg + 1);
@@ -79,11 +107,11 @@ Vector12s BezierEvaluator::eval( const VectorX2s & controlPoints, const scalar &
 	return (bases.transpose() * controlPoints);
 }
 
-Vector12s BezierEvaluator::eval( const VectorX2s & controlPoints, const int & index )
+Vector12s BezierEvaluator::eval( const VectorX2s & controlPoints, const int & index ) const
 {
 	assert( index >= 0 && index <= m_rate);
 	assert( controlPoints.rows() == m_deg + 1);
-	assert( !bernsteinMap.empty() );		// Ensure that the bernstein bases map is already computed
+	assert( !m_bernsteinMap.empty() );		// Ensure that the bernstein bases map is already computed
 	
-	return (bernsteinMap[index].transpose() * controlPoints);
+	return ((m_bernsteinMap.find(index)->second).transpose() * controlPoints);
 }

@@ -51,7 +51,13 @@
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
          startingLineNumber = "286"
+<<<<<<< HEAD
          endingLineNumber = "286">
+=======
+         endingLineNumber = "286"
+         landmarkName = "setPolyBezierSceneRenderer( const PolyBezierSceneRenderer * sceneRenderer )"
+         landmarkType = "7">
+>>>>>>> parent of 52b165d... Revert "Basic Framework for Poly Bezier Curve Display"
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
