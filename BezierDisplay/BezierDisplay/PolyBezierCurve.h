@@ -6,6 +6,20 @@
 //  Copyright (c) 2012 Papoj Thamjaroenporn. All rights reserved.
 //
 
+/*
+	PolyBezierCurve is a data structure that contains all data about a poly curve:
+	* Array of curve segments
+	* Sequence of curve degrees in parallel to segments
+	* (Shared among all segments) array of control points
+	* (Shared among all segments) array of sample points
+	
+	PolyBezierCurve also provides a segment iterator. This iterator iterates through an
+	array of CONTROL POINTS, so it can be used to fetch the list of control points, as seen in
+	generateSamplePoints():
+		segCtrlPts = m_controlPoints.block( m_iter.getCurrentRow(), 0, deg + 1, 2 );
+
+*/
+
 #ifndef __BezierDisplay__PolyBezierCurve__
 #define __BezierDisplay__PolyBezierCurve__
 
@@ -14,23 +28,20 @@
 #include "MathDef.h"
 #include "BezierEvaluator.h"
 
-//typedef std::map<BezierEvaluator::Degree, BezierEvaluator> MapEvaluators;
-
 class PolyBezierCurve
 {
-//public:
-//	typedef std::map<BezierEvaluator::Degree, BezierEvaluator> MapEvaluators;
 
 public:
 	PolyBezierCurve();
 //	PolyBezierCurve( const int & segments );
 	PolyBezierCurve( const VectorX1i & degs, const VectorX2s & points );
 	
-	// Evaluate a sample point on the poly curve, given segment index and parameter t
+	// Evaluate a sample point on the poly curve, given segment index and arbitrary parameter t
+	// (Should not be needed if only curve display)
 	Vector12s eval( const int & segment, scalar t );
 	
-	// Set sample rate
-	void setSampleRate( const int & rate );
+//	// Set sample rate. --> Not necessary. All sample rate in the scene file.
+//	void setSampleRate( const int & rate );
 	
 	// Generate sample points
 	void generateSamplePoints( const curvedef::MapEvaluators & evalMap, const int & rate );
@@ -59,8 +70,8 @@ public:
 	// To return points, they may not have reference
 	// to original copy since temporary function like block() and row() do not allow us to
 	// return its modifiable copy. Therefore, return indices to control points instead.
-	VectorX1s getSegmentIndices();
-	VectorX1s getSegmentIndices( const int & segment );
+	VectorX1s getSegmentCtrlPtsIndices();
+	VectorX1s getSegmentCtrlPtsIndices( const int & segment );
 	
 	int& getNumSegments();
 	const int& getNumSegments() const;
@@ -86,14 +97,14 @@ private:
 	// Array of control points
 	VectorX2s m_controlPoints;
 	
-	// Segment iterator and segment count. Useful for drawing segments iteratively.
-	VectorX2sIterator m_iter;
-	int m_currentSegment;
+	// Segment iterator (iterating through control points though) and segment count.
+	// Useful for drawing segments iteratively.
+	VectorX2sIterator m_iter;			// Should only be used internally, and temporarily
+	int m_currentSegment;				// Should only be used internally, and temporarily
 	
 	// Array of sample points
 	VectorX2s m_samplePoints;
 	
-	// TODO: Have a method that evaluates all sample points
 };
 
 

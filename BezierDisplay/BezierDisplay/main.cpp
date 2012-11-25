@@ -9,6 +9,7 @@
 	1. Get the OpenGL running nicely. Orthographic camera. Mouse allowing zoom in-and-out.
  */
 //#include "Imported.h"
+#include "MathDef.h"
 #include "OpenGLScene.h"
 #include "BezierUtils.h"
 #include "BezierEvaluator.h"
@@ -26,8 +27,9 @@
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // OpenGL grid parameters
-int gridSizeX = 5;
-int gridSizeY = 5;
+int gridMaxX = 5;
+int gridMaxY = 5;
+scalar gridSize = 0.5;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // Bezier curve inputs
@@ -87,7 +89,7 @@ int main (int argc, char **argv) {
 	VectorX2s controlPoints_2;
 	mathdef::resize( controlPoints_2, 11);
 	controlPoints_2 <<
-		-1, -1,
+		0, -1,
 		-5, -1,
 		-5, -6,
 		0, -6,
@@ -113,10 +115,11 @@ int main (int argc, char **argv) {
 	PolyBezierCurve myPolyCurve3 (degs_3, controlPoints_3);
 		
 	
-//	for (int i = 0; i < degs.rows(); i++) {
-//		myPolyCurve.gotoSegment(i);
-//		std::cout << "Segment " << i << " point indices: \n" << myPolyCurve.getSegmentIndices() << std::endl;
-//	}
+	for (int i = 0; i < degs.rows(); ++i) {
+		myPolyCurve1.gotoSegment(i);
+		std::cout << "Segment " << i << " point indices: \n" << myPolyCurve1.getSegmentCtrlPtsIndices() << std::endl;
+		std::cout << "Fist Control Points: " << *(myPolyCurve1.getIter()) << std::endl;
+	}
 
 //	int i;
 //	
@@ -138,7 +141,7 @@ int main (int argc, char **argv) {
 	mainScene.addPolyCurve( myPolyCurve1 );
 	mainScene.addPolyCurve( myPolyCurve2 );
 	mainScene.addPolyCurve( myPolyCurve3 );
-	
+		
 	mainScene.printDegreeSet();
 	
 	mainScene.setLoD(30);
@@ -152,8 +155,9 @@ int main (int argc, char **argv) {
 	PolyBezierSceneRenderer * sceneRendererPtr = &sceneRenderer;
 
 	initializeOpenGLandGLUT( argc, argv );
-	initializeGrid(gridSizeX, gridSizeY);
+	initializeGrid(gridMaxX, gridMaxY, gridSize);
 	setPolyBezierSceneRenderer( sceneRendererPtr );
+
 	runOpenGL();
 	
     return 0;

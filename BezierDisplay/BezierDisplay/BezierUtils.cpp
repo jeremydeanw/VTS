@@ -22,8 +22,8 @@ int computeNchooseR (const int & n, const int & r)
 		c = 1;
 		int i;
 		
-		for (i = 0; i <= r - 1; i++) c *= (n - i);
-		for (i = 1; i <= r; i++) c /= i;
+		for (i = 0; i <= r - 1; ++i) c *= (n - i);
+		for (i = 1; i <= r; ++i) c /= i;
 	}
 	
 //	std::cout << "n, r: " << n << " " << r << std::endl;

@@ -36,7 +36,7 @@ PolyBezierScene::PolyBezierScene( const int & n, const int & rate )
 
 void PolyBezierScene::mergeDegreeSet( const VectorX1i & degs )
 {
-	for (int i = 0; i < degs.rows(); i++) {
+	for (int i = 0; i < degs.rows(); ++i) {
 		m_degreeSet.insert(degs[i]);
 	}
 }
@@ -75,16 +75,6 @@ void PolyBezierScene::setPolyCurve( const int & i, const PolyBezierCurve & newCu
 	m_curves[i] = newCurve;
 }
 
-curvedef::VectorPolyCurve & PolyBezierScene::getCurves()
-{
-	return m_curves;
-}
-
-const curvedef::VectorPolyCurve & PolyBezierScene::getCurves() const
-{
-	return m_curves;
-}
-
 //const curvedef::VectorPolyCurve::iterator & PolyBezierScene::getCurveIterator() const
 //{
 //	return m_curvesIt;
@@ -101,9 +91,10 @@ void PolyBezierScene::initializeEvaluators()
 	
 	m_evaluators.clear();
 	
-	for (m_degreeSetIt = m_degreeSet.begin(); m_degreeSetIt != m_degreeSet.end(); m_degreeSetIt++)
+	for (m_degreeSetIt = m_degreeSet.begin(); m_degreeSetIt != m_degreeSet.end(); ++m_degreeSetIt)
 	{
-		m_evaluators[*m_degreeSetIt] = BezierEvaluator( *m_degreeSetIt );
+		BezierEvaluator newE ( *m_degreeSetIt );
+		m_evaluators[*m_degreeSetIt] = newE;
 	}
 	
 	m_evaluatorInitialized = true;
@@ -117,53 +108,23 @@ void PolyBezierScene::computeEvaluatorCoefficients()
 	assert( m_LoD >= 0 );
 	assert( m_evaluatorInitialized );
 	
-	for (m_evaluatorsIt = m_evaluators.begin(); m_evaluatorsIt != m_evaluators.end(); m_evaluatorsIt++)
+	for (m_evaluatorsIt = m_evaluators.begin(); m_evaluatorsIt != m_evaluators.end(); ++m_evaluatorsIt)
 	{
 		(*m_evaluatorsIt).second.generateBernsteinMap(m_LoD);
 	}
 	
 }
 
-// Iterate through all curves and sample them
+
 void PolyBezierScene::evalPolyCurveSamples()
 {
 	if (m_curves.size() == 0) return;
 	
-	for (m_curvesIt = m_curves.begin(); m_curvesIt != m_curves.end(); m_curvesIt++)
+	for (m_curvesIt = m_curves.begin(); m_curvesIt != m_curves.end(); ++m_curvesIt)
 	{
 		PolyBezierCurve & curve = (*m_curvesIt);
-		
-		
-		// For each curve, evaluate all samples (should have a method in polybezier curve.)
-		
-		// Make sure m_curvesIt data gets modified as well.
-		// Todo: delete this comments?
 		curve.generateSamplePoints(m_evaluators, m_LoD);
-		
 	}
-	
-
-	
-//	for (int i = 0; i < degs.rows(); i++) {
-//		myPolyCurve.gotoSegment(i);
-//		std::cout << "Segment " << i << " point indices: \n" << myPolyCurve.getSegmentIndices() << std::endl;
-//	}
-
-//	int i;
-//	
-//	for (i = degs.rows()-1; i >= 0; i--) {
-//		myPolyCurve.gotoSegment(i);
-//		std::cout << "Segment " << i << " point indices: \n" << myPolyCurve.getSegmentIndices() << std::endl;
-//	}
-//	
-//	myPolyCurve.gotoSegment(2); i =2;
-//		std::cout << "Segment " << i << " point indices: \n" << myPolyCurve.getSegmentIndices() << std::endl;
-//		
-//	myPolyCurve.advanceSegment(); i++;
-//		std::cout << "Segment " << i << " point indices: \n" << myPolyCurve.getSegmentIndices() << std::endl;
-//	
-//	myPolyCurve.resetToFirstSegment(); i=0;
-//		std::cout << "Segment " << i << " point indices: \n" << myPolyCurve.getSegmentIndices() << std::endl;
 }
 	
 // TODO
@@ -195,6 +156,17 @@ const int & PolyBezierScene::getLoD() const
 	return m_LoD;
 }
 
+curvedef::VectorPolyCurve & PolyBezierScene::getCurves()
+{
+	return m_curves;
+}
+
+const curvedef::VectorPolyCurve & PolyBezierScene::getCurves() const
+{
+	return m_curves;
+}
+
+
 int PolyBezierScene::getNumCurves() const
 {
 	return m_curves.size();
@@ -210,7 +182,7 @@ void PolyBezierScene::printDegreeSet() const
 	
 	std::cout << "m_degreeSet\n" << std::endl;
 	curvedef::SetDegree::iterator m_degreeSetIt;
-	for (m_degreeSetIt = m_degreeSet.begin(); m_degreeSetIt != m_degreeSet.end(); m_degreeSetIt++)
+	for (m_degreeSetIt = m_degreeSet.begin(); m_degreeSetIt != m_degreeSet.end(); ++m_degreeSetIt)
 	{
 		std::cout << *m_degreeSetIt << std::endl;
 	}

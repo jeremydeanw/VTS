@@ -8,15 +8,19 @@
 
 #include "MathDef.h"
 
-VectorX2sIterator::VectorX2sIterator(VectorX2s & v, VectorX1i & degs )
+VectorX2sIterator::VectorX2sIterator()
 : m_row( 0 )
-, m_degs( &degs )
+, m_p( NULL )
+{}
+
+
+VectorX2sIterator::VectorX2sIterator( const VectorX2s & v )
+: m_row( 0 )
 , m_p( &v )
 {}
 
-VectorX2sIterator::VectorX2sIterator(VectorX2s & v, VectorX1i & degs, int row )
+VectorX2sIterator::VectorX2sIterator( const VectorX2s & v, const int & row )
 : m_row( row )
-, m_degs( &degs )
 , m_p( &v )
 {}
 
@@ -25,9 +29,20 @@ VectorX2sIterator::VectorX2sIterator(VectorX2s & v, VectorX1i & degs, int row )
 // scope works on class level, not on object level.
 VectorX2sIterator::VectorX2sIterator(const VectorX2sIterator& vit)
 : m_p( vit.m_p )
-, m_degs( vit.m_degs )
 , m_row( vit.m_row )
 {}
+
+void VectorX2sIterator::setVectorX2s( const VectorX2s & v )
+{
+	m_row = 0;
+	m_p = &v;
+}
+
+void VectorX2sIterator::setVectorX2s( const VectorX2s & v, const int & row )
+{
+	m_row = row;
+	m_p = &v;
+}
 
 VectorX2sIterator& VectorX2sIterator::operator++()
 {
@@ -48,20 +63,42 @@ VectorX2sIterator& VectorX2sIterator::operator+=(const int & i)
 	return *this;
 }
 
-// No operator*() implemented since temporary modification from block() or row() operations not allowed.
-// Use block() or row() explicitly.
+VectorX2sIterator& VectorX2sIterator::operator--()
+{
+	--m_row;
+	return *this;
+}
 
-bool VectorX2sIterator::operator==( const VectorX2sIterator & rhs)
+VectorX2sIterator VectorX2sIterator::operator--(int)
+{
+	VectorX2sIterator tmp(*this);
+	operator--();
+	return tmp;
+}
+
+VectorX2sIterator& VectorX2sIterator::operator-=(const int & i)
+{
+	m_row -= i;
+	return *this;
+}
+
+bool VectorX2sIterator::operator==( const VectorX2sIterator & rhs) const
 {
 	return (m_row == rhs.m_row && m_p == rhs.m_p);
 }
 
-bool VectorX2sIterator::operator!=( const VectorX2sIterator & rhs)
+bool VectorX2sIterator::operator!=( const VectorX2sIterator & rhs) const
 {
 	return (m_row != rhs.m_row || m_p != rhs.m_p);
 }
 
-const int& VectorX2sIterator::getRow() const
+Vector12s VectorX2sIterator::operator*() const
+{
+	Vector12s elem = m_p->block(m_row, 0, 1, 2);
+	return elem;
+}
+
+const int& VectorX2sIterator::getCurrentRow() const
 {
 	return m_row;
 }

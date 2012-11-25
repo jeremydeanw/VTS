@@ -25,25 +25,38 @@ typedef Eigen::Matrix<int, Eigen::Dynamic, 1> VectorX1i;
 typedef Eigen::Matrix<scalar, 2, 2> Matrix2s;
 typedef Eigen::Matrix<scalar, Eigen::Dynamic, Eigen::Dynamic> MatrixXs;
 
-// Todo: delete m_p.
-class VectorX2sIterator : public std::iterator<std::forward_iterator_tag, VectorX2s>
+// VectorX2sIterator is an iterator class used for iterating through VectorX2s structure.
+// Can be used like a bidirectional iterator (will be useful for implementing curve connection)
+//
+// Note: The element returned 
+class VectorX2sIterator : public std::iterator<std::bidirectional_iterator_tag, VectorX2s>
 {
 public:
-	VectorX2sIterator( VectorX2s & v, VectorX1i & degs );
-	VectorX2sIterator( VectorX2s & v, VectorX1i & degs, int row );
+	VectorX2sIterator();
+	VectorX2sIterator( const VectorX2s & v );
+	VectorX2sIterator( const VectorX2s & v, const int & row );
 	VectorX2sIterator( const VectorX2sIterator& vit );
+	
+	void setVectorX2s( const VectorX2s & v );
+	void setVectorX2s( const VectorX2s & v, const int & row );
 	
 	VectorX2sIterator& operator++();
 	VectorX2sIterator operator++(int);
 	VectorX2sIterator& operator+=(const int & i);
-	bool operator==( const VectorX2sIterator & rhs);
-	bool operator!=( const VectorX2sIterator & rhs);
+	VectorX2sIterator& operator--();
+	VectorX2sIterator operator--(int);
+	VectorX2sIterator& operator-=(const int & i);
+	bool operator==( const VectorX2sIterator & rhs) const;
+	bool operator!=( const VectorX2sIterator & rhs) const;
 	
-	const int& getRow() const;
+	//	const Eigen::Block<Eigen::Matrix<double, -1, 2, 0, -1, 2> > & operator*() const;
+	Vector12s operator*() const;
+	
+	const int& getCurrentRow() const;
 	
 private:
-	VectorX2s * m_p;
-	VectorX1i * m_degs;
+	const VectorX2s * m_p;
+
 	int m_row;
 };
 

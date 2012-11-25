@@ -20,6 +20,8 @@ public:
 
 	PolyBezierSceneRenderer( const PolyBezierScene & scene );
 	
+	void keyboard( unsigned char key, int x, int y );
+	
 	void setCurveColor( double r, double g, double b, double a = 1.0 );
 	void setCurveColor( const renderingutils::Color & color );
 	
@@ -39,6 +41,7 @@ public:
 	void setRenderCurveHull( bool r );
 	
 	void renderScene() const;
+	const PolyBezierScene & getScene() const;
 
 private:
 	
@@ -50,8 +53,13 @@ private:
 	// For now, render a circle. TODO: make it size-independent; use point sprite.
 	void renderCurveHull( const VectorX2s & controlPoints ) const;
 
+//
+//	void CheckForExtension(void);
 
 private:
+	
+	
+	
 	
 	const PolyBezierScene & m_curveScene;
 	
@@ -68,6 +76,11 @@ private:
 	bool m_renderCurve;
 	bool m_renderCurveHistory;
 	bool m_renderCurveHull;
+
+//	bool m_PointARBEnable;
+//	bool m_PointNVEnable;
+//	PFNGLPOINTPARAMETERFARBPROC  glPointParameterfARB  ;
+//	PFNGLPOINTPARAMETERFVARBPROC glPointParameterfvARB ;
 
 };
 

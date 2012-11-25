@@ -17,8 +17,7 @@
 	the evaluators coefficients for each degree pre-computed, this will give computational
 	efficiency if the scene has large number of segments with the same curve degree (most likely
 	to be 3)
-	
-	*
+
 */
 
 #ifndef __BezierDisplay__PolyBezierScene__
@@ -54,12 +53,6 @@ public:
 	void setPolyCurve( const int & i, const VectorX1i & degs, const VectorX2s & points );
 	void setPolyCurve( const int & i, const PolyBezierCurve & newCurve );
 	
-	// Get curves and curve iterators
-	curvedef::VectorPolyCurve & getCurves();
-	const curvedef::VectorPolyCurve & getCurves() const;
-	//const curvedef::VectorPolyCurve::iterator & getCurveIterator() const;
-	//curvedef::VectorPolyCurve::iterator & getCurveIterator();
-	
 	// Initialize Bezier evaluators
 	// DO THIS AFTER ALL POLY CURVES ARE SET / ADDED
 	void initializeEvaluators();
@@ -77,6 +70,11 @@ public:
 	void setLoD( const int & rate );			// DO THIS AFTER initializeEvaluators
 	const int & getLoD() const;
 	
+	// Get curves and curve iterators
+	curvedef::VectorPolyCurve & getCurves();
+	const curvedef::VectorPolyCurve & getCurves() const;
+	
+	// Get number of curves in the scene
 	int getNumCurves() const;
 
 // Debugging methods
@@ -88,16 +86,16 @@ private:
 
 	// Present curves in the scene
 	curvedef::VectorPolyCurve m_curves;
-	curvedef::VectorPolyCurve::iterator m_curvesIt;
+	curvedef::VectorPolyCurve::iterator m_curvesIt;			// Should only be used internally, and temporarily
 	
 	// Curves in the history, primarily meaning the curves before connection
 	// TODO: Do this!
 	curvedef::VectorPolyCurve m_curvesHistory;
-	curvedef::VectorPolyCurve::iterator m_curvesHistoryIt;
+	curvedef::VectorPolyCurve::iterator m_curvesHistoryIt;	// Should only be used internally, and temporarily
 	
 	// Bezier evaluators for each distinct segment degree
 	curvedef::MapEvaluators m_evaluators;
-	curvedef::MapEvaluators::iterator m_evaluatorsIt;
+	curvedef::MapEvaluators::iterator m_evaluatorsIt;		// Should only be used internally, and temporarily
 	bool m_evaluatorInitialized;
 	
 	// Set of all curve degrees that appear in the poly curve segments

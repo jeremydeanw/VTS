@@ -22,6 +22,21 @@ PolyBezierSceneRenderer::PolyBezierSceneRenderer( const PolyBezierScene & scene 
 , m_renderCurveHull( true )
 {}
 
+void PolyBezierSceneRenderer::keyboard( unsigned char key, int x, int y )
+{
+	// Toggle Bezier curves on or off
+	if( key == 'b' || key == 'B')
+	{
+		m_renderCurve = !m_renderCurve;
+	}
+	
+	// Toggle hull on or off
+	else if( key == 'h' || key == 'H' )
+	{
+		m_renderCurveHull = !m_renderCurveHull;
+	}
+}
+
 void PolyBezierSceneRenderer::setCurveColor( double r, double g, double b, double a )
 {
 	m_curveColor = renderingutils::Color(r,g,b,a);
@@ -84,6 +99,11 @@ void PolyBezierSceneRenderer::setRenderCurveHull( bool r )
 	m_renderCurveHull = r;
 }
 
+const PolyBezierScene & PolyBezierSceneRenderer::getScene() const
+{	
+	return m_curveScene;
+}
+
 void PolyBezierSceneRenderer::renderScene() const
 {
 	const curvedef::VectorPolyCurve & curves = m_curveScene.getCurves();
@@ -91,16 +111,42 @@ void PolyBezierSceneRenderer::renderScene() const
 	// const_iterator used to iterate through const STL container
 	curvedef::VectorPolyCurve::const_iterator curvesIt;
 	
-	for (curvesIt = curves.begin(); curvesIt != curves.end(); ++curvesIt)
+	if (m_renderCurve)
 	{
-		const VectorX2s & samplePoints = curvesIt->getSamplePoints();
-		renderCurve( samplePoints );
-		
-		// TODO: Render curve history
-		
-		const VectorX2s & controlPoints = curvesIt->getControlPoints();
-		renderCurveHull( controlPoints );
+		for (curvesIt = curves.begin(); curvesIt != curves.end(); ++curvesIt)
+		{
+			const VectorX2s & samplePoints = curvesIt->getSamplePoints();
+			renderCurve( samplePoints );
+		}
 	}
+	
+	// TODO: Render curve history
+	
+	if (m_renderCurveHull)
+	{
+		for (curvesIt = curves.begin(); curvesIt != curves.end(); ++curvesIt)
+		{
+			const VectorX2s & controlPoints = curvesIt->getControlPoints();
+			renderCurveHull( controlPoints );
+		}
+	}
+	
+//	for (curvesIt = curves.begin(); curvesIt != curves.end(); ++curvesIt)
+//	{
+//		if (m_renderCurve)
+//		{
+//			const VectorX2s & samplePoints = curvesIt->getSamplePoints();
+//			renderCurve( samplePoints );
+//		}
+//		
+//		// TODO: Render curve history
+//		
+//		if (m_renderCurveHull)
+//		{
+//			const VectorX2s & controlPoints = curvesIt->getControlPoints();
+//			renderCurveHull( controlPoints );
+//		}
+//	}
 	
 }
 
@@ -110,6 +156,9 @@ void PolyBezierSceneRenderer::renderCurve( const VectorX2s & samplePoints ) cons
 	glLineWidth( m_curveThickness );
 	
 	glPushMatrix();
+	
+	glEnable(GL_LINE_SMOOTH);
+	glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
 	glBegin(GL_LINE_STRIP);
 	{
 		for (int i = 0; i < samplePoints.rows(); ++i) {
@@ -137,6 +186,8 @@ void PolyBezierSceneRenderer::renderCurveHull( const VectorX2s & controlPoints )
 	glPushMatrix();
 	
 	// Hull lines
+	glEnable(GL_LINE_SMOOTH);
+	glHint(GL_LINE_SMOOTH_HINT, GL_NICEST);
 	glBegin(GL_LINE_STRIP);
 	{
 		for (int i = 0; i < controlPoints.rows(); ++i) {
@@ -148,19 +199,55 @@ void PolyBezierSceneRenderer::renderCurveHull( const VectorX2s & controlPoints )
 	// Control points (rendered in circles)
 	// TODO: Use point sprites to make points zoom-independent
 	// Currently just a quad
-	glBegin(GL_QUADS);
+	
+	glEnable(GL_POINT_SMOOTH);
+	glHint(GL_POINT_SMOOTH_HINT, GL_NICEST);
+	glPointSize(10.0f);
+	glBegin(GL_POINTS);
 	{
-		for (int i = 0; i < controlPoints.rows(); ++i) {
-			glVertex2d( controlPoints(i, 0) + 0.1, controlPoints(i, 1) + 0.1 );
-			glVertex2d( controlPoints(i, 0) - 0.1, controlPoints(i, 1) + 0.1 );
-			glVertex2d( controlPoints(i, 0) - 0.1, controlPoints(i, 1) - 0.1 );
-			glVertex2d( controlPoints(i, 0) + 0.1, controlPoints(i, 1) - 0.1 );
+		for (int i = 0; i < controlPoints.rows(); ++i)
+		{
+			glVertex2d(controlPoints(i, 0), controlPoints(i, 1));
 		}
 	}
 	glEnd();
 	
+	
+//	glBegin(GL_QUADS);
+//	{
+//		for (int i = 0; i < controlPoints.rows(); ++i) {
+//			glVertex2d( controlPoints(i, 0) + 0.1, controlPoints(i, 1) + 0.1 );
+//			glVertex2d( controlPoints(i, 0) - 0.1, controlPoints(i, 1) + 0.1 );
+//			glVertex2d( controlPoints(i, 0) - 0.1, controlPoints(i, 1) - 0.1 );
+//			glVertex2d( controlPoints(i, 0) + 0.1, controlPoints(i, 1) - 0.1 );
+//		}
+//	}
+//	glEnd();
+//	
 	glPopMatrix();
 	
 	glColor4d(0, 0, 0, 1.0);
 	glLineWidth( 1.0 );
 }
+
+
+//void PolyBezierSceneRenderer::CheckForExtension(void)
+//{
+//	char *ext = (char*)glGetString( GL_EXTENSIONS );
+//	/////////////////////////////////////////////////////////////////
+//	//Looking for GL_ARB_point_parameters extension
+//	/////////////////////////////////////////////////////////////////
+//	if( strstr( ext, "GL_ARB_point_parameters" ) != NULL )
+//	{
+//		glPointParameterfARB  = (PFNGLPOINTPARAMETERFEXTPROC)wglGetProcAddress("glPointParameterfARB");
+//		glPointParameterfvARB = (PFNGLPOINTPARAMETERFVEXTPROC)wglGetProcAddress("glPointParameterfvARB");
+//		if( !glPointParameterfARB || !glPointParameterfvARB )
+//		{
+//			std::cout	<< outputmod::startred
+//						<< "ARB Error: One or more GL_EXT_point_parameters functions were not found"
+//						<< outputmod::endred << std::flush;
+//			m_PointARBEnable=false;
+//		}
+//		m_PointARBEnable=true;
+//	}
+//}
