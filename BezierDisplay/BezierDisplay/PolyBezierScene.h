@@ -49,12 +49,12 @@ public:
 	void mergeDegreeSet( const VectorX1i & degs );
 
 	// Add new poly curve to the scene
-	void addPolyCurve( const VectorX1i & degs, const VectorX2s & points );
-	void addPolyCurve( const PolyBezierCurve & newCurve );
+	void addPolyCurve( const VectorX1i & degs, const VectorX2s & points, int & currentGlobalID);
+	void addPolyCurve( PolyBezierCurve & newCurve, int & currentGlobalID );
 	
-	// Set poly curve of a given index
-	void setPolyCurve( const int & i, const VectorX1i & degs, const VectorX2s & points );
-	void setPolyCurve( const int & i, const PolyBezierCurve & newCurve );
+//	// Set poly curve of a given index
+//	void setPolyCurve( const int & i, const VectorX1i & degs, const VectorX2s & points );
+//	void setPolyCurve( const int & i, const PolyBezierCurve & newCurve );
 	
 	// Initialize Bezier evaluators
 	// DO THIS AFTER ALL POLY CURVES ARE SET / ADDED
@@ -77,6 +77,9 @@ public:
 	curvedef::VectorPolyCurve & getCurves();
 	const curvedef::VectorPolyCurve & getCurves() const;
 	
+	curvedef::VectorPolyCurve::iterator getCurvesBegin();
+	curvedef::VectorPolyCurve::iterator getCurvesEnd();
+	
 	// Get number of curves in the scene
 	int getNumCurves() const;
 
@@ -84,26 +87,50 @@ public:
 public:
 	void printDegreeSet() const;
 	
-// Connection method
+// Connection methods
 // TODO: When this gets big, separate this into another class?
 public:
-	void connectPolycurveThree();
+	// Connect two curves, given by IDs. Basically, create a new curve
+	// by solving new coefficients from an optimization matrix, push that into the list
+	// of m_curves, while popping out the previous two curves out, and put it into m_curvesHistory.
+	//
+	// Input:
+	// id1, id2: IDs of the two curves being connected
+	// beginOrEnd1, beginOrEnd2: tells us which side of the curve to connect. If true, use the first
+	//							 control point stored in the curve for connection. If false, use last.
+	// weight1, weight2: weights for calculating new connecting point -- we connect p(id1) and p(id2)
+	//					 by the formula newP = weight1 * p1 + weight2 * p2.
+	//					 Recommended: the weights should sum up to 1.0
+	void connectPolycurveThree( const int & id1, const int & id2,
+								const bool & beginOrEnd1, const bool & beginOrEnd2,
+								const scalar & weight1, const scalar & weight2 );
 	
+	PolyBezierCurve & findCurveGivenID( const int & ID );
+	
+	
+//	// TODO:
+//	void connectSelectedPolyCurveThree( )
+//	{
+//		connectPolycurveThree(id1, id2, side1, side2, weight1, weight2);
+//	}
 
 private:
 
 	// Present curves in the scene
+	// To get access to m_curves, use getCurvesIterator()
 	curvedef::VectorPolyCurve m_curves;
-	curvedef::VectorPolyCurve::iterator m_curvesIt;			// Should only be used internally, and temporarily
+	//curvedef::VectorPolyCurve::iterator m_curvesIt;			// Should only be used internally, and temporarily
 	
 	// Curves in the history, primarily meaning the curves before connection
 	// TODO: Do this!
+	// To get access to m_curvesHistory, use getHistoryCurvesIterator()
 	curvedef::VectorPolyCurve m_curvesHistory;
-	curvedef::VectorPolyCurve::iterator m_curvesHistoryIt;	// Should only be used internally, and temporarily
+	//curvedef::VectorPolyCurve::iterator m_curvesHistoryIt;	// Should only be used internally, and temporarily
 	
 	// Bezier evaluators for each distinct segment degree
+	// To get access to m_evaluators, use getEvalIterator()
 	curvedef::MapEvaluators m_evaluators;
-	curvedef::MapEvaluators::iterator m_evaluatorsIt;		// Should only be used internally, and temporarily
+	//curvedef::MapEvaluators::iterator m_evaluatorsIt;		// Should only be used internally, and temporarily
 	bool m_evaluatorInitialized;
 	
 	// Set of all curve degrees that appear in the poly curve segments

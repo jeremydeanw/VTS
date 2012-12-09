@@ -8,11 +8,12 @@
 
 #include "PolyBezierCurve.h"
 
-PolyBezierCurve::PolyBezierCurve()
-: m_degs()
+PolyBezierCurve::PolyBezierCurve( const int & cid )
+: m_id(cid)
+, m_degs()
 , m_controlPoints()
 , m_segments(0)
-, m_iter(segmentsBegin())
+//, m_iter(segmentsBegin())
 , m_currentSegment(0)
 {}
 
@@ -24,11 +25,12 @@ PolyBezierCurve::PolyBezierCurve()
 //	mathdef::resize(m_controlPoints, segments);
 //}
 
-PolyBezierCurve::PolyBezierCurve( const VectorX1i & degs, const VectorX2s & points )
-: m_degs(degs)
+PolyBezierCurve::PolyBezierCurve( const VectorX1i & degs, const VectorX2s & points, const int & cid)
+: m_id(cid)
+, m_degs(degs)
 , m_controlPoints(points)
 , m_segments(degs.rows())
-, m_iter(segmentsBegin())
+//, m_iter(segmentsBegin())
 , m_currentSegment(0)
 {}
 
@@ -47,11 +49,12 @@ Vector12s PolyBezierCurve::eval( const int & segment, scalar t )
 	curvedef::Degree deg = getSegmentDegree( segment );
 	BezierEvaluator eval ( deg );
 	
-	gotoSegment( segment );
+	VectorX2s_iterator it = beginSegments();
+	gotoSegment( segment, it );
 	
-	std::cout << eval.eval( m_controlPoints.block( m_iter.getCurrentRow(), 0, deg + 1, 2 ) , t) << std::endl;
+	std::cout << eval.eval( m_controlPoints.block( it.getCurrentRowIndex(), 0, deg + 1, 2 ) , t) << std::endl;
 	
-	return eval.eval( m_controlPoints.block( m_iter.getCurrentRow(), 0, deg + 1, 2 ) , t);
+	return eval.eval( m_controlPoints.block( it.getCurrentRowIndex(), 0, deg + 1, 2 ) , t);
 	
 }
 
@@ -75,20 +78,28 @@ void PolyBezierCurve::generateSamplePoints( const curvedef::MapEvaluators & eval
 	// Evaluate the first point on the first curve, then
 	// Loop through all segment to sample 1st sample to last sample.
 	
-	resetToFirstSegment();
+//	resetToFirstSegment();
+	VectorX2s_iterator it = beginSegments();
+	resetToFirstSegment(it);
 	
 	int samp_i = 0;		// Sample temp index
 	int j;
 	curvedef::Degree deg;
 	VectorX2s segCtrlPts;
-	while (m_iter != segmentsEnd()) {
+	while (it != endSegments()) {
+		std::cout << "current it point: " << *it << std::endl;
+		std::cout << "m_currentSegment: " << m_currentSegment << std::endl;
 		deg = getSegmentDegree( m_currentSegment );
 		const BezierEvaluator & evaluator = evalMap.find( deg )->second;
 		
 		assert( evaluator.isBasesComputed() );
 		assert( deg > 0);
 		
-		segCtrlPts = m_controlPoints.block( m_iter.getCurrentRow(), 0, deg + 1, 2 );
+//		segCtrlPts = m_controlPoints.block( it.getCurrentRowIndex(), 0, deg + 1, 2 );
+//		segCtrlPts = *(it);
+//		std::cout << "segCrtlPts: " << segCtrlPts << std::endl;
+		segCtrlPts = it.getBlock(deg + 1, 2);
+		std::cout << "segCrtlPts (should be the same): " << segCtrlPts << std::endl;
 		
 		// Compute first end point if we are at first segment
 		if (m_currentSegment == 0)
@@ -111,7 +122,7 @@ void PolyBezierCurve::generateSamplePoints( const curvedef::MapEvaluators & eval
 			++j;
 		}
 		
-		advanceSegment();
+		advanceSegment( it );
 	}
 	
 //	
@@ -167,17 +178,14 @@ void PolyBezierCurve::setSamplePoint( const int & row, const Vector12s & v)
 	m_samplePoints.block(row, 0, 1, 2) = v;
 }
 
-VectorX2s_iterator PolyBezierCurve::segmentsBegin()
+void PolyBezierCurve::setID( const int & cid )
 {
-	return VectorX2s_iterator( &m_controlPoints, 0 );
+	m_id = cid;
 }
 
-
-//TODO: Should this be minus 1 or just 0?
-//TODO: I am supposed to initialize this by pointer.
-VectorX2s_iterator PolyBezierCurve::segmentsEnd()
+int PolyBezierCurve::getID() const
 {
-	return VectorX2s_iterator( &m_controlPoints, m_controlPoints.rows() - 1);
+	return m_id;
 }
 
 //const VectorX2s& PolyBezierCurve::getPoints( const int & segment ) const
@@ -185,6 +193,90 @@ VectorX2s_iterator PolyBezierCurve::segmentsEnd()
 //	
 //		
 //}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// Helper methods
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+VectorX2s_iterator PolyBezierCurve::beginSegments()
+{
+	return VectorX2s_iterator( &m_controlPoints, 0 );
+}
+
+VectorX2s_iterator PolyBezierCurve::endSegments()
+{
+	return VectorX2s_iterator( &m_controlPoints, m_controlPoints.rows() - 1);
+}
+
+//VectorX2s_const_iterator PolyBezierCurve::segmentsConstBegin()
+//{
+//	return VectorX2s_const_iterator( &m_controlPoints, 0 );
+//}
+//
+//VectorX2s_const_iterator PolyBezierCurve::segmentsConstEnd()
+//{
+//	return VectorX2s_const_iterator( &m_controlPoints, m_controlPoints.rows() - 1);
+//}
+
+void PolyBezierCurve::resetToFirstSegment( VectorX2s_iterator & it )
+{
+	it = beginSegments();
+	m_currentSegment = 0;
+}
+
+void PolyBezierCurve::resetToEndSegment( VectorX2s_iterator & it )
+{
+	it = endSegments();
+	m_currentSegment = m_segments;
+}
+
+void PolyBezierCurve::advanceSegment( VectorX2s_iterator & it )
+{
+	it += m_degs[m_currentSegment];
+	++m_currentSegment;
+}
+
+void PolyBezierCurve::gotoSegment(const int & segment, VectorX2s_iterator & it )
+{
+	assert( (segment >= 0) && (segment < m_segments) );
+	
+	bool forward = (segment >= m_currentSegment);
+	
+	// Advance the iterator of the control points by the degree of each precedented segment
+	while (m_currentSegment != segment) {
+		it += ((forward) ? (m_degs[m_currentSegment]) : (-m_degs[m_currentSegment-1]));
+		m_currentSegment += ((forward) ? 1 : -1);
+	}
+}
+
+//VectorX2s_iterator& PolyBezierCurve::getIter()
+//{
+//	return m_iter;
+//}
+//
+//const VectorX2s_iterator& PolyBezierCurve::getIter() const
+//{
+//	return m_iter;
+//}
+
+bool PolyBezierCurve::isIterAtBegin( const VectorX2s_iterator & it ) const
+{
+	return (it.getCurrentRowIndex() == 0);
+}
+
+bool PolyBezierCurve::isIterAtEnd( const VectorX2s_iterator & it ) const
+{
+	return (it.getCurrentRowIndex() == m_degs.rows());
+}
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// Helper methods
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 VectorX1s PolyBezierCurve::getSegmentCtrlPtsIndices( const int & segment )
 {
@@ -194,96 +286,55 @@ VectorX1s PolyBezierCurve::getSegmentCtrlPtsIndices( const int & segment )
 
 	assert( (segment >= 0) && (segment < m_segments) );
 	
-	VectorX2s_iterator pointsBeginIter = segmentsBegin();
-	int segCount = 0;
-	
-	// Advance the iterator of the control points by the degree of each precedented segment
-	while (segCount < segment) {
-		pointsBeginIter += m_degs[segCount];
-		++segCount;
-	}
+	VectorX2s_iterator it = beginSegments();
+	resetToFirstSegment(it);
+	gotoSegment(segment, it);
 	
 	// Return indices of control points
 	VectorX1s pointIndices;
 	mathdef::resize(pointIndices, m_degs[segment] + 1);
-	for (int i = 0; i <= m_degs[segment]; i++, pointsBeginIter++) {
-		pointIndices[i] = pointsBeginIter.getCurrentRow();
+	for (int i = 0; i <= m_degs[segment]; i++, it++) {
+		pointIndices[i] = it.getCurrentRowIndex();
 	}
+//	
+//	int segCount = 0;
+//	
+//	// Advance the iterator of the control points by the degree of each precedented segment
+//	while (segCount < segment) {
+//		pointsBeginIter += m_degs[segCount];
+//		++segCount;
+//	}
+//	
+//	// Return indices of control points
+//	VectorX1s pointIndices;
+//	mathdef::resize(pointIndices, m_degs[segment] + 1);
+//	for (int i = 0; i <= m_degs[segment]; i++, pointsBeginIter++) {
+//		pointIndices[i] = pointsBeginIter.getCurrentRowIndex();
+//	}
 	
 	return pointIndices;
 	
 }
 
-VectorX1s PolyBezierCurve::getSegmentCtrlPtsIndices()
+VectorX1s PolyBezierCurve::getSegmentCtrlPtsIndices( const VectorX2s_iterator & it )
 {
 
-	std::cout << "m_segments" << m_segments << std::endl;
-	std::cout << "m_currentSegment" << m_currentSegment << std::endl;
+//	std::cout << "m_segments" << m_segments << std::endl;
+//	std::cout << "m_currentSegment" << m_currentSegment << std::endl;
 	
 	// Return indices of control points
-	VectorX2s_iterator tmp = m_iter;
+	VectorX2s_iterator tmp = it;
 	VectorX1s pointIndices;
 	mathdef::resize(pointIndices, m_degs[m_currentSegment] + 1);
 	for (int i = 0; i <= m_degs[m_currentSegment]; ++i, ++tmp) {
-		pointIndices[i] = tmp.getCurrentRow();
+		pointIndices[i] = tmp.getCurrentRowIndex();
 	}
 	
-	std::cout << "tmp.getCurrentRow(): " << tmp.getCurrentRow() << std::endl;
-	std::cout << "m_iter.getCurrentRow() (should be different): " << m_iter.getCurrentRow() << std::endl;
+//	std::cout << "tmp.getCurrentRowIndex(): " << tmp.getCurrentRowIndex() << std::endl;
+//	std::cout << "it.getCurrentRowIndex() (should be different): " << it.getCurrentRowIndex() << std::endl;
 	
 	return pointIndices;
 	
-}
-
-VectorX2s_iterator& PolyBezierCurve::resetToFirstSegment()
-{
-	m_iter = segmentsBegin();
-	m_currentSegment = 0;
-	
-	return m_iter;
-}
-
-bool PolyBezierCurve::isIterAtBegin() const
-{
-	return (m_iter.getCurrentRow() == 0);
-}
-
-bool PolyBezierCurve::isIterAtEnd() const
-{
-	//TODO: Is this correct? (I don't think so)
-	return (m_iter.getCurrentRow() == m_degs.rows());
-}
-
-VectorX2s_iterator& PolyBezierCurve::advanceSegment()
-{
-	m_iter += m_degs[m_currentSegment];
-	++m_currentSegment;
-	return m_iter;
-}
-
-VectorX2s_iterator& PolyBezierCurve::gotoSegment(const int & segment)
-{
-	assert( (segment >= 0) && (segment < m_segments) );
-	
-	bool forward = (segment >= m_currentSegment);
-	
-	// Advance the iterator of the control points by the degree of each precedented segment
-	while (m_currentSegment != segment) {
-		m_iter += ((forward) ? (m_degs[m_currentSegment]) : (-m_degs[m_currentSegment-1]));
-		m_currentSegment += ((forward) ? 1 : -1);
-	}
-	
-	return m_iter;
-}
-
-VectorX2s_iterator& PolyBezierCurve::getIter()
-{
-	return m_iter;
-}
-
-const VectorX2s_iterator& PolyBezierCurve::getIter() const
-{
-	return m_iter;
 }
 
 int& PolyBezierCurve::getNumSegments()
@@ -298,6 +349,8 @@ const int& PolyBezierCurve::getNumSegments() const
 
 curvedef::Degree& PolyBezierCurve::getSegmentDegree( int index )
 {
+	std::cout << "m_degs: " << m_degs << std::endl;
+	std::cout << "index; " << index << std::endl;
 	assert( index >= 0 && index < m_degs.rows() );
 	return m_degs[index];
 }

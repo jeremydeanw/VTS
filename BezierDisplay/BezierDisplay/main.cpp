@@ -18,15 +18,22 @@
 #include "PolyBezierSceneRenderer.h"
 
 #include <iostream>
+
 //#include "BezierUtils.h"
 //
 //list<BezierCurve> curves;
 //list<BezierSurface> surfaces;
 //int total = 0;
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// Global variables
+
+// Current available number for new curve ID assignment
+int g_globalID = 0;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // OpenGL grid parameters
+
 int gridMaxX = 5;
 int gridMaxY = 5;
 scalar gridSize = 0.5;
@@ -115,10 +122,12 @@ int main (int argc, char **argv) {
 	PolyBezierCurve myPolyCurve3 (degs_3, controlPoints_3);
 		
 	
+	VectorX2s_iterator curve1_It = myPolyCurve1.beginSegments();
 	for (int i = 0; i < degs.rows(); ++i) {
-		myPolyCurve1.gotoSegment(i);
-		std::cout << "Segment " << i << " point indices: \n" << myPolyCurve1.getSegmentCtrlPtsIndices() << std::endl;
-		std::cout << "First Control Points: " << *(myPolyCurve1.getIter()) << std::endl;
+		myPolyCurve1.gotoSegment(i, curve1_It);
+		std::cout << "Segment " << i << " point indices: \n" << myPolyCurve1.getSegmentCtrlPtsIndices(i) << std::endl;
+		std::cout << "Segment " << i << " point indices: (same)\n" << myPolyCurve1.getSegmentCtrlPtsIndices(curve1_It) << std::endl;
+		std::cout << "First Control Points: " << *(curve1_It) << std::endl;
 	}
 
 //	int i;
@@ -138,9 +147,16 @@ int main (int argc, char **argv) {
 //		std::cout << "Segment " << i << " point indices: \n" << myPolyCurve.getSegmentIndices() << std::endl;
 	
 	PolyBezierScene mainScene;
-	mainScene.addPolyCurve( myPolyCurve1 );
-	mainScene.addPolyCurve( myPolyCurve2 );
-	mainScene.addPolyCurve( myPolyCurve3 );
+	mainScene.addPolyCurve( myPolyCurve1, g_globalID );
+	//mainScene.addPolyCurve( myPolyCurve2, g_globalID );
+	mainScene.addPolyCurve( degs_2, controlPoints_2, g_globalID);
+	mainScene.addPolyCurve( myPolyCurve3, g_globalID );
+	
+	curvedef::VectorPolyCurve::iterator it;
+	for(it = mainScene.getCurvesBegin(); it != mainScene.getCurvesEnd(); it++)
+	{
+		std::cout << "ID of each curve: " << it->getID() << std::endl;
+	}
 		
 	mainScene.printDegreeSet();
 	

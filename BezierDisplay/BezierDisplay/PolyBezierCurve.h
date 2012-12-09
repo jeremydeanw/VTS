@@ -16,7 +16,7 @@
 	PolyBezierCurve also provides a segment iterator. This iterator iterates through an
 	array of CONTROL POINTS, so it can be used to fetch the list of control points, as seen in
 	generateSamplePoints():
-		segCtrlPts = m_controlPoints.block( m_iter.getCurrentRow(), 0, deg + 1, 2 );
+		segCtrlPts = m_controlPoints.block( m_iter.getCurrentRowIndex(), 0, deg + 1, 2 );
 
 */
 
@@ -35,9 +35,9 @@ class PolyBezierCurve
 
 // Constructors, initialization, and evaluation methods
 public:
-	PolyBezierCurve();
+	PolyBezierCurve( const int & cid = -1 );
 //	PolyBezierCurve( const int & segments );
-	PolyBezierCurve( const VectorX1i & degs, const VectorX2s & points );
+	PolyBezierCurve( const VectorX1i & degs, const VectorX2s & points, const int & cid = -1);
 	
 	// Evaluate a sample point on the poly curve, given segment index and arbitrary parameter t
 	// (Should not be needed if only curve display)
@@ -52,31 +52,44 @@ public:
 	// Set samplePoint
 	void setSamplePoint( const int & row, const Vector12s & v);
 	
+	// Set ID
+	void setID( const int & cid );
+	int getID() const;
+	
 	void printTest();
 
 // Iterator and helper methods
 public:
 
 	// Return iterator pointing the beginning segment, or the end segment, of the curve
-	VectorX2s_iterator segmentsBegin();		// Points to the first control points of polycurve
-	VectorX2s_iterator segmentsEnd();		// Points to the last control points of polycurve (passed last segment)
+	// beginSegments() points to the first control points of polycurve
+	// endSegments() points to the last control points of polycurve (passed last segment)
+	VectorX2s_iterator beginSegments();
+	VectorX2s_iterator endSegments();
+//	VectorX2s_const_iterator segmentsConstBegin();
+//	VectorX2s_const_iterator segmentsConstEnd();
 	
 	// Helper methods for segment iterator m_iter.
-	// TODO : Should I still keep the pointers, since I need to use pointer?
-	VectorX2s_iterator& resetToFirstSegment();
-	VectorX2s_iterator& advanceSegment();
-	VectorX2s_iterator& gotoSegment(const int & segment);	// Not cheap. Use advanceSegment if can
-	VectorX2s_iterator& getIter();
-	const VectorX2s_iterator& getIter() const;
-	bool isIterAtBegin() const;
-	bool isIterAtEnd() const;
+	
+	// IMPORTANT: after getting iterator from beginSegments() or endSegments(),
+	// make sure to re-align the m_currentRow through either resetToFirstSegment() or
+	// resetToFirstSegment() method too.
+	void resetToFirstSegment( VectorX2s_iterator & it );
+	void resetToEndSegment( VectorX2s_iterator & it );
+	
+	void advanceSegment( VectorX2s_iterator & it );
+	void gotoSegment(const int & segment, VectorX2s_iterator & it );	// Not cheap. Use advanceSegment if can
+//	VectorX2s_iterator& getIter();
+//	const VectorX2s_iterator& getIter() const;
+	bool isIterAtBegin( const VectorX2s_iterator & it ) const;
+	bool isIterAtEnd( const VectorX2s_iterator & it ) const;
 	
 	
 	// To return points, they may not have reference
 	// to original copy since temporary function like block() and row() do not allow us to
 	// return its modifiable copy. Therefore, return indices to control points instead.
-	VectorX1s getSegmentCtrlPtsIndices();
 	VectorX1s getSegmentCtrlPtsIndices( const int & segment );
+	VectorX1s getSegmentCtrlPtsIndices( const VectorX2s_iterator & it );
 	
 	int& getNumSegments();
 	const int& getNumSegments() const;
@@ -107,7 +120,7 @@ private:
 	
 	// Segment iterator (iterating through control points though) and segment count.
 	// Useful for drawing segments iteratively.
-	VectorX2s_iterator m_iter;			// Should only be used internally, and temporarily
+	// VectorX2s_iterator m_iter;			// Should only be used internally, and temporarily
 	int m_currentSegment;				// Should only be used internally, and temporarily
 	
 	// Array of sample points

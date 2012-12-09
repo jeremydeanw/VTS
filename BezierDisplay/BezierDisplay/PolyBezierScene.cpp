@@ -41,39 +41,45 @@ void PolyBezierScene::mergeDegreeSet( const VectorX1i & degs )
 	}
 }
 
-void PolyBezierScene::addPolyCurve( const VectorX1i & degs, const VectorX2s & points )
+void PolyBezierScene::addPolyCurve( const VectorX1i & degs, const VectorX2s & points, int & currentGlobalID)
 {
-	PolyBezierCurve newPolyCurve( degs, points );
+	PolyBezierCurve newPolyCurve( degs, points, currentGlobalID );
 	
 	mergeDegreeSet( degs );
 	
 	m_curves.push_back( newPolyCurve );
+	currentGlobalID++;
 }
 
-void PolyBezierScene::addPolyCurve( const PolyBezierCurve & newCurve )
+void PolyBezierScene::addPolyCurve( PolyBezierCurve & newCurve, int & currentGlobalID )
 {
 	mergeDegreeSet( newCurve.getDegs() );
 
+	newCurve.setID( currentGlobalID );
 	m_curves.push_back( newCurve );
+	currentGlobalID++;
 }
 
-void PolyBezierScene::setPolyCurve( const int & i, const VectorX1i & degs, const VectorX2s & points )
-{
-	assert(i >= 0 && i < getNumCurves() );
-	
-	mergeDegreeSet( degs );
-
-	m_curves[i] = PolyBezierCurve ( degs, points );
-}
-
-void PolyBezierScene::setPolyCurve( const int & i, const PolyBezierCurve & newCurve )
-{
-	assert(i >= 0 && i < getNumCurves() );
-	
-	mergeDegreeSet( newCurve.getDegs() );
-	
-	m_curves[i] = newCurve;
-}
+//void PolyBezierScene::setPolyCurve( const int & i, const VectorX1i & degs, const VectorX2s & points )
+//{
+//	assert(i >= 0 && i < getNumCurves() );
+//	
+//	mergeDegreeSet( degs );
+//
+//	m_curves[i] = PolyBezierCurve ( m_globalID, degs, points );
+//	m_globalID++;
+//	
+//	// TODO: SORT m_curves!
+//}
+//
+//void PolyBezierScene::setPolyCurve( const int & i, const PolyBezierCurve & newCurve )
+//{
+//	assert(i >= 0 && i < getNumCurves() );
+//	
+//	mergeDegreeSet( newCurve.getDegs() );
+//	
+//	m_curves[i] = newCurve;
+//}
 
 //const curvedef::VectorPolyCurve::iterator & PolyBezierScene::getCurveIterator() const
 //{
@@ -108,9 +114,11 @@ void PolyBezierScene::computeEvaluatorCoefficients()
 	assert( m_LoD >= 0 );
 	assert( m_evaluatorInitialized );
 	
-	for (m_evaluatorsIt = m_evaluators.begin(); m_evaluatorsIt != m_evaluators.end(); ++m_evaluatorsIt)
+	curvedef::MapEvaluators::iterator evaluatorsIt;
+	
+	for (evaluatorsIt = m_evaluators.begin(); evaluatorsIt != m_evaluators.end(); ++evaluatorsIt)
 	{
-		(*m_evaluatorsIt).second.generateBernsteinMap(m_LoD);
+		(*evaluatorsIt).second.generateBernsteinMap(m_LoD);
 	}
 	
 }
@@ -120,9 +128,11 @@ void PolyBezierScene::evalPolyCurveSamples()
 {
 	if (m_curves.size() == 0) return;
 	
-	for (m_curvesIt = m_curves.begin(); m_curvesIt != m_curves.end(); ++m_curvesIt)
+	curvedef::VectorPolyCurve::iterator curvesIt;
+	
+	for (curvesIt = m_curves.begin(); curvesIt != m_curves.end(); ++curvesIt)
 	{
-		PolyBezierCurve & curve = (*m_curvesIt);
+		PolyBezierCurve & curve = (*curvesIt);
 		curve.generateSamplePoints(m_evaluators, m_LoD);
 	}
 }
@@ -166,17 +176,43 @@ const curvedef::VectorPolyCurve & PolyBezierScene::getCurves() const
 	return m_curves;
 }
 
+curvedef::VectorPolyCurve::iterator PolyBezierScene::getCurvesBegin()
+{
+	return m_curves.begin();
+}
+
+curvedef::VectorPolyCurve::iterator PolyBezierScene::getCurvesEnd()
+{
+	return m_curves.end();
+}
+
 
 int PolyBezierScene::getNumCurves() const
 {
 	return m_curves.size();
 }
 
-////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// Curve connection methods
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+/*
+
+1. Find the curve to connect
+2. 
+*/
+
+void connectPolycurveThree(  );
+
+PolyBezierCurve & findCurveGivenID( const int & ID );
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
 //
 // Debugging methods
 //
-////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 void PolyBezierScene::printDegreeSet() const
 {
 	

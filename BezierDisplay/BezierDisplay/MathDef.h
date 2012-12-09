@@ -141,7 +141,7 @@ public:
 		return (m_row == rhs.m_row && m_p == rhs.m_p);
 	}
 
-	const int& getCurrentRow() const
+	const int& getCurrentRowIndex() const
 	{
 		return m_row;
 	}
@@ -170,6 +170,34 @@ inline bool operator!=( const VectorXXsIterator<T,isConst> & lhs,
 
 typedef VectorXXsIterator<VectorX2s, false> VectorX2s_iterator;
 typedef VectorXXsIterator<const VectorX2s, true> VectorX2s_const_iterator;
+
+//typedef struct Segment_iterator : VectorX2s_iterator
+//{
+//	Segment_iterator( VectorX2s * v = 0, int row = 0 )
+//	: VectorX2s_iterator(v, row)
+//	{}
+//	
+//	Segment_iterator( const Segment_iterator & sit)
+//	: VectorX2s_iterator(sit)
+//	{}
+//
+//	int m_currentSegment;
+//} Segment_iterator;
+//
+//typedef struct Segment_const_iterator : VectorX2s_const_iterator
+//{
+//	Segment_const_iterator( const VectorX2s * v = 0, int row = 0 )
+//	: VectorX2s_iterator(v, row)
+//	{}
+//	
+//	Segment_const_iterator( const Segment_const_iterator & sit)
+//	: VectorX2s_iterator(sit)
+//	{}
+//
+//	int m_currentSegment;
+//} Segment_const_iterator;
+//
+
 
 namespace mathdef {
 	void resize( VectorX2s & v, int size );
