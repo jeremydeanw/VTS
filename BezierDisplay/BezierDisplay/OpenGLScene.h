@@ -13,22 +13,7 @@
 #include "MathDef.h"
 #include "RenderingUtilities.h"
 #include "PolyBezierSceneRenderer.h"
-
-// SceneData
-typedef struct SceneData
-{
-	SceneData();
-
-	PolyBezierSceneRenderer * g_bezier_renderer;
-
-	int * gridMaxX;
-	int * gridMaxY;
-	scalar * gridSize;
-	
-	renderingutils::Color g_bgColor;
-	scalar recenterScale;
-	
-} SceneData;
+#include "OpenGLSceneData.h"
 
 // OpenGL rendering and UI functions
 void reshape (int w, int h);

@@ -14,10 +14,6 @@ OpenGLDisplayController::OpenGLDisplayController( int width, int height )
 , m_scale_factor( 1.0 )
 , m_center_x( 0.0 )
 , m_center_y( 0.0 )
-, m_left_drag( false )
-, m_right_drag( false )
-, m_last_x( 0 )
-, m_last_y( 0 )
 {}
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -91,27 +87,29 @@ void OpenGLDisplayController::special( int key, int x, int y )
 
 void OpenGLDisplayController::mouse( int button, int state, int x, int y )
 {
-	if( !m_right_drag && button == GLUT_LEFT_BUTTON && state == GLUT_DOWN )
-	{
-		m_left_drag = true;
-		m_last_x = x;
-		m_last_y = y;
-	}
-	if( button == GLUT_LEFT_BUTTON && state == GLUT_UP )
-	{
-		m_left_drag = false;
-	}
+	
+//	if( !m_right_drag && button == GLUT_LEFT_BUTTON && state == GLUT_DOWN )
+//	{
+//		m_left_drag = true;
+//		m_last_x = x;
+//		m_last_y = y;
+//	}
+//	if( button == GLUT_LEFT_BUTTON && state == GLUT_UP )
+//	{
+//		m_left_drag = false;
+//	}
+//
+//	if( !m_left_drag && button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN )
+//	{
+//		m_right_drag = true;
+//		m_last_x = x;
+//		m_last_y = y;
+//	}
+//	if( button == GLUT_RIGHT_BUTTON && state == GLUT_UP )
+//	{
+//		m_right_drag = false;
+//	}
 
-	if( !m_left_drag && button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN )
-	{
-		m_right_drag = true;
-		m_last_x = x;
-		m_last_y = y;
-	}
-	if( button == GLUT_RIGHT_BUTTON && state == GLUT_UP )
-	{
-		m_right_drag = false;
-	}
 }
 
 void OpenGLDisplayController::translateView( double dx, double dy )
@@ -141,22 +139,22 @@ void OpenGLDisplayController::zoomView( double dx, double dy )
 	reshape( m_window_width, m_window_height );
 }
 
-void OpenGLDisplayController::motion( int x, int y ) 
+void OpenGLDisplayController::motion( int x, int y, SceneControllerData & scd)
 {
-	if( m_left_drag ) 
+	if( scd.m_left_drag )
 	{
-		double dx = x - m_last_x;
-		double dy = y - m_last_y;
-		m_last_x = x;
-		m_last_y = y;
+		double dx = x - scd.m_last_x;
+		double dy = y - scd.m_last_y;
+		scd.m_last_x = x;
+		scd.m_last_y = y;
 		translateView( dx, dy );
 	}
-	if( m_right_drag ) 
+	if( scd.m_right_drag )
 	{
-		double dx = x - m_last_x;
-		double dy = y - m_last_y;
-		m_last_x = x;
-		m_last_y = y;
+		double dx = x - scd.m_last_x;
+		double dy = y - scd.m_last_y;
+		scd.m_last_x = x;
+		scd.m_last_y = y;
 		zoomView( dx, dy );
 	}
 }

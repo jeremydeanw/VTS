@@ -47,11 +47,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "BezierDisplay/OpenGLScene.cpp"
-         timestampString = "375568818.708234"
+         timestampString = "376717380.593979"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "361"
-         endingLineNumber = "361">
+         startingLineNumber = "412"
+         endingLineNumber = "412">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
@@ -175,11 +175,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "BezierDisplay/OpenGLScene.cpp"
-         timestampString = "375568818.708234"
+         timestampString = "376717380.593979"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "130"
-         endingLineNumber = "130"
+         startingLineNumber = "128"
+         endingLineNumber = "128"
          landmarkName = "display()"
          landmarkType = "7">
       </FileBreakpoint>
@@ -188,11 +188,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "BezierDisplay/OpenGLScene.cpp"
-         timestampString = "375568818.708234"
+         timestampString = "376717380.593979"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "221"
-         endingLineNumber = "221"
+         startingLineNumber = "222"
+         endingLineNumber = "222"
          landmarkName = "centerCamera( scalar cx, scalar cy )"
          landmarkType = "7">
       </FileBreakpoint>

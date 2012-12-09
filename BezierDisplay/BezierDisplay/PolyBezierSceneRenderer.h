@@ -12,6 +12,8 @@
 #include "RenderingUtilities.h"
 #include "PolyBezierScene.h"
 #include "CurveDef.h"
+#include "OpenGLSceneData.h"
+
 #include <iostream>
 
 class PolyBezierSceneRenderer
@@ -42,6 +44,11 @@ public:
 	
 	void renderScene() const;
 	const PolyBezierScene & getScene() const;
+
+public:
+	void processSelection( int xPos, int yPos, SceneControllerData & scd);
+	void mouse( int button, int state, int x, int y, SceneControllerData & scd );
+	void motion( int x, int y, SceneControllerData & scd);
 
 private:
 	

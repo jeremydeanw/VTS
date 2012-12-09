@@ -19,12 +19,10 @@
 //double g_sec_per_frame;
 
 OpenGLDisplayController g_display_controller( 512, 512 );
-SceneData g_scene_data;
 
-SceneData::SceneData()
-: recenterScale (1.2)
-, g_bgColor( 1.0, 1.0, 1.0 )
-{};
+SceneObjectData g_scene_object_data;
+SceneControllerData g_scene_controller_data( 1.2 );
+SceneMiscData g_scene_misc_data( renderingutils::Color( 1.0, 1.0, 1.0 ) );
 
 ////Light enabling variables.
 //bool light_0_on = true;  //By default, light 0 will be on.
@@ -131,8 +129,8 @@ void display()
 	
 	glMatrixMode( GL_MODELVIEW );
 	
-	drawGrid(*(g_scene_data.gridMaxX), *(g_scene_data.gridMaxY), *(g_scene_data.gridSize));
-	g_scene_data.g_bezier_renderer->renderScene();
+	drawGrid(*(g_scene_object_data.g_gridMaxX), *(g_scene_object_data.g_gridMaxY), *(g_scene_object_data.g_gridSize));
+	g_scene_object_data.g_bezier_renderer->renderScene();
 	
 	//drawHUD();
 	
@@ -144,7 +142,9 @@ void display()
 
 void findSceneBoundary(scalar & min_x, scalar & min_y, scalar & max_x, scalar & max_y)
 {
-	const PolyBezierScene & curveScene = g_scene_data.g_bezier_renderer->getScene();
+	std::cout << "in findSceneBoundary" << std::endl;
+
+	const PolyBezierScene & curveScene = g_scene_object_data.g_bezier_renderer->getScene();
 	const curvedef::VectorPolyCurve & curves = curveScene.getCurves();
 	curvedef::VectorPolyCurve::const_iterator curveIt;
 	
@@ -154,18 +154,21 @@ void findSceneBoundary(scalar & min_x, scalar & min_y, scalar & max_x, scalar & 
 	max_y = -std::numeric_limits<scalar>::infinity();
 	min_y =  std::numeric_limits<scalar>::infinity();
 	
-	VectorX2sIterator controlPointsIt;
-	VectorX2sIterator end;
 	Vector12s point;
 	for( curveIt = curves.begin(); curveIt != curves.end(); ++curveIt )
 	{
 		const VectorX2s & controlPoints = curveIt->getControlPoints();
 		
-		controlPointsIt.setVectorX2s( controlPoints );
-		end.setVectorX2s( controlPoints, controlPoints.rows() );
+		VectorX2s_const_iterator controlPointsIt ( &controlPoints );
+		VectorX2s_const_iterator end ( &controlPoints, controlPoints.rows() );
+
+		std::cout << "*controlPointsIt: " << *controlPointsIt << std::endl;
+		//std::cout << "*controlPointsIt: " << *end << std::endl;
 
 		while ( controlPointsIt != end) {
 			point = *controlPointsIt;
+			
+			std::cout << "point: " << point << std::endl;
 			
 			if (point(0) < min_x) min_x = point(0);
 			if (point(0) > max_x) max_x = point(0);
@@ -177,8 +180,8 @@ void findSceneBoundary(scalar & min_x, scalar & min_y, scalar & max_x, scalar & 
 		
 	}
 	
-//	std::cout << "min_x, max_x: " << min_x << " " << max_x << std::endl;
-//	std::cout << "min_y, max_y: " << min_y << " " << max_y << std::endl;
+	std::cout << "min_x, max_x: " << min_x << " " << max_x << std::endl;
+	std::cout << "min_y, max_y: " << min_y << " " << max_y << std::endl;
 
 }
 
@@ -199,9 +202,9 @@ void centerCamera()
 	scalar ratio = ((scalar)g_display_controller.getWindowHeight()) /
 					((scalar)g_display_controller.getWindowWidth());
 	
-	std::cout << "g_scene_data.recenterScale " <<   g_scene_data.recenterScale << std::endl;
+	std::cout << "g_scene_controller_data.recenterScale " <<   g_scene_controller_data.m_recenterScale << std::endl;
 	
-	centerCamera( cx, cy, g_scene_data.recenterScale*std::max(ratio*radius_x, radius_y) );
+	centerCamera( cx, cy, g_scene_controller_data.m_recenterScale*std::max(ratio*radius_x, radius_y) );
 
 }
 
@@ -218,11 +221,11 @@ void centerCamera( scalar cx, scalar cy )
 	scalar ratio = ((scalar)g_display_controller.getWindowHeight()) /
 					((scalar)g_display_controller.getWindowWidth());
 				
-//	std::cout << "radius_x, radius_y: " << radius_x << " " << radius_y << std::endl;
+	std::cout << "radius_x, radius_y: " << radius_x << " " << radius_y << std::endl;
 	
-	std::cout << "g_scene_data.recenterScale " <<   g_scene_data.recenterScale << std::endl;
+	std::cout << "g_scene_data.recenterScale " <<   g_scene_controller_data.m_recenterScale << std::endl;
 	
-	centerCamera( cx, cy, g_scene_data.recenterScale*std::max(ratio*radius_x, radius_y) );
+	centerCamera( cx, cy, g_scene_controller_data.m_recenterScale*std::max(ratio*radius_x, radius_y) );
 }
 
 void centerCamera( scalar cx, scalar cy, scalar scale )
@@ -235,10 +238,11 @@ void centerCamera( scalar cx, scalar cy, scalar scale )
 void keyboard( unsigned char key, int x, int y )
 {
 	g_display_controller.keyboard( key, x, y );
-	g_scene_data.g_bezier_renderer->keyboard( key, x, y );
+	g_scene_object_data.g_bezier_renderer->keyboard( key, x, y );
 	
 	// TODO: Put a controller in polybscenerenderer
 	
+	// GLOBAL KEYS //
 	// Quit the program
 	if( key == 'q' )
 	{
@@ -265,16 +269,16 @@ void keyboard( unsigned char key, int x, int y )
 	
 	else if( key == ']')
 	{
-		*(g_scene_data.gridMaxX) += 1;
-		*(g_scene_data.gridMaxY) += 1;
+		*(g_scene_object_data.g_gridMaxX) += 1;
+		*(g_scene_object_data.g_gridMaxY) += 1;
 	}
 	else if( key == '[')
 	{
-		*(g_scene_data.gridMaxX) -= 1;
-		*(g_scene_data.gridMaxY) -= 1;
+		*(g_scene_object_data.g_gridMaxX) -= 1;
+		*(g_scene_object_data.g_gridMaxY) -= 1;
 		
-		if ( *(g_scene_data.gridMaxX) < 0) *(g_scene_data.gridMaxX) = 0;
-		if ( *(g_scene_data.gridMaxY) < 0) *(g_scene_data.gridMaxY) = 0;
+		if ( *(g_scene_object_data.g_gridMaxX) < 0) *(g_scene_object_data.g_gridMaxX) = 0;
+		if ( *(g_scene_object_data.g_gridMaxY) < 0) *(g_scene_object_data.g_gridMaxY) = 0;
 		
 	}
 	
@@ -290,14 +294,63 @@ void special( int key, int x, int y )
 
 void mouse( int button, int state, int x, int y )
 {
-	g_display_controller.mouse( button, state, x, y );
+	// Detect if SHIFT key is being held down or not during the mouse callback
+	int mymod = glutGetModifiers();
+	if( g_scene_controller_data.m_activeshift && ( mymod != GLUT_ACTIVE_SHIFT ))
+	{
+		g_scene_controller_data.m_activeshift = false;
+	}
+	else if( !g_scene_controller_data.m_activeshift && ( mymod == GLUT_ACTIVE_SHIFT ))
+	{
+		g_scene_controller_data.m_activeshift = true;
+	}
+
+	if( !g_scene_controller_data.m_right_drag && button == GLUT_LEFT_BUTTON && state == GLUT_DOWN )
+	{
+		g_scene_controller_data.m_left_drag = true;
+		g_scene_controller_data.m_last_x = x;
+		g_scene_controller_data.m_last_y = y;
+	}
+	if( button == GLUT_LEFT_BUTTON && state == GLUT_UP )
+	{
+		g_scene_controller_data.m_left_drag = false;
+	}
+
+	if( !g_scene_controller_data.m_left_drag && button == GLUT_RIGHT_BUTTON && state == GLUT_DOWN )
+	{
+		g_scene_controller_data.m_right_drag = true;
+		g_scene_controller_data.m_last_x = x;
+		g_scene_controller_data.m_last_y = y;
+	}
+	if( button == GLUT_RIGHT_BUTTON && state == GLUT_UP )
+	{
+		g_scene_controller_data.m_right_drag = false;
+	}
+	
+	if ( g_scene_controller_data.m_activeshift )
+	{
+		// g_display_controller.mouse( button, state, x, y );
+	}
+	else
+	{
+		g_scene_object_data.g_bezier_renderer->mouse(button, state, x, y, g_scene_controller_data);
+	}
+
+	
 	
 	assert( renderingutils::checkGLErrors() );
 }
 
 void motion( int x, int y )
 {
-	g_display_controller.motion( x, y );
+	// If SHIFT is held, interpret motion for camera adjustment
+	if ( g_scene_controller_data.m_activeshift ) {
+		g_display_controller.motion( x, y, g_scene_controller_data);
+	}
+	// If SHIFT is not held, interpret mouse movement for selection and scene object manipulation
+	else {
+		g_scene_object_data.g_bezier_renderer->motion( x, y, g_scene_controller_data);
+	}
 	
 	assert( renderingutils::checkGLErrors() );
 }
@@ -333,9 +386,9 @@ void initializeOpenGLandGLUT ( int argc, char** argv ) {
   
 	// Initialize OpenGL
 	reshape(g_display_controller.getWindowWidth(),g_display_controller.getWindowHeight());
-	glClearColor(	g_scene_data.g_bgColor.r,
-					g_scene_data.g_bgColor.g,
-					g_scene_data.g_bgColor.b,
+	glClearColor(	g_scene_misc_data.m_bgColor.r,
+					g_scene_misc_data.m_bgColor.g,
+					g_scene_misc_data.m_bgColor.b,
 					1.0);
   
 	assert( renderingutils::checkGLErrors() );
@@ -358,7 +411,7 @@ void initializeOpenGLandGLUT ( int argc, char** argv ) {
 
 void setPolyBezierSceneRenderer( PolyBezierSceneRenderer * sceneRenderer )
 {
-	g_scene_data.g_bezier_renderer = sceneRenderer;
+	g_scene_object_data.g_bezier_renderer = sceneRenderer;
 }
 
 void runOpenGL ()
@@ -369,9 +422,9 @@ void runOpenGL ()
 
 void initializeGrid( int & gridMaxX, int & gridMaxY, scalar & gridSize)
 {
-	g_scene_data.gridMaxX = &gridMaxX;
-	g_scene_data.gridMaxY = &gridMaxY;
-	g_scene_data.gridSize = &gridSize;
+	g_scene_object_data.g_gridMaxX = &gridMaxX;
+	g_scene_object_data.g_gridMaxY = &gridMaxY;
+	g_scene_object_data.g_gridSize = &gridSize;
 }
 
 void drawGrid(int maxX, int maxY, double gridSize) {

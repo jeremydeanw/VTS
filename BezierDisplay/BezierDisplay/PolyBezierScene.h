@@ -37,11 +37,14 @@ class PolyBezierScene
 //	typedef std::vector<PolyBezierCurve> VectorPolyBezierCurve;
 //	typedef std::set<curvedef::Degree> SetDegree;
 
+// TODO: Write basic instruction regarding how to set up the scene, with code example.
+
+// Constructors, initialization, and evaluation methods of the scene
 public:
 	PolyBezierScene();
 	PolyBezierScene( const int & n );
 	PolyBezierScene( const int & n, const int & rate );
-	
+
 	// Given the series of degrees of a poly curve, merge all appearing degrees to m_degreeSet
 	void mergeDegreeSet( const VectorX1i & degs );
 
@@ -80,7 +83,12 @@ public:
 // Debugging methods
 public:
 	void printDegreeSet() const;
-
+	
+// Connection method
+// TODO: When this gets big, separate this into another class?
+public:
+	void connectPolycurveThree();
+	
 
 private:
 

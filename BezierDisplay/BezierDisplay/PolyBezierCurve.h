@@ -28,9 +28,12 @@
 #include "MathDef.h"
 #include "BezierEvaluator.h"
 
+//TODO: Add index to each poly curve
+
 class PolyBezierCurve
 {
 
+// Constructors, initialization, and evaluation methods
 public:
 	PolyBezierCurve();
 //	PolyBezierCurve( const int & segments );
@@ -50,19 +53,21 @@ public:
 	void setSamplePoint( const int & row, const Vector12s & v);
 	
 	void printTest();
-	
+
+// Iterator and helper methods
 public:
 
 	// Return iterator pointing the beginning segment, or the end segment, of the curve
-	VectorX2sIterator pointsBegin();
-	VectorX2sIterator pointsEnd();
+	VectorX2s_iterator segmentsBegin();		// Points to the first control points of polycurve
+	VectorX2s_iterator segmentsEnd();		// Points to the last control points of polycurve (passed last segment)
 	
 	// Helper methods for segment iterator m_iter.
-	VectorX2sIterator& resetToFirstSegment();
-	VectorX2sIterator& advanceSegment();
-	VectorX2sIterator& gotoSegment(const int & segment);	// Not cheap. Use advanceSegment if can
-	VectorX2sIterator& getIter();
-	const VectorX2sIterator& getIter() const;
+	// TODO : Should I still keep the pointers, since I need to use pointer?
+	VectorX2s_iterator& resetToFirstSegment();
+	VectorX2s_iterator& advanceSegment();
+	VectorX2s_iterator& gotoSegment(const int & segment);	// Not cheap. Use advanceSegment if can
+	VectorX2s_iterator& getIter();
+	const VectorX2s_iterator& getIter() const;
 	bool isIterAtBegin() const;
 	bool isIterAtEnd() const;
 	
@@ -86,6 +91,9 @@ public:
 	
 private:
 
+	// ID number of this polycurve
+	int m_id;
+
 	// Number of segments
 	int m_segments;
 
@@ -99,7 +107,7 @@ private:
 	
 	// Segment iterator (iterating through control points though) and segment count.
 	// Useful for drawing segments iteratively.
-	VectorX2sIterator m_iter;			// Should only be used internally, and temporarily
+	VectorX2s_iterator m_iter;			// Should only be used internally, and temporarily
 	int m_currentSegment;				// Should only be used internally, and temporarily
 	
 	// Array of sample points

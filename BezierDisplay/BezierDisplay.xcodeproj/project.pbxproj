@@ -8,10 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		A44B11DB165477E900E56AEC /* BezierEvaluator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A44B11D9165477E900E56AEC /* BezierEvaluator.cpp */; };
-		A44B11DE1654901B00E56AEC /* MathDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A44B11DD1654901B00E56AEC /* MathDef.cpp */; };
 		A44B12001654A79E00E56AEC /* PolyBezierCurve.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A44B11FE1654A79E00E56AEC /* PolyBezierCurve.cpp */; };
 		A44B12061655DEDA00E56AEC /* PolyBezierSceneRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A44B12041655DED900E56AEC /* PolyBezierSceneRenderer.cpp */; };
 		A44B12091655DEEE00E56AEC /* PolyBezierScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A44B12071655DEED00E56AEC /* PolyBezierScene.cpp */; };
+		A455400516743C1700D5753A /* OpenGLSceneData.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A455400316743C1700D5753A /* OpenGLSceneData.cpp */; };
+		A46392611671209400421E95 /* MathDef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A463925F1671209400421E95 /* MathDef.cpp */; };
 		A4AB2349164DE50000D8DF24 /* BezierUtils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4AB2343164DE50000D8DF24 /* BezierUtils.cpp */; };
 		A4AB234A164DE50000D8DF24 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4AB2346164DE50000D8DF24 /* main.cpp */; };
 		A4AB234B164DE50000D8DF24 /* OpenGLScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = A4AB2347164DE50000D8DF24 /* OpenGLScene.cpp */; };
@@ -38,14 +39,16 @@
 		A423A761164DC6FD0097B04C /* BezierDisplay */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = BezierDisplay; sourceTree = BUILT_PRODUCTS_DIR; };
 		A44B11D9165477E900E56AEC /* BezierEvaluator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BezierEvaluator.cpp; sourceTree = "<group>"; };
 		A44B11DA165477E900E56AEC /* BezierEvaluator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BezierEvaluator.h; sourceTree = "<group>"; };
-		A44B11DC1654793C00E56AEC /* MathDef.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MathDef.h; sourceTree = "<group>"; };
-		A44B11DD1654901B00E56AEC /* MathDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MathDef.cpp; sourceTree = "<group>"; };
 		A44B11FE1654A79E00E56AEC /* PolyBezierCurve.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PolyBezierCurve.cpp; sourceTree = "<group>"; };
 		A44B11FF1654A79E00E56AEC /* PolyBezierCurve.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PolyBezierCurve.h; sourceTree = "<group>"; };
 		A44B12041655DED900E56AEC /* PolyBezierSceneRenderer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PolyBezierSceneRenderer.cpp; sourceTree = "<group>"; };
 		A44B12051655DED900E56AEC /* PolyBezierSceneRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PolyBezierSceneRenderer.h; sourceTree = "<group>"; };
 		A44B12071655DEED00E56AEC /* PolyBezierScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PolyBezierScene.cpp; sourceTree = "<group>"; };
 		A44B12081655DEED00E56AEC /* PolyBezierScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PolyBezierScene.h; sourceTree = "<group>"; };
+		A455400316743C1700D5753A /* OpenGLSceneData.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OpenGLSceneData.cpp; sourceTree = "<group>"; };
+		A455400416743C1700D5753A /* OpenGLSceneData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OpenGLSceneData.h; sourceTree = "<group>"; };
+		A463925F1671209400421E95 /* MathDef.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = MathDef.cpp; sourceTree = "<group>"; };
+		A46392601671209400421E95 /* MathDef.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MathDef.h; sourceTree = "<group>"; };
 		A4AB2343164DE50000D8DF24 /* BezierUtils.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = BezierUtils.cpp; sourceTree = "<group>"; };
 		A4AB2344164DE50000D8DF24 /* BezierUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BezierUtils.h; sourceTree = "<group>"; };
 		A4AB2345164DE50000D8DF24 /* Imported.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Imported.h; sourceTree = "<group>"; };
@@ -98,8 +101,8 @@
 			isa = PBXGroup;
 			children = (
 				A44B11D7165477C400E56AEC /* OpenGL */,
-				A44B11DC1654793C00E56AEC /* MathDef.h */,
-				A44B11DD1654901B00E56AEC /* MathDef.cpp */,
+				A463925F1671209400421E95 /* MathDef.cpp */,
+				A46392601671209400421E95 /* MathDef.h */,
 				A4AB2343164DE50000D8DF24 /* BezierUtils.cpp */,
 				A4AB2344164DE50000D8DF24 /* BezierUtils.h */,
 				A4AB2345164DE50000D8DF24 /* Imported.h */,
@@ -120,12 +123,14 @@
 		A44B11D7165477C400E56AEC /* OpenGL */ = {
 			isa = PBXGroup;
 			children = (
+				A4AB2382164DF99F00D8DF24 /* RenderingUtilities.cpp */,
+				A4AB2383164DF99F00D8DF24 /* RenderingUtilities.h */,
+				A455400316743C1700D5753A /* OpenGLSceneData.cpp */,
+				A455400416743C1700D5753A /* OpenGLSceneData.h */,
 				A4AB2347164DE50000D8DF24 /* OpenGLScene.cpp */,
 				A4AB2348164DE50000D8DF24 /* OpenGLScene.h */,
 				A4AB237B164DF41400D8DF24 /* OpenGLDisplayController.cpp */,
 				A4AB237C164DF41400D8DF24 /* OpenGLDisplayController.h */,
-				A4AB2382164DF99F00D8DF24 /* RenderingUtilities.cpp */,
-				A4AB2383164DF99F00D8DF24 /* RenderingUtilities.h */,
 				A44B12041655DED900E56AEC /* PolyBezierSceneRenderer.cpp */,
 				A44B12051655DED900E56AEC /* PolyBezierSceneRenderer.h */,
 			);
@@ -190,10 +195,11 @@
 				A4AB2384164DF99F00D8DF24 /* RenderingUtilities.cpp in Sources */,
 				A4AB2387164DFB5400D8DF24 /* StringUtilities.cpp in Sources */,
 				A44B11DB165477E900E56AEC /* BezierEvaluator.cpp in Sources */,
-				A44B11DE1654901B00E56AEC /* MathDef.cpp in Sources */,
 				A44B12001654A79E00E56AEC /* PolyBezierCurve.cpp in Sources */,
 				A44B12061655DEDA00E56AEC /* PolyBezierSceneRenderer.cpp in Sources */,
 				A44B12091655DEEE00E56AEC /* PolyBezierScene.cpp in Sources */,
+				A46392611671209400421E95 /* MathDef.cpp in Sources */,
+				A455400516743C1700D5753A /* OpenGLSceneData.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

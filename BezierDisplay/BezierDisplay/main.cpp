@@ -118,7 +118,7 @@ int main (int argc, char **argv) {
 	for (int i = 0; i < degs.rows(); ++i) {
 		myPolyCurve1.gotoSegment(i);
 		std::cout << "Segment " << i << " point indices: \n" << myPolyCurve1.getSegmentCtrlPtsIndices() << std::endl;
-		std::cout << "Fist Control Points: " << *(myPolyCurve1.getIter()) << std::endl;
+		std::cout << "First Control Points: " << *(myPolyCurve1.getIter()) << std::endl;
 	}
 
 //	int i;

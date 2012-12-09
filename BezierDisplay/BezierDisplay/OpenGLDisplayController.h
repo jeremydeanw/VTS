@@ -14,6 +14,7 @@
 #include <cassert>
 
 #include "RenderingUtilities.h"
+#include "OpenGLSceneData.h"
 
 class OpenGLDisplayController
 {
@@ -26,7 +27,7 @@ public:
 	void mouse( int button, int state, int x, int y );
 	void translateView( double dx, double dy );
 	void zoomView( double dx, double dy );
-	void motion( int x, int y );
+	void motion( int x, int y, SceneControllerData & scd);
 
 	int getWindowWidth() const;  
 	int getWindowHeight() const;
@@ -41,7 +42,6 @@ public:
 
 	void setScaleFactor( double scale );
 	double getScaleFactor() const;
-	
 	
 private:
 	
@@ -58,16 +58,6 @@ private:
 	double m_center_x;
 	// Center of the display, y coord
 	double m_center_y;
-
-	// True if the user is dragging the display left
-	bool m_left_drag;
-	// True if the user is dragging the display right
-	bool m_right_drag;
-
-	// Last position of the cursor in a drag, x coord
-	int m_last_x;
-	// Last position of the cursor in a drag, y coord
-	int m_last_y;
 
 };
 

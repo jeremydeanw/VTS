@@ -104,6 +104,26 @@ const PolyBezierScene & PolyBezierSceneRenderer::getScene() const
 	return m_curveScene;
 }
 
+void PolyBezierSceneRenderer::processSelection( int xPos, int yPos, SceneControllerData & scd)
+{
+	// TODO: Process this
+}
+
+void PolyBezierSceneRenderer::mouse( int button, int state, int x, int y, SceneControllerData & scd )
+{
+	processSelection(x, y, scd);
+}
+
+
+void PolyBezierSceneRenderer::motion( int x, int y, SceneControllerData & scd)
+{
+//		bool left_drag, bool right_drag,
+//		int & last_x, int & last_y)
+
+// TODO: Process this
+
+}
+
 void PolyBezierSceneRenderer::renderScene() const
 {
 	const curvedef::VectorPolyCurve & curves = m_curveScene.getCurves();
@@ -211,6 +231,7 @@ void PolyBezierSceneRenderer::renderCurveHull( const VectorX2s & controlPoints )
 		}
 	}
 	glEnd();
+
 	
 	
 //	glBegin(GL_QUADS);

@@ -12,7 +12,7 @@ PolyBezierCurve::PolyBezierCurve()
 : m_degs()
 , m_controlPoints()
 , m_segments(0)
-, m_iter(pointsBegin())
+, m_iter(segmentsBegin())
 , m_currentSegment(0)
 {}
 
@@ -28,7 +28,7 @@ PolyBezierCurve::PolyBezierCurve( const VectorX1i & degs, const VectorX2s & poin
 : m_degs(degs)
 , m_controlPoints(points)
 , m_segments(degs.rows())
-, m_iter(pointsBegin())
+, m_iter(segmentsBegin())
 , m_currentSegment(0)
 {}
 
@@ -81,7 +81,7 @@ void PolyBezierCurve::generateSamplePoints( const curvedef::MapEvaluators & eval
 	int j;
 	curvedef::Degree deg;
 	VectorX2s segCtrlPts;
-	while (m_iter != pointsEnd()) {
+	while (m_iter != segmentsEnd()) {
 		deg = getSegmentDegree( m_currentSegment );
 		const BezierEvaluator & evaluator = evalMap.find( deg )->second;
 		
@@ -167,14 +167,17 @@ void PolyBezierCurve::setSamplePoint( const int & row, const Vector12s & v)
 	m_samplePoints.block(row, 0, 1, 2) = v;
 }
 
-VectorX2sIterator PolyBezierCurve::pointsBegin()
+VectorX2s_iterator PolyBezierCurve::segmentsBegin()
 {
-	return VectorX2sIterator( m_controlPoints, 0 );
+	return VectorX2s_iterator( &m_controlPoints, 0 );
 }
 
-VectorX2sIterator PolyBezierCurve::pointsEnd()
+
+//TODO: Should this be minus 1 or just 0?
+//TODO: I am supposed to initialize this by pointer.
+VectorX2s_iterator PolyBezierCurve::segmentsEnd()
 {
-	return VectorX2sIterator( m_controlPoints, m_controlPoints.rows() - 1);
+	return VectorX2s_iterator( &m_controlPoints, m_controlPoints.rows() - 1);
 }
 
 //const VectorX2s& PolyBezierCurve::getPoints( const int & segment ) const
@@ -191,7 +194,7 @@ VectorX1s PolyBezierCurve::getSegmentCtrlPtsIndices( const int & segment )
 
 	assert( (segment >= 0) && (segment < m_segments) );
 	
-	VectorX2sIterator pointsBeginIter = pointsBegin();
+	VectorX2s_iterator pointsBeginIter = segmentsBegin();
 	int segCount = 0;
 	
 	// Advance the iterator of the control points by the degree of each precedented segment
@@ -214,27 +217,27 @@ VectorX1s PolyBezierCurve::getSegmentCtrlPtsIndices( const int & segment )
 VectorX1s PolyBezierCurve::getSegmentCtrlPtsIndices()
 {
 
-//	std::cout << "m_segments" << m_segments << std::endl;
-//	std::cout << "m_currentSegment" << m_currentSegment << std::endl;
+	std::cout << "m_segments" << m_segments << std::endl;
+	std::cout << "m_currentSegment" << m_currentSegment << std::endl;
 	
 	// Return indices of control points
-	VectorX2sIterator tmp = m_iter;
+	VectorX2s_iterator tmp = m_iter;
 	VectorX1s pointIndices;
 	mathdef::resize(pointIndices, m_degs[m_currentSegment] + 1);
 	for (int i = 0; i <= m_degs[m_currentSegment]; ++i, ++tmp) {
 		pointIndices[i] = tmp.getCurrentRow();
 	}
 	
-//	std::cout << "tmp.getCurrentRow(): " << tmp.getCurrentRow() << std::endl;
-//	std::cout << "m_iter.getCurrentRow() (should be different): " << m_iter.getCurrentRow() << std::endl;
+	std::cout << "tmp.getCurrentRow(): " << tmp.getCurrentRow() << std::endl;
+	std::cout << "m_iter.getCurrentRow() (should be different): " << m_iter.getCurrentRow() << std::endl;
 	
 	return pointIndices;
 	
 }
 
-VectorX2sIterator& PolyBezierCurve::resetToFirstSegment()
+VectorX2s_iterator& PolyBezierCurve::resetToFirstSegment()
 {
-	m_iter = pointsBegin();
+	m_iter = segmentsBegin();
 	m_currentSegment = 0;
 	
 	return m_iter;
@@ -251,14 +254,14 @@ bool PolyBezierCurve::isIterAtEnd() const
 	return (m_iter.getCurrentRow() == m_degs.rows());
 }
 
-VectorX2sIterator& PolyBezierCurve::advanceSegment()
+VectorX2s_iterator& PolyBezierCurve::advanceSegment()
 {
 	m_iter += m_degs[m_currentSegment];
 	++m_currentSegment;
 	return m_iter;
 }
 
-VectorX2sIterator& PolyBezierCurve::gotoSegment(const int & segment)
+VectorX2s_iterator& PolyBezierCurve::gotoSegment(const int & segment)
 {
 	assert( (segment >= 0) && (segment < m_segments) );
 	
@@ -273,12 +276,12 @@ VectorX2sIterator& PolyBezierCurve::gotoSegment(const int & segment)
 	return m_iter;
 }
 
-VectorX2sIterator& PolyBezierCurve::getIter()
+VectorX2s_iterator& PolyBezierCurve::getIter()
 {
 	return m_iter;
 }
 
-const VectorX2sIterator& PolyBezierCurve::getIter() const
+const VectorX2s_iterator& PolyBezierCurve::getIter() const
 {
 	return m_iter;
 }
