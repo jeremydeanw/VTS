@@ -32,7 +32,14 @@ PolyBezierScene::PolyBezierScene( const int & n, const int & rate )
 , m_resample(true)
 {}
 
+// TODO: Mention how to use PolyBezierScene in README. See main() for example use.
 // All the constructors should prepare the Bezier Evaluators according to rate
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// Initialization methods
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void PolyBezierScene::mergeDegreeSet( const VectorX1i & degs )
 {
@@ -143,6 +150,12 @@ void PolyBezierScene::evalPolyCurveHistorySamples()
 	
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// Helpers methods
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 void PolyBezierScene::setLoD( const int & rate )
 {
@@ -199,14 +212,270 @@ int PolyBezierScene::getNumCurves() const
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*
-
-1. Find the curve to connect
-2. 
+	Connect two curves, assumed to have all segments of degree three.
+	1. Identify the curve pair to be connected
+	2. Construct a matrix with proper size
+	3. Start to fill in the matrix 
+	
+	// TODO: Solve by sparse matrix
+	// TODO: Assume both ends are close together.
 */
 
-void connectPolycurveThree(  );
+void PolyBezierScene::connectPolycurveThree( const int & id1, const int & id2,
+											const bool & lastPointOrFirst1, const bool & lastPointOrFirst2,
+											const scalar & weight1, const scalar & weight2 )
+{
+	PolyBezierCurve & curve1 = m_curves[ findCurveIndexGivenID(id1) ];
+	PolyBezierCurve & curve2 = m_curves[ findCurveIndexGivenID(id2) ];
+	
+	int numSegments1 = curve1.getNumSegments();
+	int numSegments2 = curve2.getNumSegments();
+	int solverSize1 = 3 * numSegments1 + 1;
+	int solverSize2 = 3 * numSegments2 + 1;
 
-PolyBezierCurve & findCurveGivenID( const int & ID );
+	IndexConverter ic1 ( curve1.getNumControlPoints(), lastPointOrFirst1 );
+	IndexConverter ic2 ( curve2.getNumControlPoints(), lastPointOrFirst2 );
+
+	// Notice that I HARDCODED the degree of the segments here,
+	// since this method is a special case.
+	int totalSize = solverSize1 + solverSize2;
+
+	MatrixXs A (totalSize, totalSize);
+	MatrixXs b_coeff (totalSize, totalSize);
+	MatrixXs b_ctrlPoints (totalSize, 2);		// 2 for x and y coordinates
+	A = MatrixXs::Zero(totalSize, totalSize);
+	b_coeff = MatrixXs::Zero(totalSize, totalSize);
+	b_ctrlPoints.block(0, 0, solverSize1, 2) = curve1.getControlPoints();
+	b_ctrlPoints.block(solverSize1, 0, solverSize2, 2) = curve2.getControlPoints();
+	
+	std::cout << "Checkpoint 1:" << std::endl;
+	std::cout << "b_ctrlPoints: " << b_ctrlPoints << std::endl << std::endl;
+	
+	
+	// Start filling in the matrix now!
+	
+	// current solver row
+	int srow = 0;
+	
+	// Iterate through each curve segment and fill in
+	// TODO: Replace all indices with ic1.index(i)
+	// or (3*i) with ic1.index( 3*i )
+	// Fill in constraints based on the curvature of the first curve
+	for(int i = 0; i < numSegments1; ++i)
+	{
+		// First set of constraints for segment i-th
+		if (i == 0) {
+			// First criterion
+			A(srow, i) = 1;
+			b_coeff(srow, i) = 1;
+			++srow;
+			
+			// Second criterion
+			A(srow, 3*i + 0) = 1;
+			A(srow, 3*i + 1) = -2;
+			A(srow, 3*i + 2) = 1;
+			b_coeff(srow, 3*i + 0) = 1;
+			b_coeff(srow, 3*i + 1) = -2;
+			b_coeff(srow, 3*i + 2) = 1;
+			++srow;
+		} else if (i != 0) {
+			// Only one criteria here
+			// b_coeff part is simply zeros
+			A(srow, 3*i - 1) = 1;
+			A(srow, 3*i + 0) = -2;
+			A(srow, 3*i + 1) = 1;
+			++srow;
+		}
+		
+		// Second set of constraints for segment i-th
+		if (i != numSegments1 - 1) {
+			// First criterion
+			A(srow, 3*i + 1) = 1;
+			A(srow, 3*i + 2) = -2;
+			A(srow, 3*i + 4) = 2;
+			A(srow, 3*i + 5) = -1;
+			b_coeff(srow, 3*i + 1) = 1;
+			b_coeff(srow, 3*i + 2) = -2;
+			b_coeff(srow, 3*i + 4) = 2;
+			b_coeff(srow, 3*i + 5) = -1;
+			++srow;
+			
+			// Second criterion
+			A(srow, 3*i + 0) = 1;
+			A(srow, 3*i + 2) = -3;
+			A(srow, 3*i + 3) = 4;
+			A(srow, 3*i + 4) = -3;
+			A(srow, 3*i + 6) = 1;
+			b_coeff(srow, 3*i + 0) = 1;
+			b_coeff(srow, 3*i + 2) = -3;
+			b_coeff(srow, 3*i + 3) = 4;
+			b_coeff(srow, 3*i + 4) = -3;
+			b_coeff(srow, 3*i + 6) = 1;
+			++srow;
+		} else if (i == numSegments1 - 1) {
+			int x = numSegments1 - 1;
+			int y = numSegments2 - 1;
+		
+			// First criterion
+			A(srow, 3*x + 1) = 1;
+			A(srow, 3*y + 1 + solverSize1) = -1;		// Replace to ic1.index(3*y + 1) + solverSize1
+			A(srow, 3*x + 2) = -2;
+			A(srow, 3*y + 2 + solverSize1) = 2;
+			A(srow, 3*x + 3) = 1;
+			A(srow, 3*y + 3 + solverSize1) = -1;						
+			b_coeff(srow, 3*x + 1) = 1;
+			b_coeff(srow, 3*y + 1 + solverSize1) = -1;		// Replace to ic1.index(3*y + 1) + solverSize1
+			b_coeff(srow, 3*x + 2) = -2;
+			b_coeff(srow, 3*y + 2 + solverSize1) = 2;
+			b_coeff(srow, 3*x + 3) = 1;
+			b_coeff(srow, 3*y + 3 + solverSize1) = -1;
+			++srow;
+			
+			// Second criterion
+			A(srow, 3*x + 3) = 1;
+			b_coeff(srow, 3*x + 3) = weight1;
+			b_coeff(srow, 3*y + 3 + solverSize1) = weight2;
+			++srow;
+		}
+	}
+	
+	// Iterate through each curve segment and fill in
+	// TODO: Replace all indices with ic2.index(i)
+	// or (3*i) with ic2.index( 3*i )
+	// Fill in constraints based on the curvature of the second curve
+	// Notice the index shift in matrix A; most of the columns now are related to the second curve
+	// control points, so we need to shift all indices to the RIGHT HALF of the matrix.
+	for(int i = 0; i < numSegments2; ++i)
+	{
+		// First set of constraints for segment i-th
+		if (i == 0) {
+			// First criterion
+			A(srow, i + solverSize1) = 1;
+			b_coeff(srow, i + solverSize1) = 1;
+			++srow;
+			
+			// Second criterion
+			A(srow, 3*i + 0 + solverSize1) = 1;
+			A(srow, 3*i + 1 + solverSize1) = -2;
+			A(srow, 3*i + 2 + solverSize1) = 1;
+			b_coeff(srow, 3*i + 0 + solverSize1) = 1;
+			b_coeff(srow, 3*i + 1 + solverSize1) = -2;
+			b_coeff(srow, 3*i + 2 + solverSize1) = 1;
+			++srow;
+		} else if (i != 0) {
+			// Only one criteria here
+			// b_coeff part is simply zeros
+			A(srow, 3*i - 1 + solverSize1) = 1;
+			A(srow, 3*i + 0 + solverSize1) = -2;
+			A(srow, 3*i + 1 + solverSize1) = 1;
+			++srow;
+		}
+		
+		std::cout << "A:\n" << A << std::endl << std::endl;
+		
+		// Second set of constraints for segment i-th
+		if (i != numSegments2 - 1) {
+			// First criterion
+			A(srow, 3*i + 1 + solverSize1) = 1;
+			A(srow, 3*i + 2 + solverSize1) = -2;
+			A(srow, 3*i + 4 + solverSize1) = 2;
+			A(srow, 3*i + 5 + solverSize1) = -1;
+			b_coeff(srow, 3*i + 1 + solverSize1) = 1;
+			b_coeff(srow, 3*i + 2 + solverSize1) = -2;
+			b_coeff(srow, 3*i + 4 + solverSize1) = 2;
+			b_coeff(srow, 3*i + 5 + solverSize1) = -1;
+			++srow;
+			
+			std::cout << "A:\n" << A << std::endl << std::endl;
+			
+			// Second criterion
+			A(srow, 3*i + 0 + solverSize1) = 1;
+			A(srow, 3*i + 2 + solverSize1) = -3;
+			A(srow, 3*i + 3 + solverSize1) = 4;
+			A(srow, 3*i + 4 + solverSize1) = -3;
+			A(srow, 3*i + 6 + solverSize1) = 1;
+			b_coeff(srow, 3*i + 0 + solverSize1) = 1;
+			b_coeff(srow, 3*i + 2 + solverSize1) = -3;
+			b_coeff(srow, 3*i + 3 + solverSize1) = 4;
+			b_coeff(srow, 3*i + 4 + solverSize1) = -3;
+			b_coeff(srow, 3*i + 6 + solverSize1) = 1;
+			++srow;
+			
+			std::cout << "A:\n" << A << std::endl << std::endl;
+		} else if (i == numSegments2 - 1) {
+			int x = numSegments1 - 1;
+			int y = numSegments2 - 1;
+		
+			// First criterion (Smooth joining)
+			A(srow, 3*x + 3) = 1;
+			A(srow, 3*y + 3 + solverSize1) = 1;
+			A(srow, 3*x + 2) = -1;
+			A(srow, 3*y + 2 + solverSize1) = -1;
+			++srow;
+			
+			std::cout << "A:\n" << A << std::endl << std::endl;
+			
+			// Second criterion (Joining two end points)
+			A(srow, 3*y + 3 + solverSize1) = 1;
+			b_coeff(srow, 3*x + 3) = weight1;
+			b_coeff(srow, 3*y + 3 + solverSize1) = weight2;
+			++srow;
+			
+			std::cout << "A:\n" << A << std::endl << std::endl;
+		}
+	}
+	
+	std::cout << "Checkpoint 2:" << std::endl;
+	std::cout << "A: " << A << std::endl << std::endl;
+	std::cout << "b_coeff: " << b_coeff << std::endl << std::endl;
+	
+	// Solve!
+	VectorX2s X = A.colPivHouseholderQr().solve(b_coeff * b_ctrlPoints);
+	
+	std::cout << "Checkpoint 3:" << std::endl;
+	std::cout << "X: " << X << std::endl << std::endl;
+	std::cout << "curve1.getControlPoints(): " << curve1.getControlPoints() << std::endl << std::endl;
+	std::cout << "curve2.getControlPoints(): " << curve2.getControlPoints() << std::endl << std::endl;
+	
+	// Set the two curve control points to the solver result
+	curve1.getControlPoints() = X.block(0, 0, solverSize1, 2);
+	curve2.getControlPoints() = X.block(solverSize1, 0, solverSize2, 2);
+	
+	std::cout << "Checkpoint 4:" << std::endl;
+	std::cout << "curve1.getControlPoints(): " << curve1.getControlPoints() << std::endl << std::endl;
+	std::cout << "curve2.getControlPoints(): " << curve2.getControlPoints() << std::endl << std::endl;
+	
+}
+
+int PolyBezierScene::findCurveIndexGivenID( const int & ID )
+{
+	assert( m_curves.size() > 0 );
+
+	// Perform binary search on m_id inside m_curves.
+	int left = 0;
+	int right = m_curves.size() - 1;
+	int mid;
+	
+	while (right >= left) {
+		mid = (left + right) / 2;
+		
+		if (m_curves[mid].getID() < ID)
+			left = mid + 1;
+		else if (m_curves[mid].getID() > ID)
+			right = mid - 1;
+		else
+		{
+			std::cout << "ID " << ID << "found at m_curves index: " << mid << std::endl;
+			return mid;
+		}
+	}
+	
+	std::cout	<< outputmod::startred
+				<< "PolyBezierScene Error: No curve with ID " << ID << "found"
+				<< outputmod::endred << std::flush;
+	return -1;
+}
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //

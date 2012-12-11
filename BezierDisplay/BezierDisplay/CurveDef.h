@@ -12,6 +12,7 @@
 #include <vector>
 #include <map>
 #include <set>
+#include "StringUtilities.h"
 
 class PolyBezierCurve;
 class BezierEvaluator;

@@ -93,7 +93,10 @@ SceneMiscData g_scene_misc_data( renderingutils::Color( 1.0, 1.0, 1.0 ) );
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+//
 // OpenGL rendering and UI functions
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //Called when the window size is changed.
 void reshape (int w, int h)
@@ -129,7 +132,9 @@ void display()
 	
 	glMatrixMode( GL_MODELVIEW );
 	
-	drawGrid(*(g_scene_object_data.g_gridMaxX), *(g_scene_object_data.g_gridMaxY), *(g_scene_object_data.g_gridSize));
+	if (g_scene_object_data.m_drawGrid)
+		drawGrid(*(g_scene_object_data.g_gridMaxX), *(g_scene_object_data.g_gridMaxY), *(g_scene_object_data.g_gridSize));
+	
 	g_scene_object_data.g_bezier_renderer->renderScene();
 	
 	//drawHUD();
@@ -279,7 +284,11 @@ void keyboard( unsigned char key, int x, int y )
 		
 		if ( *(g_scene_object_data.g_gridMaxX) < 0) *(g_scene_object_data.g_gridMaxX) = 0;
 		if ( *(g_scene_object_data.g_gridMaxY) < 0) *(g_scene_object_data.g_gridMaxY) = 0;
-		
+	}
+	
+	if ( key == 'G')
+	{
+		g_scene_object_data.m_drawGrid = !g_scene_object_data.m_drawGrid;
 	}
 	
 	assert( renderingutils::checkGLErrors() );
@@ -364,7 +373,10 @@ void idle()
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
+//
 // initializeOpenGLandGLUT and runOpenGL methods
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////
 void initializeOpenGLandGLUT ( int argc, char** argv ) {
 
 	// Set camera at center of the scene

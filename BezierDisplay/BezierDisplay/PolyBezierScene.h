@@ -28,6 +28,7 @@
 #include <map>
 #include <vector>
 #include "CurveDef.h"
+#include "BezierUtils.h"
 #include "PolyBezierCurve.h"
 #include "BezierEvaluator.h"
 
@@ -69,6 +70,8 @@ public:
 	void evalPolyCurveSamples();
 	void evalPolyCurveHistorySamples();
 	
+// Helper methods
+public:
 	// Level of Details of the curve display
 	void setLoD( const int & rate );			// DO THIS AFTER initializeEvaluators
 	const int & getLoD() const;
@@ -96,16 +99,17 @@ public:
 	//
 	// Input:
 	// id1, id2: IDs of the two curves being connected
-	// beginOrEnd1, beginOrEnd2: tells us which side of the curve to connect. If true, use the first
-	//							 control point stored in the curve for connection. If false, use last.
+	// lastPointOrFirst1, lastPointOrFirst1: tells us which side of the curve to connect.
+	//			If true, use the last control point stored in the m_controlPoints of the curve
+	//			If false, use the first.
 	// weight1, weight2: weights for calculating new connecting point -- we connect p(id1) and p(id2)
 	//					 by the formula newP = weight1 * p1 + weight2 * p2.
 	//					 Recommended: the weights should sum up to 1.0
 	void connectPolycurveThree( const int & id1, const int & id2,
-								const bool & beginOrEnd1, const bool & beginOrEnd2,
+								const bool & lastPointOrFirst1, const bool & lastPointOrFirst2,
 								const scalar & weight1, const scalar & weight2 );
 	
-	PolyBezierCurve & findCurveGivenID( const int & ID );
+	int findCurveIndexGivenID( const int & ID );
 	
 	
 //	// TODO:

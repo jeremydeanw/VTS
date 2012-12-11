@@ -5,7 +5,7 @@ dependencies: \
   /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/BezierDisplay/StringUtilities.h \
   /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/BezierDisplay/PolyBezierScene.h \
   /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/BezierDisplay/CurveDef.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/BezierDisplay/PolyBezierCurve.h \
+  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/BezierDisplay/BezierUtils.h \
   /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/BezierDisplay/MathDef.h \
   /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/Core \
   /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/Core/util/DisableStupidWarnings.h \
@@ -156,6 +156,6 @@ dependencies: \
   /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/StdVector \
   /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/StlSupport/StdVector.h \
   /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/include/eigen/Eigen/src/StlSupport/details.h \
+  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/BezierDisplay/PolyBezierCurve.h \
   /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/BezierDisplay/BezierEvaluator.h \
-  /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/BezierDisplay/BezierUtils.h \
   /Users/Papoj/Hua_Columbia/2012/1-Fall/Classes/W4901_Research_Changxi/VTS_Repository/BezierDisplay/BezierDisplay/OpenGLSceneData.h

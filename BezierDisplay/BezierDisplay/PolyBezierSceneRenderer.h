@@ -20,9 +20,7 @@ class PolyBezierSceneRenderer
 {
 public:
 
-	PolyBezierSceneRenderer( const PolyBezierScene & scene );
-	
-	void keyboard( unsigned char key, int x, int y );
+	PolyBezierSceneRenderer( PolyBezierScene & scene );
 	
 	void setCurveColor( double r, double g, double b, double a = 1.0 );
 	void setCurveColor( const renderingutils::Color & color );
@@ -46,6 +44,7 @@ public:
 	const PolyBezierScene & getScene() const;
 
 public:
+	void keyboard( unsigned char key, int x, int y );
 	void processSelection( int xPos, int yPos, SceneControllerData & scd);
 	void mouse( int button, int state, int x, int y, SceneControllerData & scd );
 	void motion( int x, int y, SceneControllerData & scd);
@@ -68,7 +67,7 @@ private:
 	
 	
 	
-	const PolyBezierScene & m_curveScene;
+	PolyBezierScene & m_curveScene;
 	
 	renderingutils::Color m_curveColor;
 	renderingutils::Color m_curveHistoryColor;

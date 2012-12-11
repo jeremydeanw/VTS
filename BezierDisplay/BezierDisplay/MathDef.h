@@ -43,6 +43,9 @@ struct choose<false, IsTrue, IsFalse> {
 // and return the reference to entire row or more (see operator*()
 // and getBlock() methods)
 //
+// The iterator has been implemented to support both const_iterator and usual
+// iterator in one template.
+//
 // Learn: Iterator should ususally accept the pointers to data!
 template <typename T, bool isConst = false>
 class VectorXXsIterator

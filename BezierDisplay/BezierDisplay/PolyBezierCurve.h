@@ -38,7 +38,9 @@ public:
 	PolyBezierCurve( const int & cid = -1 );
 //	PolyBezierCurve( const int & segments );
 	PolyBezierCurve( const VectorX1i & degs, const VectorX2s & points, const int & cid = -1);
-	
+
+// Evaluating methods
+
 	// Evaluate a sample point on the poly curve, given segment index and arbitrary parameter t
 	// (Should not be needed if only curve display)
 	Vector12s eval( const int & segment, scalar t );
@@ -49,16 +51,10 @@ public:
 	// Generate sample points
 	void generateSamplePoints( const curvedef::MapEvaluators & evalMap, const int & rate );
 	
-	// Set samplePoint
-	void setSamplePoint( const int & row, const Vector12s & v);
-	
-	// Set ID
-	void setID( const int & cid );
-	int getID() const;
-	
+	// TODO: Delete this
 	void printTest();
 
-// Iterator and helper methods
+// Iterator methods
 public:
 
 	// Return iterator pointing the beginning segment, or the end segment, of the curve
@@ -84,15 +80,26 @@ public:
 	bool isIterAtBegin( const VectorX2s_iterator & it ) const;
 	bool isIterAtEnd( const VectorX2s_iterator & it ) const;
 	
-	
+// Helper methods (Get and Set)
+public:
 	// To return points, they may not have reference
 	// to original copy since temporary function like block() and row() do not allow us to
 	// return its modifiable copy. Therefore, return indices to control points instead.
 	VectorX1s getSegmentCtrlPtsIndices( const int & segment );
 	VectorX1s getSegmentCtrlPtsIndices( const VectorX2s_iterator & it );
 	
-	int& getNumSegments();
-	const int& getNumSegments() const;
+	// Set samplePoint, given one index
+	void setSamplePoint( const int & row, const Vector12s & v);
+	// Set controlPoint, given an entire VectorX2s
+	void setControlPoints( const VectorX2s & ctrlPoints );
+	
+	// Set ID
+	void setID( const int & cid );
+	int getID() const;
+	
+	int getNumSegments() const;
+	int getNumControlPoints() const;
+	int getNumSamplePoints() const;
 	curvedef::Degree& getSegmentDegree( int index );
 	const curvedef::Degree& getSegmentDegree( int index ) const;
 	VectorX1i& getDegs();
@@ -107,8 +114,8 @@ private:
 	// ID number of this polycurve
 	int m_id;
 
-	// Number of segments
-	int m_segments;
+//	// Number of segments
+//	int m_segments;
 
 	// Series of degrees for each Bezier segment
 	// For example, a poly curve that comes with linear, linear, quad, linear segments

@@ -1,11 +1,10 @@
-/*
- *  BezierDS.cpp
- *  BezierCurve
- *
- *  Created by Papoj Thamjaroenporn on 11/18/11.
- *  Copyright 2011 __MyCompanyName__. All rights reserved.
- *
- */
+//
+//  BezierUtil.cpp
+//  BezierDisplay
+//
+//  Created by Papoj Thamjaroenporn on 11/14/12.
+//  Copyright (c) 2012 Papoj Thamjaroenporn. All rights reserved.
+//
 
 #include "BezierUtils.h"
 #include <iostream>

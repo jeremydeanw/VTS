@@ -8,7 +8,7 @@
 
 #include "PolyBezierSceneRenderer.h"
 
-PolyBezierSceneRenderer::PolyBezierSceneRenderer( const PolyBezierScene & scene )
+PolyBezierSceneRenderer::PolyBezierSceneRenderer( PolyBezierScene & scene )
 : m_curveScene( scene )
 , m_curveColor( renderingutils::Color(0,0,0,1) )
 , m_curveHistoryColor( renderingutils::Color(0,0,0,1) )
@@ -22,20 +22,11 @@ PolyBezierSceneRenderer::PolyBezierSceneRenderer( const PolyBezierScene & scene 
 , m_renderCurveHull( true )
 {}
 
-void PolyBezierSceneRenderer::keyboard( unsigned char key, int x, int y )
-{
-	// Toggle Bezier curves on or off
-	if( key == 'b' || key == 'B')
-	{
-		m_renderCurve = !m_renderCurve;
-	}
-	
-	// Toggle hull on or off
-	else if( key == 'h' || key == 'H' )
-	{
-		m_renderCurveHull = !m_renderCurveHull;
-	}
-}
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// Helper methods
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void PolyBezierSceneRenderer::setCurveColor( double r, double g, double b, double a )
 {
@@ -104,6 +95,36 @@ const PolyBezierScene & PolyBezierSceneRenderer::getScene() const
 	return m_curveScene;
 }
 
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// Controllers methods
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void PolyBezierSceneRenderer::keyboard( unsigned char key, int x, int y )
+{
+	// Toggle Bezier curves on or off
+	if( key == 'b' || key == 'B')
+	{
+		m_renderCurve = !m_renderCurve;
+	}
+	
+	// Toggle hull on or off
+	else if( key == 'h' || key == 'H' )
+	{
+		m_renderCurveHull = !m_renderCurveHull;
+	}
+	
+	
+	if( key == 'A')
+	{
+		m_curveScene.connectPolycurveThree(0,1,true, true, 0.5, 0.5);
+		m_curveScene.evalPolyCurveSamples();
+		glutPostRedisplay();
+	}
+	
+}
+
 void PolyBezierSceneRenderer::processSelection( int xPos, int yPos, SceneControllerData & scd)
 {
 	// TODO: Process this
@@ -123,6 +144,12 @@ void PolyBezierSceneRenderer::motion( int x, int y, SceneControllerData & scd)
 // TODO: Process this
 
 }
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+//
+// Scene rendering methods
+//
+////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void PolyBezierSceneRenderer::renderScene() const
 {

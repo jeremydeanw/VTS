@@ -28,6 +28,7 @@ typedef struct SceneObjectData
 	int * g_gridMaxX;
 	int * g_gridMaxY;
 	scalar * g_gridSize;
+	bool m_drawGrid;
 	
 } SceneObjectData;
 

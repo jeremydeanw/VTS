@@ -9,6 +9,7 @@
 #include "OpenGLSceneData.h"
 
 SceneObjectData::SceneObjectData()
+: m_drawGrid( true )
 {};
 
 SceneControllerData::SceneControllerData()
