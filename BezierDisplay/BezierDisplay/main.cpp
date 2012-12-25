@@ -1,12 +1,18 @@
 /*
 	Bezier Curve Test.
-	A program that runs basic Bezier curves display. A data structure PolyBezierCurve
-	is also added (supporting multiple-segment Bezier curves.
+	A program that runs and connects Bezier curves display based on minimization of curvature
+	change constraint.
 	
-	The program would be able to read in XML file and extract Bezier curves from it.
+	Currently we have 6 test cases hardcoded in main.h. One can run the following:
+		constructPolyCurveScene1( mainScene );
+		constructPolyCurveScene2_1( mainScene );
+		constructPolyCurveScene2_2( mainScene );
+		constructPolyCurveScene3_1( mainScene );
+		constructPolyCurveScene3_2( mainScene );
+		constructPolyCurveScene4( mainScene );
+		constructPolyCurveScene5( mainScene );
+	to see results of different test cases.
 	
-	Milestone:
-	1. Get the OpenGL running nicely. Orthographic camera. Mouse allowing zoom in-and-out.
  */
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -17,16 +23,12 @@
 //The program runs from this starting point.
 int main (int argc, char **argv) {
 	
-	PolyBezierScene mainScene;
-	constructPolyCurveScene6( mainScene );
+	std::cout	<< outputmod::startgreen
+				<< "Vector Texture Synthesis"
+				<< outputmod::endgreen << std::flush;
 	
-	curvedef::VectorPolyCurve::iterator it;
-	for(it = mainScene.getCurvesBegin(); it != mainScene.getCurvesEnd(); it++)
-	{
-		std::cout << "ID of each curve: " << it->getID() << std::endl;
-	}
-		
-	//mainScene.printDegreeSet();
+	PolyBezierScene mainScene;
+	constructPolyCurveScene4( mainScene );
 	
 	mainScene.setLoD(30);
 	mainScene.initializeEvaluators();

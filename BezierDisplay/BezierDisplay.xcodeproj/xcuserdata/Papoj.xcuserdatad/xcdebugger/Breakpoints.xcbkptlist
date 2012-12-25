@@ -47,22 +47,22 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "BezierDisplay/OpenGLScene.cpp"
-         timestampString = "376908407.825785"
+         timestampString = "377761563.451174"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "424"
-         endingLineNumber = "424">
+         startingLineNumber = "324"
+         endingLineNumber = "324">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "BezierDisplay/PolyBezierScene.cpp"
-         timestampString = "376906712.554321"
+         timestampString = "377753437.563673"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "113"
-         endingLineNumber = "113"
+         startingLineNumber = "80"
+         endingLineNumber = "80"
          landmarkName = "PolyBezierScene::initializeEvaluators()"
          landmarkType = "5">
       </FileBreakpoint>
@@ -71,11 +71,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "BezierDisplay/main.cpp"
-         timestampString = "376907109.088003"
+         timestampString = "377761563.451174"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "32"
-         endingLineNumber = "32"
+         startingLineNumber = "34"
+         endingLineNumber = "34"
          landmarkName = "main (int argc, char **argv)"
          landmarkType = "7">
       </FileBreakpoint>
@@ -84,11 +84,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "BezierDisplay/main.cpp"
-         timestampString = "376907109.088003"
+         timestampString = "377761563.451174"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "29"
-         endingLineNumber = "29"
+         startingLineNumber = "31"
+         endingLineNumber = "31"
          landmarkName = "main (int argc, char **argv)"
          landmarkType = "7">
       </FileBreakpoint>
@@ -96,64 +96,12 @@
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
-         filePath = "BezierDisplay/PolyBezierCurve.cpp"
-         timestampString = "376906712.554321"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "141"
-         endingLineNumber = "141"
-         landmarkName = "PolyBezierCurve::generateSamplePoints( const curvedef::MapEvaluators &amp; evalMap, const int &amp; rate )"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "BezierDisplay/PolyBezierCurve.cpp"
-         timestampString = "376906712.554321"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "163"
-         endingLineNumber = "163"
-         landmarkName = "PolyBezierCurve::generateSamplePoints( const curvedef::MapEvaluators &amp; evalMap, const int &amp; rate )"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "BezierDisplay/PolyBezierCurve.cpp"
-         timestampString = "376906712.554321"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "165"
-         endingLineNumber = "165"
-         landmarkName = "PolyBezierCurve::generateSamplePoints( const curvedef::MapEvaluators &amp; evalMap, const int &amp; rate )"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "BezierDisplay/PolyBezierCurve.cpp"
-         timestampString = "376906712.554321"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "166"
-         endingLineNumber = "166"
-         landmarkName = "PolyBezierCurve::generateSamplePoints( const curvedef::MapEvaluators &amp; evalMap, const int &amp; rate )"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
          filePath = "BezierDisplay/OpenGLScene.cpp"
-         timestampString = "376906712.554321"
+         timestampString = "377749491.328019"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "131"
-         endingLineNumber = "131"
+         startingLineNumber = "62"
+         endingLineNumber = "62"
          landmarkName = "display()"
          landmarkType = "7">
       </FileBreakpoint>
@@ -162,11 +110,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "BezierDisplay/OpenGLScene.cpp"
-         timestampString = "376908407.825785"
+         timestampString = "377761563.451174"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "227"
-         endingLineNumber = "227"
+         startingLineNumber = "147"
+         endingLineNumber = "147"
          landmarkName = "centerCamera( scalar cx, scalar cy )"
          landmarkType = "7">
       </FileBreakpoint>
@@ -175,11 +123,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "BezierDisplay/PolyBezierScene.cpp"
-         timestampString = "376906712.554321"
+         timestampString = "377754770.329797"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "229"
-         endingLineNumber = "229"
+         startingLineNumber = "207"
+         endingLineNumber = "207"
          landmarkName = "PolyBezierScene::connectPolycurveThree( const int &amp; id1, const int &amp; id2, const bool &amp; lastPointOrFirst1, const bool &amp; lastPointOrFirst2, const scalar &amp; weight1, const scalar &amp; weight2 )"
          landmarkType = "5">
       </FileBreakpoint>
@@ -188,11 +136,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "BezierDisplay/PolyBezierScene.cpp"
-         timestampString = "376909836.609992"
+         timestampString = "377754770.329797"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "448"
-         endingLineNumber = "448"
+         startingLineNumber = "394"
+         endingLineNumber = "394"
          landmarkName = "PolyBezierScene::connectPolycurveThree( const int &amp; id1, const int &amp; id2, const bool &amp; lastPointOrFirst1, const bool &amp; lastPointOrFirst2, const scalar &amp; weight1, const scalar &amp; weight2 )"
          landmarkType = "5">
       </FileBreakpoint>
@@ -201,87 +149,22 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "BezierDisplay/PolyBezierCurve.cpp"
-         timestampString = "376893912.091648"
+         timestampString = "377754604.796553"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "41"
-         endingLineNumber = "41"
-         landmarkName = "PolyBezierCurve::printTest()"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "BezierDisplay/PolyBezierCurve.cpp"
-         timestampString = "376906712.554321"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "351"
-         endingLineNumber = "351">
+         startingLineNumber = "215"
+         endingLineNumber = "215">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "BezierDisplay/PolyBezierScene.cpp"
-         timestampString = "376909810.083357"
+         timestampString = "377754770.329797"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "424"
-         endingLineNumber = "424"
-         landmarkName = "PolyBezierScene::connectPolycurveThree( const int &amp; id1, const int &amp; id2, const bool &amp; lastPointOrFirst1, const bool &amp; lastPointOrFirst2, const scalar &amp; weight1, const scalar &amp; weight2 )"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "BezierDisplay/PolyBezierScene.cpp"
-         timestampString = "376909820.549602"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "416"
-         endingLineNumber = "416"
-         landmarkName = "PolyBezierScene::connectPolycurveThree( const int &amp; id1, const int &amp; id2, const bool &amp; lastPointOrFirst1, const bool &amp; lastPointOrFirst2, const scalar &amp; weight1, const scalar &amp; weight2 )"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "BezierDisplay/PolyBezierScene.cpp"
-         timestampString = "376909821.707486"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "404"
-         endingLineNumber = "404"
-         landmarkName = "PolyBezierScene::connectPolycurveThree( const int &amp; id1, const int &amp; id2, const bool &amp; lastPointOrFirst1, const bool &amp; lastPointOrFirst2, const scalar &amp; weight1, const scalar &amp; weight2 )"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "BezierDisplay/PolyBezierScene.cpp"
-         timestampString = "376909823.344384"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "389"
-         endingLineNumber = "389"
-         landmarkName = "PolyBezierScene::connectPolycurveThree( const int &amp; id1, const int &amp; id2, const bool &amp; lastPointOrFirst1, const bool &amp; lastPointOrFirst2, const scalar &amp; weight1, const scalar &amp; weight2 )"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "No"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "BezierDisplay/PolyBezierScene.cpp"
-         timestampString = "376909825.466408"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "374"
-         endingLineNumber = "374"
+         startingLineNumber = "383"
+         endingLineNumber = "383"
          landmarkName = "PolyBezierScene::connectPolycurveThree( const int &amp; id1, const int &amp; id2, const bool &amp; lastPointOrFirst1, const bool &amp; lastPointOrFirst2, const scalar &amp; weight1, const scalar &amp; weight2 )"
          landmarkType = "5">
       </FileBreakpoint>
